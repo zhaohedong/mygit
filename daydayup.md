@@ -46,3 +46,6 @@
   - 素数，又称质数，是只能被1或者自己整除的自然数。
 - 什么是无人值守模式
 - 将daydayup上传到github
+- git checkout撤销操作
+  - git checkout -- <文件名>  #撤销对某个文件的修改
+  - git checkout -- .  #撤销对所有文件的修改
