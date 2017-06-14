@@ -242,3 +242,48 @@
     - checking your package installs correctly with different Python versions and interpreters
     - running your tests in each of the environments, configuring your test tool of choice
     - acting as a frontend to Continuous Integration servers, greatly reducing boilerplate and merging CI and shell-based testing.
+    - Tox Sample
+      - http://www.sohu.com/a/120074606_487512
+- python如何调用shell命令
+  - os.system
+    - os.system('cat /proc/cpuinfo')
+    - 没有输出结果
+  - os.popen()
+      ```
+      output = os.popen('cat /proc/cpuinfo')
+      print output.read()
+      ```
+    - 有输出结果，但是没有返回结果
+  - commands.getstatusoutput()
+      ```
+      (status, output) = commands.getstatusoutput('cat /proc/cpuinfo')
+      print status, output
+      ```
+      - 可以获得到返回值和输出，非常好用
+- linux创建进程的方法
+- linux创建线程的方法
+- python创建进程的方法
+- python创建线程的方法
+- 什么是mapreduce
+- 什么是
+
+- 如何升级pip和setuptools
+  - python -m pip install -U pip setuptools
+  - vi /opt/stack/devstack/inc/python
+
+#### 2017.06.15
+- keystone服务启动失败临时对应方法
+   - ```
+   #!/usr/bin/env bash
+   sudo mkdir /var/run/uwsgi/
+   sudo chown stack /var/run/uwsgi/
+   sudo systemctl start devstack@keystone.service
+   #sudo systemctl start devstack@placement-api.service
+    ```
+- devstack环境下，openstack各模块服务所在位置
+  /etc/systemd/system
+- systemctl状态查看命令
+  - systemctl status devstack@keystone.service
+- journalctl查看日志
+  - journalctl -f --unit devstack@keystone.service
+  - sudo journalctl -f --unit devstack@c-*.service > cinder.log

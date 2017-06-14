@@ -816,9 +816,30 @@ pre.editor-colors .fold-marker:after {
 <li>checking your package installs correctly with different Python versions and interpreters</li>
 <li>running your tests in each of the environments, configuring your test tool of choice</li>
 <li>acting as a frontend to Continuous Integration servers, greatly reducing boilerplate and merging CI and shell-based testing.</li>
+<li>Tox Sample<ul>
+<li><a href="http://www.sohu.com/a/120074606_487512">http://www.sohu.com/a/120074606_487512</a></li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li>python如何调用shell命令<ul>
+<li>os.system<ul>
+<li>os.system(&#39;cat /proc/cpuinfo&#39;)</li>
+<li>没有输出结果</li>
+</ul>
+</li>
+<li>os.popen()<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span>&nbsp;&nbsp;</span><span class="syntax--meta syntax--paragraph syntax--text"><span>output&nbsp;=&nbsp;os.popen(&#39;cat&nbsp;/proc/cpuinfo&#39;)</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>&nbsp;&nbsp;print&nbsp;output.read()</span></span></span></div></pre><ul>
+<li>有输出结果，但是没有返回结果</li>
+<li>commands.getstatusoutput()<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>(status,&nbsp;output)&nbsp;=&nbsp;commands.getstatusoutput(&#39;cat&nbsp;/proc/cpuinfo&#39;)</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>print&nbsp;status,&nbsp;output</span></span></span></div></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>linux创建进程的方法</li>
+<li>linux创建线程的方法</li>
+<li>python创建进程的方法</li>
+<li>python创建线程的方法</li>
 </ul></body>
 </html>
