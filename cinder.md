@@ -9,6 +9,11 @@ RESTful架构的一个核心概念是“资源”。从RESTful的角度看，网
 - WSGI（Web Server Gateway Interface）
   -
 
+- 什么是块存储？
+
+- Cinder的功能
+  - 与Nova利用主机本地存储为虚拟机提供的临时存储不同，Cinder为虚拟机提供持久化的块存储能力，实现虚拟机存储卷（Volume）的创建、挂载、卸载、快照等生命周期管理。
+
 ## Cinder
 - Cinder 架构
   - Cinder 主要由 3 个组件组成，cinder-api, cinder-scheduler 和 cinder-volume，如下图所示。

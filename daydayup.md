@@ -287,3 +287,4 @@
 - journalctl查看日志
   - journalctl -f --unit devstack@keystone.service
   - sudo journalctl -f --unit devstack@c-*.service > cinder.log
+-
