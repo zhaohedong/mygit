@@ -273,13 +273,13 @@
 
 #### 2017.06.15
 - keystone服务启动失败临时对应方法
-   - ```
-   #!/usr/bin/env bash
-   sudo mkdir /var/run/uwsgi/
-   sudo chown stack /var/run/uwsgi/
-   sudo systemctl start devstack@keystone.service
-   sudo systemctl start devstack@placement-api.service
-    ```
+  ```
+  #!/usr/bin/env bash
+  sudo mkdir /var/run/uwsgi/
+  sudo chown stack /var/run/uwsgi/
+  sudo systemctl start devstack@keystone.service
+  sudo systemctl start devstack@placement-api.service
+  ```
 - devstack环境下，openstack各模块服务所在位置
   /etc/systemd/system
 - systemctl状态查看命令
@@ -289,7 +289,7 @@
   - sudo journalctl -f --unit devstack@c-vol.service
 
 - c-vol中ERROR cinder.service [-] Manager for service cinder-volume localhost.localdomain@lvmdriver-1 is reporting problems, not sending heartbeat. Service will appear "down".的问题
-  - ```
+  ```
   sudo losetup -f /opt/stack/data/stack-volumes-default-backing-file
   sudo losetup -f /opt/stack/data/stack-volumes-lvmdriver-1-backing-file
   ```
