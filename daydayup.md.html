@@ -832,7 +832,10 @@ pre.editor-colors .fold-marker:after {
 </li>
 <li>os.popen()<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span>&nbsp;&nbsp;</span><span class="syntax--meta syntax--paragraph syntax--text"><span>output&nbsp;=&nbsp;os.popen(&#39;cat&nbsp;/proc/cpuinfo&#39;)</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>&nbsp;&nbsp;print&nbsp;output.read()</span></span></span></div></pre><ul>
 <li>有输出结果，但是没有返回结果</li>
-<li>commands.getstatusoutput()<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>(status,&nbsp;output)&nbsp;=&nbsp;commands.getstatusoutput(&#39;cat&nbsp;/proc/cpuinfo&#39;)</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>print&nbsp;status,&nbsp;output</span></span></span></div></pre></li>
+</ul>
+</li>
+<li>commands.getstatusoutput()<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span>&nbsp;&nbsp;</span><span class="syntax--meta syntax--paragraph syntax--text"><span>(status,&nbsp;output)&nbsp;=&nbsp;commands.getstatusoutput(&#39;cat&nbsp;/proc/cpuinfo&#39;)</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>&nbsp;&nbsp;print&nbsp;status,&nbsp;output</span></span></span></div></pre><ul>
+<li>可以获得到返回值和输出，非常好用</li>
 </ul>
 </li>
 </ul>
@@ -841,5 +844,39 @@ pre.editor-colors .fold-marker:after {
 <li>linux创建线程的方法</li>
 <li>python创建进程的方法</li>
 <li>python创建线程的方法</li>
+<li>什么是mapreduce</li>
+<li><p>什么是</p>
+</li>
+<li><p>如何升级pip和setuptools</p>
+<ul>
+<li>python -m pip install -U pip setuptools</li>
+<li>vi /opt/stack/devstack/inc/python</li>
+</ul>
+</li>
+</ul>
+<h4 id="2017-06-15">2017.06.15</h4>
+<ul>
+<li>keystone服务启动失败临时对应方法<ul>
+<li><pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>#!/usr/bin/env&nbsp;bash</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;mkdir&nbsp;/var/run/uwsgi/</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;chown&nbsp;stack&nbsp;/var/run/uwsgi/</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;systemctl&nbsp;start&nbsp;devstack@keystone.service</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;systemctl&nbsp;start&nbsp;devstack@placement-api.service</span></span></span></div></pre></li>
+</ul>
+</li>
+<li>devstack环境下，openstack各模块服务所在位置
+/etc/systemd/system</li>
+<li>systemctl状态查看命令<ul>
+<li>systemctl status devstack@keystone.service</li>
+</ul>
+</li>
+<li><p>journalctl查看日志</p>
+<ul>
+<li>journalctl -f --unit devstack@keystone.service</li>
+<li>sudo journalctl -f --unit devstack@c-vol.service</li>
+</ul>
+</li>
+<li><p>c-vol中ERROR cinder.service [-] Manager for service cinder-volume localhost.localdomain@lvmdriver-1 is reporting problems, not sending heartbeat. Service will appear &quot;down&quot;.的问题</p>
+<ul>
+<li><pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;losetup&nbsp;-f&nbsp;/opt/stack/data/stack-volumes-default-backing-file</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;losetup&nbsp;-f&nbsp;/opt/stack/data/stack-volumes-lvmdriver-1-backing-file</span></span></span></div></pre></li>
+</ul>
+</li>
+<li></li>
 </ul></body>
 </html>

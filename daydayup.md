@@ -278,7 +278,7 @@
    sudo mkdir /var/run/uwsgi/
    sudo chown stack /var/run/uwsgi/
    sudo systemctl start devstack@keystone.service
-   #sudo systemctl start devstack@placement-api.service
+   sudo systemctl start devstack@placement-api.service
     ```
 - devstack环境下，openstack各模块服务所在位置
   /etc/systemd/system
@@ -286,5 +286,19 @@
   - systemctl status devstack@keystone.service
 - journalctl查看日志
   - journalctl -f --unit devstack@keystone.service
-  - sudo journalctl -f --unit devstack@c-*.service > cinder.log
--
+  - sudo journalctl -f --unit devstack@c-vol.service
+
+- c-vol中ERROR cinder.service [-] Manager for service cinder-volume localhost.localdomain@lvmdriver-1 is reporting problems, not sending heartbeat. Service will appear "down".的问题
+  - ```
+  sudo losetup -f /opt/stack/data/stack-volumes-default-backing-file
+  sudo losetup -f /opt/stack/data/stack-volumes-lvmdriver-1-backing-file
+  ```
+#### 2017.06.15  
+- 如何理解losetup
+  - 用来设置循环设备的命令，让用户可以像访问块设备一样访问一个文件夹。
+  - 循环设备：
+    - loop device：unix系统下的伪设备，需要同一个文件进行连接。
+      利用losetup命令，loop设备可以将文件虚拟成块设备。
+- 什么是libvirt
+- 什么是QEMU
+- 什么是Xen

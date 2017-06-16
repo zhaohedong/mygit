@@ -516,8 +516,10 @@ pre.editor-colors .fold-marker:after {
 <li>OSI七层模型中，iSCSI属于传输层协议，规定了iSCSI Target和iSCSI Initiator之间的通信机制。</li>
 </ul>
 </li>
-<li><p>实现方法
-Cinder本身不直接提供块存储设备实际的管理和服务，而是在虚拟机和具体的存储设备之间引入一个抽象的“逻辑存储卷”。Cinder通过添加不同厂商的Driver来整合后端存储设备，并通过提供统一的API接口的方式为云平台提供持久性的块存储服务，类似于Amazon的EBS（Elastic Block Storage）。</p>
+<li><p>实现方法</p>
+<ul>
+<li>Cinder本身不直接提供块存储设备实际的管理和服务，而是在虚拟机和具体的存储设备之间引入一个抽象的“逻辑存储卷”。Cinder通过添加不同厂商的Driver来整合后端存储设备，并通过提供统一的API接口的方式为云平台提供持久性的块存储服务，类似于Amazon的EBS（Elastic Block Storage）。</li>
+</ul>
 </li>
 <li><p>核心模块</p>
 <ul>
@@ -549,8 +551,8 @@ Cinder本身不直接提供块存储设备实际的管理和服务，而是在�
 </li>
 <li><p>相关主题</p>
 <ul>
-<li><a href="https://www.ibm.com/developerworks/cn/cloud/library/1402_chenhy_openstackstorage/">参考 【OpenStack 存储剖析】 from IBM developerWorks </a></li>
-<li><a href="https://docs.openstack.org/developer/cinder/devref/architecture.html">参考 【Cinder System Architecture】from docs.openstack.org</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/cloud/library/1402_chenhy_openstackstorage/">参考 【OpenStack 存储剖析】 </a></li>
+<li><a href="https://docs.openstack.org/developer/cinder/devref/architecture.html">参考 【Cinder System Architecture】</a></li>
 <li>参考 【OpenStack设计与实现（第二版）】</li>
 <li>参考 【OpenStack系统架构设计实战】</li>
 </ul>
