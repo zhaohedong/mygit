@@ -46,14 +46,47 @@
   - cinder-volume
     - 运行在存储节点上管理具体存储设备的存储空间，每个存储节点上都会运行一个cinder-volume服务，多个存储节点构成存储资源池。
     - Volume生命周期管理的真正实现模块。
-      - manager.py是cinder-volume最为核心的代码，其中的VolumeManager类用于执行接收到的RPC请求，包含所有有关Volume的生命周期管理的函数都。
+      - manager.py是cinder-volume最为核心的代码，其中的VolumeManager类用于执行接收到的RPC请求，包含所有有关Volume的生命周期管理的函数。
   - cinder-scheduler
     - 根据预定的策略选择合适的cinder-volume节点来处理用户的请求。
   - cinder-backup
     - 用于提供卷的备份功能，支持将块存储设备备份到OpenStack备份存储后端，如Swift、Ceph、NFS等。
 
 ## 其他
-- 对象存储
+- Cinder里面使用的wsgi源自于eventlet库，对应eventlet.wsgi.server
+  ```
+  from oslo_service import wsgi
+  import eventlet.wsgi
+  ```
+- OpenStack的日志
+
+- 格式 <时间戳><日志等级><代码模块><Request ID><日志内容><源代码位置>
+
+  - 时间戳：日志记录的时间，包括 年 月 日 时 分 秒 毫秒
+  - 日志等级：有INFO WARNING ERROR DEBUG等
+  - 代码模块：当前运行的模块
+  - **Request ID日志会记录连续不同的操作，为了便于区分和增加可读性，每个操作都被分配唯一的Request ID,便于查找**
+  - 日志内容：这是日志的主体，记录当前正在执行的操作和结果等重要信息
+  - 源代码位置：日志代码的位置，包括方法名称，源代码文件的目录位置和行号。这一项不是所有日志都有
+- RESTful是什么？
+  - Representational State Transfer，表述性状态转移。
+  - RESTful架构的核心概念是“资源”。网络里的任何东西都是资源，每个资源都对应一个特定的URI（统一资源定位符），访问URI就可以“操作”这个资源。
+  - 互联网里，客户端和服务器之间的互动传递的就只是资源的表述，我们上网的过程，就是调用资源的URI，获取它不同表现形式的过程。
+  - 互动只能使用无状态协议HTTP，服务端保存所有状态，客户端使用HTTP的几个基本动作，包括GET，POST，PUT，DELETE使服务器上的资源发生”状态转化”，就是所谓的表述性状态转移。
+- WSGI是什么？
+  - Web Server Gateway Interface Web服务器通用网关接口，是Python语言所定义的Web服务器和Web应用程序或框架之间的接口标准。
+  - 从名称来看，WSGI是一个网关，作用就是协议之间进行转换，WSGI就是一座桥梁（服务器／网关端<-->WSGI<-->应用端／框架端）
+  - WSGI将Web组件分为三类，Web服务器（WSGI Server） <--> Web中间件（WSGI Middleware）<--> Web应用程序（WSGI Application）
+  - WSGI Server
+    - WSGI Server接收HTTP请求，封装一系列环境变量（environ），按照WSGI接口标准调用注册的WSGI Application，最后将响应返回给客户端。
+  - WSGI Application
+    - WSGI Application是一个可被调用的Python对象，它接收2个参数，通常为environ和start_response。
+    - 当处理一个WSGI请求时，服务端为应用端提供上下文信息（environ）和一个回调函数（start_response），当应用处理完请求后，使用服务端提供的回调函数返回相对应的处理结果。
+    ```
+    def application(environ, start_response):
+    start_response('200 OK', [('Content-Type', 'text/html')])
+    return '<h1>Hello, web!</h1>'
+    ```
 
 - 相关主题
   - [参考 【OpenStack 存储剖析】 ](https://www.ibm.com/developerworks/cn/cloud/library/1402_chenhy_openstackstorage/)

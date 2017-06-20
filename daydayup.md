@@ -16,8 +16,6 @@
     - 多态：小猫喵喵叫，小狗汪汪叫
     - 封装：小猫和小狗叫的方法实现，外部是不知道的。。。
 - C++和C static有什么作用？
-- WSGI是什么？
-  - Web Server Gateway Interface
 - REST是什么？RESTful 接口？
 - Deb安装包区分ubuntu的发行版吗？14.04和16.04能安装同一个deb吗？
   - deb安装包按照cpu架构来区分，有amd64，i386等对应x86的64位和32位
@@ -302,3 +300,34 @@
 - 什么是libvirt
 - 什么是QEMU
 - 什么是Xen
+- WSGI是什么？
+  - Web Server Gateway Interface Web服务器通用网关接口，是Python语言所定义的Web服务器和Web应用程序或框架之间的接口标准。
+  - 从名称来看，WSGI是一个网关，作用就是协议之间进行转换，WSGI就是一座桥梁（服务器／网关端<-->WSGI<-->应用端／框架端）
+  - WSGI将Web组件分为三类，Web服务器（WSGI Server） <--> Web中间件（WSGI Middleware）<--> Web应用程序（WSGI Application）
+  - WSGI Server
+    - WSGI Server接收HTTP请求，封装一系列环境变量（environ），按照WSGI接口标准调用注册的WSGI Application，最后将响应返回给客户端。
+  - WSGI Application
+    - WSGI Application是一个可被调用的Python对象，它接收2个参数，通常为environ和start_response。
+    - 当处理一个WSGI请求时，服务端为应用端提供上下文信息（environ）和一个回调函数（start_response），当应用处理完请求后，使用服务端提供的回调函数返回相对应的处理结果。
+    ```
+    def application(environ, start_response):
+    start_response('200 OK', [('Content-Type', 'text/html')])
+    return '<h1>Hello, web!</h1>'
+    ```
+- 如何打印openstack router信息
+#### 2017.06.19
+- HTTP协议状态码
+  - 1××　　保留  
+  - 2××　　表示请求成功地接收
+    - 200 OK
+    - 202 Accepted
+  - 3××　　为完成请求客户需进一步细化请求  
+  - 4××　　客户错误  
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 403 Forbidden
+    - 404 Not Found (服务器找不到任何匹配Request-URI的资源)
+  - 5××　　服务器错误  
+#### 2017.06.20
+- 关于反斜杠
+在Windows系统中，正斜杠/表示除法，用来进行整除运算；反斜杠\用来表示目录。在Unix系统中，/表示目录；\表示跳脱字符将特殊字符变成一般字符（如enter,$,空格等）。
