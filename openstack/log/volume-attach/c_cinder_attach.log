@@ -1,0 +1,367 @@
+-- Logs begin at Thu 2017-06-22 09:31:46 CST. --
+Jun 22 09:49:33 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-eaa91184-466d-4e43-93c0-7d7b7e283710 demo None] CMD "sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --force --delete iqn.2010-10.org.openstack:volume-157e27cd-2edf-4ef0-accc-9b023620f26f" returned: 0 in 0.192s {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:385}}
+Jun 22 09:49:33 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-eaa91184-466d-4e43-93c0-7d7b7e283710 demo None] Running cmd (subprocess): sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --show {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:355}}
+Jun 22 09:49:33 ubuntu sudo[10428]:    stack : TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/local/bin/cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --show
+Jun 22 09:49:33 ubuntu sudo[10428]: pam_unix(sudo:session): session opened for user root by (uid=0)
+Jun 22 09:49:33 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-eaa91184-466d-4e43-93c0-7d7b7e283710 demo None] CMD "sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --show" returned: 0 in 0.223s {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:385}}
+Jun 22 09:49:33 ubuntu cinder-volume[5688]: INFO cinder.volume.manager [None req-eaa91184-466d-4e43-93c0-7d7b7e283710 demo None] Detach volume completed successfully.
+Jun 22 09:49:33 ubuntu cinder-volume[5688]: DEBUG cinder.coordination [None req-eaa91184-466d-4e43-93c0-7d7b7e283710 demo None] Lock "157e27cd-2edf-4ef0-accc-9b023620f26f-detach_volume" released by "detach_volume" :: held 0.692s {{(pid=6043) _synchronized /opt/stack/cinder/cinder/coordination.py:309}}
+Jun 22 09:49:33 ubuntu cinder-api[5702]: INFO cinder.volume.api [None req-eaa91184-466d-4e43-93c0-7d7b7e283710 demo demo] Detach volume completed successfully.
+Jun 22 09:49:33 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-eaa91184-466d-4e43-93c0-7d7b7e283710 demo demo] http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action returned with HTTP 202
+Jun 22 09:49:33 ubuntu cinder-api[5702]: INFO eventlet.wsgi.server [None req-eaa91184-466d-4e43-93c0-7d7b7e283710 demo demo] 10.211.55.6 "POST /v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action HTTP/1.1" status: 202  len: 275 time: 0.7973731
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-82ba0c10-6c06-48dd-a488-5adc5e7eafd3 demo demo] GET http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f
+Jun 22 09:49:56 ubuntu cinder-api[5702]: DEBUG cinder.api.openstack.wsgi [None req-82ba0c10-6c06-48dd-a488-5adc5e7eafd3 demo demo] Empty body provided in request {{(pid=6099) get_body /opt/stack/cinder/cinder/api/openstack/wsgi.py:718}}
+Jun 22 09:49:56 ubuntu cinder-api[5702]: DEBUG cinder.api.openstack.wsgi [None req-82ba0c10-6c06-48dd-a488-5adc5e7eafd3 demo demo] Calling method '<bound method VolumeController.show of <cinder.api.v3.volumes.VolumeController object at 0x7f359008f050>>' {{(pid=6099) _process_stack /opt/stack/cinder/cinder/api/openstack/wsgi.py:871}}
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.volume.api [None req-82ba0c10-6c06-48dd-a488-5adc5e7eafd3 demo demo] Volume info retrieved successfully.
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-82ba0c10-6c06-48dd-a488-5adc5e7eafd3 demo demo] http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f returned with HTTP 200
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO eventlet.wsgi.server [None req-82ba0c10-6c06-48dd-a488-5adc5e7eafd3 demo demo] 10.211.55.6 "GET /v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f HTTP/1.1" status: 200  len: 1214 time: 0.1098061
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-2f80f1eb-3d97-461e-84b1-b030adb8d403 demo demo] POST http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action
+Jun 22 09:49:56 ubuntu cinder-api[5702]: DEBUG cinder.api.openstack.wsgi [None req-2f80f1eb-3d97-461e-84b1-b030adb8d403 demo demo] Action body: {"os-reserve": null} {{(pid=6099) get_method /opt/stack/cinder/cinder/api/openstack/wsgi.py:985}}
+Jun 22 09:49:56 ubuntu cinder-api[5702]: DEBUG cinder.api.openstack.wsgi [None req-2f80f1eb-3d97-461e-84b1-b030adb8d403 demo demo] Action: 'action', calling method: <bound method VolumeActionsController._reserve of <cinder.api.contrib.volume_actions.VolumeActionsController object at 0x7f358fda09d0>>, body: {"os-reserve": null} {{(pid=6099) _process_stack /opt/stack/cinder/cinder/api/openstack/wsgi.py:868}}
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.volume.api [None req-2f80f1eb-3d97-461e-84b1-b030adb8d403 demo demo] Volume info retrieved successfully.
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.volume.api [None req-2f80f1eb-3d97-461e-84b1-b030adb8d403 demo demo] Reserve volume completed successfully.
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-2f80f1eb-3d97-461e-84b1-b030adb8d403 demo demo] http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action returned with HTTP 202
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO eventlet.wsgi.server [None req-2f80f1eb-3d97-461e-84b1-b030adb8d403 demo demo] 10.211.55.6 "POST /v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action HTTP/1.1" status: 202  len: 275 time: 0.0960929
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-603308ab-5a47-48af-b4b6-3ed23dde97f8 demo demo] GET http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f
+Jun 22 09:49:56 ubuntu cinder-api[5702]: DEBUG cinder.api.openstack.wsgi [None req-603308ab-5a47-48af-b4b6-3ed23dde97f8 demo demo] Empty body provided in request {{(pid=6099) get_body /opt/stack/cinder/cinder/api/openstack/wsgi.py:718}}
+Jun 22 09:49:56 ubuntu cinder-api[5702]: DEBUG cinder.api.openstack.wsgi [None req-603308ab-5a47-48af-b4b6-3ed23dde97f8 demo demo] Calling method '<bound method VolumeController.show of <cinder.api.v3.volumes.VolumeController object at 0x7f359008f050>>' {{(pid=6099) _process_stack /opt/stack/cinder/cinder/api/openstack/wsgi.py:871}}
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.volume.api [None req-603308ab-5a47-48af-b4b6-3ed23dde97f8 demo demo] Volume info retrieved successfully.
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-603308ab-5a47-48af-b4b6-3ed23dde97f8 demo demo] http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f returned with HTTP 200
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO eventlet.wsgi.server [None req-603308ab-5a47-48af-b4b6-3ed23dde97f8 demo demo] 10.211.55.6 "GET /v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f HTTP/1.1" status: 200  len: 1214 time: 0.0925970
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo demo] POST http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action
+Jun 22 09:49:56 ubuntu cinder-api[5702]: DEBUG cinder.api.openstack.wsgi [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo demo] Action body: {"os-initialize_connection": {"connector": {"platform": "x86_64", "host": "ubuntu", "do_local_attach": false, "ip": "10.211.55.6", "os_type": "linux2", "multipath": false, "initiator": "iqn.1993-08.org.debian:01:e46cdd201069"}}} {{(pid=6099) get_method /opt/stack/cinder/cinder/api/openstack/wsgi.py:985}}
+Jun 22 09:49:56 ubuntu cinder-api[5702]: DEBUG cinder.api.openstack.wsgi [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo demo] Action: 'action', calling method: <bound method VolumeActionsController._initialize_connection of <cinder.api.contrib.volume_actions.VolumeActionsController object at 0x7f358fda09d0>>, body: {"os-initialize_connection": {"connector": {"platform": "x86_64", "host": "ubuntu", "do_local_attach": false, "ip": "10.211.55.6", "os_type": "linux2", "multipath": false, "initiator": "iqn.1993-08.org.debian:01:e46cdd201069"}}} {{(pid=6099) _process_stack /opt/stack/cinder/cinder/api/openstack/wsgi.py:868}}
+Jun 22 09:49:56 ubuntu cinder-api[5702]: INFO cinder.volume.api [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo demo] Volume info retrieved successfully.
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Running cmd (subprocess): sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgtadm --lld iscsi --op show --mode target {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:355}}
+Jun 22 09:49:56 ubuntu sudo[10528]:    stack : TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/local/bin/cinder-rootwrap /etc/cinder/rootwrap.conf tgtadm --lld iscsi --op show --mode target
+Jun 22 09:49:56 ubuntu sudo[10528]: pam_unix(sudo:session): session opened for user root by (uid=0)
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] CMD "sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgtadm --lld iscsi --op show --mode target" returned: 0 in 0.143s {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:385}}
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: DEBUG cinder.volume.targets.tgt [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Targets prior to update: Target 1: iqn.2010-10.org.openstack:volume-589bfb4c-f9de-4afb-8df9-c1ee968a2f46
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     System information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         Driver: iscsi
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         State: ready
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     I_T nexus information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     LUN information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         LUN: 0
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Type: controller
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SCSI ID: IET     00010000
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SCSI SN: beaf10
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Size: 0 MB, Block size: 1
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store type: null
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store path: None
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     Account information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         T7qR7Je2oicmY69KRraT
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     ACL information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         ALL
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: Target 3: iqn.2010-10.org.openstack:volume-99d99424-e71d-4c03-aa93-78ef710736e8
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     System information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         Driver: iscsi
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         State: ready
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     I_T nexus information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     LUN information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         LUN: 0
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Type: controller
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SCSI ID: IET     00030000
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SCSI SN: beaf30
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Size: 0 MB, Block size: 1
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store type: null
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store path: None
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     Account information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         a58Gn6VBQuDDhEgZBmN5
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     ACL information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         ALL
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: Target 4: iqn.2010-10.org.openstack:volume-da516c92-8307-472a-a23c-c2d89653a0bc
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     System information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         Driver: iscsi
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         State: ready
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     I_T nexus information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         I_T nexus: 1
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Initiator: iqn.1993-08.org.debian:01:e46cdd201069 alias: ubuntu
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Connection: 0
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:                 IP Address: 10.211.55.6
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     LUN information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         LUN: 0
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Type: controller
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SCSI ID: IET     00040000
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SCSI SN: beaf40
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Size: 0 MB, Block size: 1
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store type: null
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store path: None
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         LUN: 1
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Type: disk
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SCSI ID: IET     00040001
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SCSI SN: beaf41
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Size: 1074 MB, Block size: 512
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store type: rdwr
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store path: /dev/stack-volumes-lvmdriver-1/volume-da516c92-8307-472a-a23c-c2d89653a0bc
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     Account information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         C3gKJmJauE3HrHBFwU6F
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     ACL information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         ALL
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: Target 5: iqn.2010-10.org.openstack:volume-eabe5629-12d8-4fbe-8732-a55d1b6821aa
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     System information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         Driver: iscsi
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         State: ready
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     I_T nexus information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     LUN information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         LUN: 0
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Type: controller
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SCSI ID: IET     00050000
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SCSI SN: beaf50
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Size: 0 MB, Block size: 1
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store type: null
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store path: None
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     Account information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         h6uGf6KfEvuX3M9NJ4wV
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     ACL information:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:         ALL
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:  {{(pid=6043) create_iscsi_target /opt/stack/cinder/cinder/volume/targets/tgt.py:138}}
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: DEBUG cinder.volume.targets.tgt [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Creating iscsi_target for Volume ID: volume-157e27cd-2edf-4ef0-accc-9b023620f26f {{(pid=6043) create_iscsi_target /opt/stack/cinder/cinder/volume/targets/tgt.py:158}}
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: DEBUG cinder.volume.targets.tgt [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Created volume path /opt/stack/data/cinder/volumes/volume-157e27cd-2edf-4ef0-accc-9b023620f26f,
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: content:
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: <target iqn.2010-10.org.openstack:volume-157e27cd-2edf-4ef0-accc-9b023620f26f>
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     backing-store /dev/stack-volumes-lvmdriver-1/volume-157e27cd-2edf-4ef0-accc-9b023620f26f
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     driver iscsi
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     incominguser o7mWUDheAUxfFJJJVB3g 5P6QLBpXJB9z9eTL
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:     write-cache on
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: </target>
+Jun 22 09:49:56 ubuntu cinder-volume[5688]:  {{(pid=6043) create_iscsi_target /opt/stack/cinder/cinder/volume/targets/tgt.py:168}}
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Running cmd (subprocess): sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --update iqn.2010-10.org.openstack:volume-157e27cd-2edf-4ef0-accc-9b023620f26f {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:355}}
+Jun 22 09:49:56 ubuntu sudo[10531]:    stack : TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/local/bin/cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --update iqn.2010-10.org.openstack:volume-157e27cd-2edf-4ef0-accc-9b023620f26f
+Jun 22 09:49:56 ubuntu sudo[10531]: pam_unix(sudo:session): session opened for user root by (uid=0)
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] CMD "sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --update iqn.2010-10.org.openstack:volume-157e27cd-2edf-4ef0-accc-9b023620f26f" returned: 0 in 0.321s {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:385}}
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: DEBUG cinder.volume.targets.tgt [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] StdOut from tgt-admin --update:  {{(pid=6043) _do_tgt_update /opt/stack/cinder/cinder/volume/targets/tgt.py:117}}
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: DEBUG cinder.volume.targets.tgt [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] StdErr from tgt-admin --update:  {{(pid=6043) _do_tgt_update /opt/stack/cinder/cinder/volume/targets/tgt.py:118}}
+Jun 22 09:49:56 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Running cmd (subprocess): sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgtadm --lld iscsi --op show --mode target {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:355}}
+Jun 22 09:49:56 ubuntu sudo[10563]:    stack : TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/local/bin/cinder-rootwrap /etc/cinder/rootwrap.conf tgtadm --lld iscsi --op show --mode target
+Jun 22 09:49:56 ubuntu sudo[10563]: pam_unix(sudo:session): session opened for user root by (uid=0)
+Jun 22 09:49:57 ubuntu sudo[10563]: pam_unix(sudo:session): session closed for user root
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] CMD "sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgtadm --lld iscsi --op show --mode target" returned: 0 in 0.141s {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:385}}
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: DEBUG cinder.volume.targets.tgt [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Targets after update: Target 1: iqn.2010-10.org.openstack:volume-589bfb4c-f9de-4afb-8df9-c1ee968a2f46
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     System information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         Driver: iscsi
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         State: ready
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     I_T nexus information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     LUN information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         LUN: 0
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Type: controller
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI ID: IET     00010000
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI SN: beaf10
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Size: 0 MB, Block size: 1
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store type: null
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store path: None
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     Account information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         T7qR7Je2oicmY69KRraT
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     ACL information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         ALL
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: Target 3: iqn.2010-10.org.openstack:volume-99d99424-e71d-4c03-aa93-78ef710736e8
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     System information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         Driver: iscsi
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         State: ready
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     I_T nexus information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     LUN information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         LUN: 0
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Type: controller
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI ID: IET     00030000
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI SN: beaf30
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Size: 0 MB, Block size: 1
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store type: null
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store path: None
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     Account information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         a58Gn6VBQuDDhEgZBmN5
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     ACL information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         ALL
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: Target 4: iqn.2010-10.org.openstack:volume-da516c92-8307-472a-a23c-c2d89653a0bc
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     System information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         Driver: iscsi
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         State: ready
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     I_T nexus information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         I_T nexus: 1
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Initiator: iqn.1993-08.org.debian:01:e46cdd201069 alias: ubuntu
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Connection: 0
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:                 IP Address: 10.211.55.6
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     LUN information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         LUN: 0
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Type: controller
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI ID: IET     00040000
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI SN: beaf40
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Size: 0 MB, Block size: 1
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store type: null
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store path: None
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         LUN: 1
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Type: disk
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI ID: IET     00040001
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI SN: beaf41
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Size: 1074 MB, Block size: 512
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store type: rdwr
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store path: /dev/stack-volumes-lvmdriver-1/volume-da516c92-8307-472a-a23c-c2d89653a0bc
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     Account information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         C3gKJmJauE3HrHBFwU6F
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     ACL information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         ALL
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: Target 5: iqn.2010-10.org.openstack:volume-eabe5629-12d8-4fbe-8732-a55d1b6821aa
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     System information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         Driver: iscsi
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         State: ready
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     I_T nexus information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     LUN information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         LUN: 0
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Type: controller
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI ID: IET     00050000
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI SN: beaf50
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Size: 0 MB, Block size: 1
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store type: null
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store path: None
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     Account information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         h6uGf6KfEvuX3M9NJ4wV
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     ACL information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         ALL
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: Target 6: iqn.2010-10.org.openstack:volume-157e27cd-2edf-4ef0-accc-9b023620f26f
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     System information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         Driver: iscsi
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         State: ready
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     I_T nexus information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     LUN information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         LUN: 0
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Type: controller
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI ID: IET     00060000
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI SN: beaf60
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Size: 0 MB, Block size: 1
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store type: null
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store path: None
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         LUN: 1
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Type: disk
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI ID: IET     00060001
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SCSI SN: beaf61
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Size: 1074 MB, Block size: 512
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Online: Yes
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Removable media: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Prevent removal: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Readonly: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             SWP: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Thin-provisioning: No
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store type: rdwr
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store path: /dev/stack-volumes-lvmdriver-1/volume-157e27cd-2edf-4ef0-accc-9b023620f26f
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:             Backing store flags:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     Account information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         o7mWUDheAUxfFJJJVB3g
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:     ACL information:
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:         ALL
+Jun 22 09:49:57 ubuntu cinder-volume[5688]:  {{(pid=6043) create_iscsi_target /opt/stack/cinder/cinder/volume/targets/tgt.py:213}}
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Running cmd (subprocess): sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --show {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:355}}
+Jun 22 09:49:57 ubuntu sudo[10566]:    stack : TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/local/bin/cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --show
+Jun 22 09:49:57 ubuntu sudo[10566]: pam_unix(sudo:session): session opened for user root by (uid=0)
+Jun 22 09:49:57 ubuntu sudo[10566]: pam_unix(sudo:session): session closed for user root
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] CMD "sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --show" returned: 0 in 0.176s {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:385}}
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Running cmd (subprocess): sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --show {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:355}}
+Jun 22 09:49:57 ubuntu sudo[10570]:    stack : TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/local/bin/cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --show
+Jun 22 09:49:57 ubuntu sudo[10570]: pam_unix(sudo:session): session opened for user root by (uid=0)
+Jun 22 09:49:57 ubuntu sudo[10570]: pam_unix(sudo:session): session closed for user root
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] CMD "sudo cinder-rootwrap /etc/cinder/rootwrap.conf tgt-admin --show" returned: 0 in 0.163s {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:385}}
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: DEBUG cinder.volume.targets.iscsi [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Set provider_location to: 10.211.55.6:3260,6 iqn.2010-10.org.openstack:volume-157e27cd-2edf-4ef0-accc-9b023620f26f 1 {{(pid=6043) create_export /opt/stack/cinder/cinder/volume/targets/iscsi.py:215}}
+Jun 22 09:49:57 ubuntu cinder-volume[5688]: INFO cinder.volume.manager [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo None] Initialize volume connection completed successfully.
+Jun 22 09:49:57 ubuntu cinder-api[5702]: INFO cinder.volume.api [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo demo] Initialize volume connection completed successfully.
+Jun 22 09:49:57 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo demo] http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action returned with HTTP 200
+Jun 22 09:49:57 ubuntu cinder-api[5702]: INFO eventlet.wsgi.server [None req-d6d91782-7de1-4b11-b1cb-db95756e6ec6 demo demo] 10.211.55.6 "POST /v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action HTTP/1.1" status: 200  len: 772 time: 1.0987408
+Jun 22 09:49:59 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-60987573-9278-4609-8625-b412ce200dc7 demo demo] POST http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action
+Jun 22 09:49:59 ubuntu cinder-api[5702]: DEBUG cinder.api.openstack.wsgi [None req-60987573-9278-4609-8625-b412ce200dc7 demo demo] Action body: {"os-attach": {"instance_uuid": "cf049917-87e9-49e8-9dbd-9c1df24fe411", "mountpoint": "/dev/vdb", "mode": "rw"}} {{(pid=6099) get_method /opt/stack/cinder/cinder/api/openstack/wsgi.py:985}}
+Jun 22 09:49:59 ubuntu cinder-api[5702]: DEBUG cinder.api.openstack.wsgi [None req-60987573-9278-4609-8625-b412ce200dc7 demo demo] Action: 'action', calling method: <bound method VolumeActionsController._attach of <cinder.api.contrib.volume_actions.VolumeActionsController object at 0x7f358fda09d0>>, body: {"os-attach": {"instance_uuid": "cf049917-87e9-49e8-9dbd-9c1df24fe411", "mountpoint": "/dev/vdb", "mode": "rw"}} {{(pid=6099) _process_stack /opt/stack/cinder/cinder/api/openstack/wsgi.py:868}}
+Jun 22 09:49:59 ubuntu cinder-api[5702]: INFO cinder.volume.api [None req-60987573-9278-4609-8625-b412ce200dc7 demo demo] Volume info retrieved successfully.
+Jun 22 09:49:59 ubuntu cinder-api[5702]: INFO cinder.volume.api [None req-60987573-9278-4609-8625-b412ce200dc7 demo demo] Update volume admin metadata completed successfully.
+Jun 22 09:49:59 ubuntu cinder-volume[5688]: DEBUG cinder.coordination [None req-60987573-9278-4609-8625-b412ce200dc7 demo None] Lock "157e27cd-2edf-4ef0-accc-9b023620f26f" acquired by "attach_volume" :: waited 0.003s {{(pid=6043) _synchronized /opt/stack/cinder/cinder/coordination.py:297}}
+Jun 22 09:49:59 ubuntu cinder-volume[5688]: INFO cinder.volume.manager [None req-60987573-9278-4609-8625-b412ce200dc7 demo None] Attaching volume 157e27cd-2edf-4ef0-accc-9b023620f26f to instance cf049917-87e9-49e8-9dbd-9c1df24fe411 at mountpoint /dev/vdb on host None.
+Jun 22 09:49:59 ubuntu cinder-volume[5688]: INFO cinder.volume.manager [None req-60987573-9278-4609-8625-b412ce200dc7 demo None] Attach volume completed successfully.
+Jun 22 09:49:59 ubuntu cinder-volume[5688]: DEBUG cinder.coordination [None req-60987573-9278-4609-8625-b412ce200dc7 demo None] Lock "157e27cd-2edf-4ef0-accc-9b023620f26f" released by "attach_volume" :: held 0.099s {{(pid=6043) _synchronized /opt/stack/cinder/cinder/coordination.py:309}}
+Jun 22 09:49:59 ubuntu cinder-api[5702]: INFO cinder.volume.api [None req-60987573-9278-4609-8625-b412ce200dc7 demo demo] Attach volume completed successfully.
+Jun 22 09:49:59 ubuntu cinder-api[5702]: INFO cinder.api.openstack.wsgi [None req-60987573-9278-4609-8625-b412ce200dc7 demo demo] http://10.211.55.6:8776/v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action returned with HTTP 202
+Jun 22 09:49:59 ubuntu cinder-api[5702]: INFO eventlet.wsgi.server [None req-60987573-9278-4609-8625-b412ce200dc7 demo demo] 10.211.55.6 "POST /v3/6e86902b80f944a88327cb5d02f365d8/volumes/157e27cd-2edf-4ef0-accc-9b023620f26f/action HTTP/1.1" status: 202  len: 275 time: 0.1990941
+Jun 22 09:50:00 ubuntu cinder-volume[5688]: DEBUG oslo_service.periodic_task [None req-0c3c3865-eedb-473e-87bf-c9731f29f268 None None] Running periodic task VolumeManager._publish_service_capabilities {{(pid=6043) run_periodic_tasks /usr/local/lib/python2.7/dist-packages/oslo_service/periodic_task.py:215}}
+Jun 22 09:50:00 ubuntu cinder-volume[5688]: DEBUG cinder.manager [None req-0c3c3865-eedb-473e-87bf-c9731f29f268 None None] Notifying Schedulers of capabilities ... {{(pid=6043) _publish_service_capabilities /opt/stack/cinder/cinder/manager.py:193}}
+Jun 22 09:50:00 ubuntu cinder-volume[5688]: DEBUG oslo_service.periodic_task [None req-0c3c3865-eedb-473e-87bf-c9731f29f268 None None] Running periodic task VolumeManager._report_driver_status {{(pid=6043) run_periodic_tasks /usr/local/lib/python2.7/dist-packages/oslo_service/periodic_task.py:215}}
+Jun 22 09:50:00 ubuntu cinder-volume[5688]: DEBUG cinder.volume.drivers.lvm [None req-0c3c3865-eedb-473e-87bf-c9731f29f268 None None] Updating volume stats {{(pid=6043) _update_volume_stats /opt/stack/cinder/cinder/volume/drivers/lvm.py:204}}
+Jun 22 09:50:00 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-0c3c3865-eedb-473e-87bf-c9731f29f268 None None] Running cmd (subprocess): sudo cinder-rootwrap /etc/cinder/rootwrap.conf env LC_ALL=C vgs --noheadings --unit=g -o name,size,free,lv_count,uuid --separator : --nosuffix stack-volumes-lvmdriver-1 {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:355}}
+Jun 22 09:50:00 ubuntu sudo[10671]:    stack : TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/local/bin/cinder-rootwrap /etc/cinder/rootwrap.conf env LC_ALL=C vgs --noheadings --unit=g -o name,size,free,lv_count,uuid --separator : --nosuffix stack-volumes-lvmdriver-1
+Jun 22 09:50:00 ubuntu cinder-scheduler[5699]: DEBUG cinder.scheduler.host_manager [None req-c2444466-57a2-44d3-86aa-1aa2c531b3b2 None None] Received volume service update from ubuntu@lvmdriver-1: {u'filter_function': None, u'goodness_function': None, u'volume_backend_name': u'lvmdriver-1', u'driver_version': u'3.0.0', u'sparse_copy_volume': False, u'pools': [{u'pool_name': u'lvmdriver-1', u'filter_function': None, u'goodness_function': None, u'total_volumes': 5, u'multiattach': False, u'provisioned_capacity_gb': 5.0, u'allocated_capacity_gb': 5, u'thin_provisioning_support': False, u'free_capacity_gb': 19.41, u'location_info': u'LVMVolumeDriver:ubuntu:stack-volumes-lvmdriver-1:default:0', u'total_capacity_gb': 24.41, u'thick_provisioning_support': True, u'reserved_percentage': 0, u'QoS_support': False, u'max_over_subscription_ratio': 1.0}], u'vendor_name': u'Open Source', u'storage_protocol': u'iSCSI'} {{(pid=5699) update_service_capabilities /opt/stack/cinder/cinder/scheduler/host_manager.py:510}}
+Jun 22 09:50:00 ubuntu sudo[10671]: pam_unix(sudo:session): session opened for user root by (uid=0)
+Jun 22 09:50:01 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-0c3c3865-eedb-473e-87bf-c9731f29f268 None None] CMD "sudo cinder-rootwrap /etc/cinder/rootwrap.conf env LC_ALL=C vgs --noheadings --unit=g -o name,size,free,lv_count,uuid --separator : --nosuffix stack-volumes-lvmdriver-1" returned: 0 in 0.149s {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:385}}
+Jun 22 09:50:01 ubuntu cinder-volume[5688]: DEBUG oslo_concurrency.processutils [None req-0c3c3865-eedb-473e-87bf-c9731f29f268 None None] Running cmd (subprocess): sudo cinder-rootwrap /etc/cinder/rootwrap.conf env LC_ALL=C lvs --noheadings --unit=g -o vg_name,name,size --nosuffix stack-volumes-lvmdriver-1 {{(pid=6043) execute /usr/local/lib/python2.7/dist-packages/oslo_concurrency/processutils.py:355}}
+Jun 22 09:50:01 ubuntu sudo[10678]:    stack : TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/local/bin/cinder-rootwrap /etc/cinder/rootwrap.conf env LC_ALL=C lvs --noheadings --unit=g -o vg_name,name,size --nosuffix stack-volumes-lvmdriver-1
+Jun 22 09:50:01 ubuntu sudo[10678]: pam_unix(sudo:session): session opened for user root by (uid=0)

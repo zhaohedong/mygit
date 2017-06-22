@@ -331,3 +331,15 @@
 #### 2017.06.20
 - 关于反斜杠
 在Windows系统中，正斜杠/表示除法，用来进行整除运算；反斜杠\用来表示目录。在Unix系统中，/表示目录；\表示跳脱字符将特殊字符变成一般字符（如enter,$,空格等）。
+
+- ceph需要哪些内核的支持
+  - rbd.ko
+  - xfs.ko
+  - libceph.ko
+  - ceph.ko
+  - btrfs.ko
+- 如何理解Bootloader
+- kernel modules自动加载
+  ![](./images/loadmodules.png)
+- /sys/module/MODULENAME
+  - /sys/module下包含了手动加载到内核的模块和一部分内置模块（模块有版本或者有至少一个参数）
