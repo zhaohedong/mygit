@@ -1176,5 +1176,101 @@ pre.editor-colors .fold-marker:after {
 </li>
 </ul>
 </li>
+<li>抢占式内核的硬件基础</li>
+<li>什么是SMP<ul>
+<li>Symmetrical Multi-Processing技术，是指在一个计算机上汇集了一组处理器(多CPU),各CPU之间共享内存子系统以及总线结构.</li>
+<li>SMP safe：允许多个CPU操作同一块代码块，如果代码块的数据已经被一个CPU更新，其他的CPU会认为这块代码无效，需要更新后再继续操作。</li>
+</ul>
+</li>
+<li>什么时临界区<ul>
+<li>访问共享资源的代码叫做临界区。</li>
+</ul>
+</li>
+<li>内核同步方法<ul>
+<li>spinlocks<ul>
+<li>访问繁忙临界区时，thread不休眠</li>
+<li>中断处理函数中必须使用spinlocks</li>
+</ul>
+</li>
+<li>mutexes<ul>
+<li>访问繁忙临界区时，thread休眠</li>
+<li>如果临界区需要执行休眠处理，必须使用mutexes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>抢占式内核与非抢占式内核<ul>
+<li>抢占式内核实现的基础<ul>
+<li>时钟？</li>
+<li>进程的优先级<ul>
+<li>基于优先级的调度法指，CPU总是让处在就绪态的优先级最高的任务先运行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>抢占式内核的定义<ul>
+<li>如果进程正在执行内核函数，即他在内核态运行时，允许发生内核切换（被切换的进程时正在执行内核函数的进程），这个内核就时抢占式的，linux2.6引入。
+<img src="/Users/zhaohedong/Desktop/projects/mygit/images/preemptive.png" alt=""></li>
+</ul>
+</li>
+<li>非抢占式内核的定义
+<img src="/Users/zhaohedong/Desktop/projects/mygit/images/non_preemptive.png" alt=""></li>
+<li>抢占式内核的意义<ul>
+<li>为了将linux应用于实时系统所必须的。实时系统对响应时间有严格规定，当一个实时进程被实时设备的硬件中断唤醒后，它应该在限定的时间内被执行。</li>
+</ul>
+</li>
+<li>什么情况下不允许内核抢占<ul>
+<li>内核正在进行中断处理。linux内核中进程不能抢占中断（中断只能被其他中断终止、抢占，进程不能终止、抢占中断）</li>
+<li>内核正在进行中断的上下文的Bottom Half处理</li>
+<li>内核代码段正持有spinlock自旋锁，writelock／readlock读写锁等锁，处于这些锁的保护中。内核中的这些锁，是为了在SMP系统中短时间内保证不同CPU运行的进程并发执行的正确性。</li>
+<li>内核正在执行调度程序Scheduler。</li>
+<li>内核正在对每个CPU的私有数据结构进行操作。</li>
+</ul>
+</li>
+<li>内核抢占时机<ul>
+<li>中断处理程序执行，返回内核前。</li>
+<li>在内核代码再次具有可抢占性的时候。</li>
+<li>内核任务显示调用schedule（）</li>
+<li>内核中任务阻塞</li>
+</ul>
+</li>
+<li>如何支持内核抢占<ul>
+<li>preempt_count抢占锁，在中断入口／锁操作前进行preempt_count++，中断出口／锁操作后进行preempt_count--。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实时系统<ul>
+<li>又称即时操作系统，相对于一般的操作系统，最大的特点就是“实时性”，如果有一个任务需要执行，实时操作系统就会马上执行，不会有较长时间的延迟。</li>
+<li>两种驱动类型<ul>
+<li>时间驱动</li>
+<li>事件驱动</li>
+</ul>
+</li>
+<li>linux是作为通用操作系统开发，linux内核实时处理能力上先天不足，经过部分开发社区改造，一定程度上成为实时操作系统。</li>
+</ul>
+</li>
+<li>32bit系统内存
+<img src="/Users/zhaohedong/Desktop/projects/mygit/images/memory_address_32bit.png" alt="">  <ul>
+<li>ZONE_DMA<ul>
+<li>ISA Device</li>
+</ul>
+</li>
+<li>ZONE_NORMAL<ul>
+<li>kmalloc 在此处申请内存</li>
+<li>vmalloc 用于申请更大的内存</li>
+</ul>
+</li>
+<li>ZONE_HIGH
+-</li>
+</ul>
+</li>
+<li>ISA<ul>
+<li>ISA总线<ul>
+<li>(Industry Standard Architecture:工业标准体系结构）是为PC/AT电脑而制定的总线标准，为16位体系结构，只能支持16位的I/O设备，数据传输率大约是16MB/S。也称为AT标准</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul></body>
 </html>
