@@ -1080,7 +1080,7 @@ pre.editor-colors .fold-marker:after {
 <li>许可证<ul>
 <li>Apache许可证2.0和GPL v2</li>
 <li>GPL v2和GPL的区别<ul>
-<li>加入“liberty or death”条款，即如果哪个人在发布GPL软件时添加附加强制的条款，那么他根部无权发布软件。</li>
+<li>加入“liberty or death”条款，即如果哪个人在发布GPL软件时添加附加强制的条款，那么他根本无权发布软件。</li>
 </ul>
 </li>
 </ul>
@@ -1149,6 +1149,29 @@ pre.editor-colors .fold-marker:after {
 <li>Little-Endian<ul>
 <li><pre class="editor-colors lang-0x12345678"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000000&nbsp;0x78</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000001&nbsp;0x56</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000002&nbsp;0x34</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000003&nbsp;0x12</span></span></div></pre>
 </li>
+</ul>
+</li>
+<li>Endian test<ul>
+<li><pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>static&nbsp;union&nbsp;{&nbsp;char&nbsp;c[4];&nbsp;unsigned&nbsp;long&nbsp;mylong;&nbsp;}</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>endian_test&nbsp;=&nbsp;{{&nbsp;&#39;l&#39;,&nbsp;&#39;?&#39;,&nbsp;&#39;?&#39;,&nbsp;&#39;b&#39;&nbsp;}&nbsp;};</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>#define&nbsp;ENDIANNESS&nbsp;((char)endian_test.mylong)</span></span></span></div></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>什么是initramfs<ul>
+<li>linux内核加载文件系统执行/sbin/init程序前，需要找到根设备的位置，如果根设备需要驱动支持，内核可能无能无力，通过提供一个临时的过渡临时文件系统，将加载真正文件系统需要的设备驱动、工具以及初始化程序加载到内存运行。</li>
+</ul>
+</li>
+<li>进程上下文<ul>
+<li>抢占式</li>
+</ul>
+</li>
+<li>中断上下文<ul>
+<li>非抢占式</li>
+<li>不允许做的事情<ul>
+<li>睡眠或让出CPU</li>
+<li>取得Mutex</li>
+<li>执行耗时任务</li>
+<li>访问用户空间虚拟内存</li>
 </ul>
 </li>
 </ul>
