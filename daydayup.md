@@ -343,3 +343,161 @@
   ![](./images/loadmodules.png)
 - /sys/module/MODULENAME
   - /sys/module下包含了手动加载到内核的模块和一部分内置模块（模块有版本或者有至少一个参数）
+
+#### 2017.06.23
+- Android 驱动开发需要哪些知识
+  - linux内核
+    - Linux Kernel Development
+    - Understanding the Linux Kernel
+  - linux驱动程序
+    - Linux Device Drivers
+  - linux C编程，API
+  - Android HAL
+- 如何理解uboot
+  - Universal Boot Loader，是一个开源的主要的boot loader 应用于嵌入式设备，封装了指令用于启动操作系统内核。
+  - uboot是众多boot loader其中一种
+- 如何理解Bootloader
+  - Bootloader是嵌入式设备开机后执行的第一段小程序，位于ROM里面，用于装载内核和操作系统到内存中执行。
+- 如何编写linux kernel modules
+  - 进入函数xxxx_init
+  - 退出函数xxxx_exit
+  - module_param用于传递命令行参数 , module_param(varname, type, defaultval)
+- linux
+- 如何查看内核符号表
+  - cat /proc/kallsym
+  - 这里面有printk，因此我们编写内核模块时可以直接使用
+- 内核块模与device driver的关系
+  - device driver时内核模块的一种
+  - unix系统中，/dev/下的一个文件，代表一个硬件设备。文件提供方法与具体的硬件交互。
+- 32bit架构的RAM地址空间
+  - 所有空间
+    - 0x00000000 - 0xffffffff （4G）
+  - 内核空间
+    - 0xc0000000 - 0xffffffff （1G）
+    - 内核程序运行在这里，具有所有内存和硬件设备的访问权限
+  - 用户空间
+    - 0x00000000 - 0xbfffffff （3G）
+    - 用户程序运行在这里，用户程序无法直接访问内核空间，用户程序通过系统调用访问一部分内核
+- 关于ioctl
+  - ioctl是一个系统调用
+  - ioctl由应用程序发起（用户空间），驱动程序负责实现相应的命令请求（内核空间）
+- tty是什么
+  - tty是Teletype的缩写
+  - 终端是一种字符型设备，有很多种类型，通常用tty代表各种类型的终端设备。
+- 如何理解中断
+  - 中断的概念
+    - CPU执行程序过程中，由外部硬件设备发出中断信号，CPU保存当前中断上下文内容，转而去执行中断处理程序，执行完中断处理程序返回到中断前执行程序的位置继续执行接下来的程序的过程叫中断。
+    - 相比与让CPU轮询设备状态，中断机制，能更充分利用CPU，中断的目的就是让CPU不必等待外围的慢设备
+  - 硬件中断
+    - 异步信号
+    - 来源于外设
+  - 软件中断
+    - 来源于当前CPU正在执行的程序
+  - 中断向量
+    - 中断程序入口地址
+- Android HAL
+- 如何理解GPL
+  - 全称为GNU General Public License
+  - 要求GPL程序的派生作品也要在GPL之下
+  - 著名的软件 emacs，linux核心，gcc
+  - **只要在一个软件中使用("使用"指类库引用，修改后的代码或者衍生代码)GPL 协议的产品，则该软件产品必须也采用GPL协议，既必须也是开源和免费。**
+  - 规避GPL感染的方法，地址空间隔离，RPC通信
+- LGPL
+  - **LGPL允许商业软件通过类库引用(link)方式使用LGPL类库而不需要开源商业软件的代码。**
+
+- 如何理解JNI
+  - Java Native Interface 是一种编程框架，使得Java虚拟机中的Java程序可以调用本地应用／库，也可以被其他程序调用。本地程序一般是由其他语言（C、C++、汇编等）编写的，并且被编译为基于本机硬件和操作系统的程序。
+  - JNI函数命名规则
+    - Java_包名_类名_方法名
+
+#### 2017.06.26
+- linux和unix的联系与区别
+  - 联系：
+    - unix历史久于linux，linux思想源于unix
+  - 区别：
+    - unix大多与硬件配套，linux可运行在多种硬件平台上
+    - unix是商业软件，linux是开源软件
+- linux整体架构图
+  ![](./images/linux.png)
+- linux内核构成
+  - Process Scheduler
+  - Memory Management
+  - Virtual Filesystem
+  - Network
+  - IPC
+- linux操作系统包含什么东西
+- Android
+  - Android是基于linux内核的开放源代码移动操作系统。
+  - 许可证
+    - Apache许可证2.0和GPL v2
+    - GPL v2和GPL的区别
+      - 加入“liberty or death”条款，即如果哪个人在发布GPL软件时添加附加强制的条款，那么他根本无权发布软件。
+  - 支持平台
+    - ARM、MIPS、Power Architecture、x86、x86-64
+  - HAL
+    - Android的硬件抽象层能以封闭源码的形式提供硬件驱动模块。
+    - HAL以.so存在，可以把Android Framework同Linux kernel隔离开，
+- 什么是范式
+- 关于tar命令
+  - -x Extract
+  - -c Compress
+  - -j bizp2
+  - -z gzip
+  - -v verbose output
+  - -f file name
+  - -p preserve file permission
+- 什么是CRC校验
+- 什么是奇偶校验
+- linux启动
+  ![](./images/linux_boot_x86.png)
+- x86实模式和保护模式
+  - 实模式只能访问0x00000000～0x000fffff
+- 关于bios中断向量表
+  - INT3 暂停
+  - INT10 向屏幕打印一个字符
+    - ```
+    mov ah, 0x0e
+    mov al, '!'
+    int 0x10
+    ```
+  - INT15 获取memory map，physical memory ranges
+    - INT 15h, AX=E801h - Get Memory Size for Large Configurations
+    - INT 15h, AH=88h - Get Extended Memory Size
+    - 在linux启动过程中，kernel实模式初始化代码调用BIOS INT15，AX=0xe820取得当前系统的memory map
+  - INT21 返回
+- low memory
+  - 0M ～ 896M
+  - kmalloc() 在这里申请内存
+- high memory
+  - 896M～1024M
+  - 只有通过特殊的内存映射才能访问
+- Endian
+  - Big-Endian
+    - ```0x12345678
+  0x00000000 0x12
+  0x00000001 0x34
+  0x00000002 0x56
+  0x00000003 0x78```
+  - Little-Endian
+    - ```0x12345678
+  0x00000000 0x78
+  0x00000001 0x56
+  0x00000002 0x34
+  0x00000003 0x12```
+  - Endian test
+    - ```
+    static union { char c[4]; unsigned long mylong; }
+    endian_test = {{ 'l', '?', '?', 'b' } };
+    #define ENDIANNESS ((char)endian_test.mylong)  
+    ```
+- 什么是initramfs
+  - linux内核加载文件系统执行/sbin/init程序前，需要找到根设备的位置，如果根设备需要驱动支持，内核可能无能无力，通过提供一个临时的过渡临时文件系统，将加载真正文件系统需要的设备驱动、工具以及初始化程序加载到内存运行。
+- 进程上下文
+  - 抢占式
+- 中断上下文
+  - 非抢占式
+  - 不允许做的事情
+    - 睡眠或让出CPU
+    - 取得Mutex
+    - 执行耗时任务
+    - 访问用户空间虚拟内存

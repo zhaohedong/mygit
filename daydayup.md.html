@@ -511,10 +511,6 @@ pre.editor-colors .fold-marker:after {
 </ul>
 </li>
 <li>C++和C static有什么作用？</li>
-<li>WSGI是什么？<ul>
-<li>Web Server Gateway Interface</li>
-</ul>
-</li>
 <li>REST是什么？RESTful 接口？</li>
 <li>Deb安装包区分ubuntu的发行版吗？14.04和16.04能安装同一个deb吗？<ul>
 <li>deb安装包按照cpu架构来区分，有amd64，i386等对应x86的64位和32位</li>
@@ -856,10 +852,7 @@ pre.editor-colors .fold-marker:after {
 </ul>
 <h4 id="2017-06-15">2017.06.15</h4>
 <ul>
-<li>keystone服务启动失败临时对应方法<ul>
-<li><pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>#!/usr/bin/env&nbsp;bash</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;mkdir&nbsp;/var/run/uwsgi/</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;chown&nbsp;stack&nbsp;/var/run/uwsgi/</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;systemctl&nbsp;start&nbsp;devstack@keystone.service</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;systemctl&nbsp;start&nbsp;devstack@placement-api.service</span></span></span></div></pre></li>
-</ul>
-</li>
+<li>keystone服务启动失败临时对应方法<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>#!/usr/bin/env&nbsp;bash</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;mkdir&nbsp;/var/run/uwsgi/</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;chown&nbsp;stack&nbsp;/var/run/uwsgi/</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;systemctl&nbsp;start&nbsp;devstack@keystone.service</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;systemctl&nbsp;start&nbsp;devstack@placement-api.service</span></span></span></div></pre></li>
 <li>devstack环境下，openstack各模块服务所在位置
 /etc/systemd/system</li>
 <li>systemctl状态查看命令<ul>
@@ -873,10 +866,292 @@ pre.editor-colors .fold-marker:after {
 </ul>
 </li>
 <li><p>c-vol中ERROR cinder.service [-] Manager for service cinder-volume localhost.localdomain@lvmdriver-1 is reporting problems, not sending heartbeat. Service will appear &quot;down&quot;.的问题</p>
-<ul>
-<li><pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;losetup&nbsp;-f&nbsp;/opt/stack/data/stack-volumes-default-backing-file</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;losetup&nbsp;-f&nbsp;/opt/stack/data/stack-volumes-lvmdriver-1-backing-file</span></span></span></div></pre></li>
+<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;losetup&nbsp;-f&nbsp;/opt/stack/data/stack-volumes-default-backing-file</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>sudo&nbsp;losetup&nbsp;-f&nbsp;/opt/stack/data/stack-volumes-lvmdriver-1-backing-file</span></span></span></div></pre><h4 id="2017-06-15">2017.06.15</h4>
+</li>
+<li>如何理解losetup<ul>
+<li>用来设置循环设备的命令，让用户可以像访问块设备一样访问一个文件夹。</li>
+<li>循环设备：<ul>
+<li>loop device：unix系统下的伪设备，需要同一个文件进行连接。
+利用losetup命令，loop设备可以将文件虚拟成块设备。</li>
 </ul>
 </li>
-<li></li>
+</ul>
+</li>
+<li>什么是libvirt</li>
+<li>什么是QEMU</li>
+<li>什么是Xen</li>
+<li>WSGI是什么？<ul>
+<li>Web Server Gateway Interface Web服务器通用网关接口，是Python语言所定义的Web服务器和Web应用程序或框架之间的接口标准。</li>
+<li>从名称来看，WSGI是一个网关，作用就是协议之间进行转换，WSGI就是一座桥梁（服务器／网关端&lt;--&gt;WSGI&lt;--&gt;应用端／框架端）</li>
+<li>WSGI将Web组件分为三类，Web服务器（WSGI Server） &lt;--&gt; Web中间件（WSGI Middleware）&lt;--&gt; Web应用程序（WSGI Application）</li>
+<li>WSGI Server<ul>
+<li>WSGI Server接收HTTP请求，封装一系列环境变量（environ），按照WSGI接口标准调用注册的WSGI Application，最后将响应返回给客户端。</li>
+</ul>
+</li>
+<li>WSGI Application<ul>
+<li>WSGI Application是一个可被调用的Python对象，它接收2个参数，通常为environ和start_response。</li>
+<li>当处理一个WSGI请求时，服务端为应用端提供上下文信息（environ）和一个回调函数（start_response），当应用处理完请求后，使用服务端提供的回调函数返回相对应的处理结果。<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>def&nbsp;application(environ,&nbsp;start_response):</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>start_response(&#39;200&nbsp;OK&#39;,&nbsp;[(&#39;Content-Type&#39;,&nbsp;&#39;text/html&#39;)])</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>return&nbsp;&#39;&lt;h1&gt;Hello,&nbsp;web!&lt;/h1&gt;&#39;</span></span></span></div></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如何打印openstack router信息<h4 id="2017-06-19">2017.06.19</h4>
+</li>
+<li>HTTP协议状态码<ul>
+<li>1××　　保留  </li>
+<li>2××　　表示请求成功地接收<ul>
+<li>200 OK</li>
+<li>202 Accepted</li>
+</ul>
+</li>
+<li>3××　　为完成请求客户需进一步细化请求  </li>
+<li>4××　　客户错误  <ul>
+<li>400 Bad Request</li>
+<li>401 Unauthorized</li>
+<li>403 Forbidden</li>
+<li>404 Not Found (服务器找不到任何匹配Request-URI的资源)</li>
+</ul>
+</li>
+<li>5××　　服务器错误  <h4 id="2017-06-20">2017.06.20</h4>
+</li>
+</ul>
+</li>
+<li><p>关于反斜杠
+在Windows系统中，正斜杠/表示除法，用来进行整除运算；反斜杠\用来表示目录。在Unix系统中，/表示目录；\表示跳脱字符将特殊字符变成一般字符（如enter,$,空格等）。</p>
+</li>
+<li><p>ceph需要哪些内核的支持</p>
+<ul>
+<li>rbd.ko</li>
+<li>xfs.ko</li>
+<li>libceph.ko</li>
+<li>ceph.ko</li>
+<li>btrfs.ko</li>
+</ul>
+</li>
+<li>如何理解Bootloader</li>
+<li>kernel modules自动加载
+<img src="/Users/zhaohedong/Desktop/projects/mygit/images/loadmodules.png" alt=""></li>
+<li>/sys/module/MODULENAME<ul>
+<li>/sys/module下包含了手动加载到内核的模块和一部分内置模块（模块有版本或者有至少一个参数）</li>
+</ul>
+</li>
+</ul>
+<h4 id="2017-06-23">2017.06.23</h4>
+<ul>
+<li>Android 驱动开发需要哪些知识<ul>
+<li>linux内核<ul>
+<li>Linux Kernel Development</li>
+<li>Understanding the Linux Kernel</li>
+</ul>
+</li>
+<li>linux驱动程序<ul>
+<li>Linux Device Drivers</li>
+</ul>
+</li>
+<li>linux C编程，API</li>
+<li>Android HAL</li>
+</ul>
+</li>
+<li>如何理解uboot<ul>
+<li>Universal Boot Loader，是一个开源的主要的boot loader 应用于嵌入式设备，封装了指令用于启动操作系统内核。</li>
+<li>uboot是众多boot loader其中一种</li>
+</ul>
+</li>
+<li>如何理解Bootloader<ul>
+<li>Bootloader是嵌入式设备开机后执行的第一段小程序，位于ROM里面，用于装载内核和操作系统到内存中执行。</li>
+</ul>
+</li>
+<li>如何编写linux kernel modules<ul>
+<li>进入函数xxxx_init</li>
+<li>退出函数xxxx_exit</li>
+<li>module_param用于传递命令行参数 , module_param(varname, type, defaultval)</li>
+</ul>
+</li>
+<li>linux</li>
+<li>如何查看内核符号表<ul>
+<li>cat /proc/kallsym</li>
+<li>这里面有printk，因此我们编写内核模块时可以直接使用</li>
+</ul>
+</li>
+<li>内核块模与device driver的关系<ul>
+<li>device driver时内核模块的一种</li>
+<li>unix系统中，/dev/下的一个文件，代表一个硬件设备。文件提供方法与具体的硬件交互。</li>
+</ul>
+</li>
+<li>32bit架构的RAM地址空间<ul>
+<li>所有空间<ul>
+<li>0x00000000 - 0xffffffff （4G）</li>
+</ul>
+</li>
+<li>内核空间<ul>
+<li>0xc0000000 - 0xffffffff （1G）</li>
+<li>内核程序运行在这里，具有所有内存和硬件设备的访问权限</li>
+</ul>
+</li>
+<li>用户空间<ul>
+<li>0x00000000 - 0xbfffffff （3G）</li>
+<li>用户程序运行在这里，用户程序无法直接访问内核空间，用户程序通过系统调用访问一部分内核</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>关于ioctl<ul>
+<li>ioctl是一个系统调用</li>
+<li>ioctl由应用程序发起（用户空间），驱动程序负责实现相应的命令请求（内核空间）</li>
+</ul>
+</li>
+<li>tty是什么<ul>
+<li>tty是Teletype的缩写</li>
+<li>终端是一种字符型设备，有很多种类型，通常用tty代表各种类型的终端设备。</li>
+</ul>
+</li>
+<li>如何理解中断<ul>
+<li>中断的概念<ul>
+<li>CPU执行程序过程中，由外部硬件设备发出中断信号，CPU保存当前中断上下文内容，转而去执行中断处理程序，执行完中断处理程序返回到中断前执行程序的位置继续执行接下来的程序的过程叫中断。</li>
+<li>相比与让CPU轮询设备状态，中断机制，能更充分利用CPU，中断的目的就是让CPU不必等待外围的慢设备</li>
+</ul>
+</li>
+<li>硬件中断<ul>
+<li>异步信号</li>
+<li>来源于外设</li>
+</ul>
+</li>
+<li>软件中断<ul>
+<li>来源于当前CPU正在执行的程序</li>
+</ul>
+</li>
+<li>中断向量<ul>
+<li>中断程序入口地址</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Android HAL</li>
+<li>如何理解GPL<ul>
+<li>全称为GNU General Public License</li>
+<li>要求GPL程序的派生作品也要在GPL之下</li>
+<li>著名的软件 emacs，linux核心，gcc</li>
+<li><strong>只要在一个软件中使用(&quot;使用&quot;指类库引用，修改后的代码或者衍生代码)GPL 协议的产品，则该软件产品必须也采用GPL协议，既必须也是开源和免费。</strong></li>
+<li>规避GPL感染的方法，地址空间隔离，RPC通信</li>
+</ul>
+</li>
+<li><p>LGPL</p>
+<ul>
+<li><strong>LGPL允许商业软件通过类库引用(link)方式使用LGPL类库而不需要开源商业软件的代码。</strong></li>
+</ul>
+</li>
+<li><p>如何理解JNI</p>
+<ul>
+<li>Java Native Interface 是一种编程框架，使得Java虚拟机中的Java程序可以调用本地应用／库，也可以被其他程序调用。本地程序一般是由其他语言（C、C++、汇编等）编写的，并且被编译为基于本机硬件和操作系统的程序。</li>
+<li>JNI函数命名规则<ul>
+<li>Java<em>包名</em>类名_方法名</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2017-06-26">2017.06.26</h4>
+<ul>
+<li>linux和unix的联系与区别<ul>
+<li>联系：<ul>
+<li>unix历史久于linux，linux思想源于unix</li>
+</ul>
+</li>
+<li>区别：<ul>
+<li>unix大多与硬件配套，linux可运行在多种硬件平台上</li>
+<li>unix是商业软件，linux是开源软件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>linux整体架构图
+<img src="/Users/zhaohedong/Desktop/projects/mygit/images/linux.png" alt=""></li>
+<li>linux内核构成<ul>
+<li>Process Scheduler</li>
+<li>Memory Management</li>
+<li>Virtual Filesystem</li>
+<li>Network</li>
+<li>IPC</li>
+</ul>
+</li>
+<li>linux操作系统包含什么东西</li>
+<li>Android<ul>
+<li>Android是基于linux内核的开放源代码移动操作系统。</li>
+<li>许可证<ul>
+<li>Apache许可证2.0和GPL v2</li>
+<li>GPL v2和GPL的区别<ul>
+<li>加入“liberty or death”条款，即如果哪个人在发布GPL软件时添加附加强制的条款，那么他根部无权发布软件。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>支持平台<ul>
+<li>ARM、MIPS、Power Architecture、x86、x86-64</li>
+</ul>
+</li>
+<li>HAL<ul>
+<li>Android的硬件抽象层能以封闭源码的形式提供硬件驱动模块。</li>
+<li>HAL以.so存在，可以把Android Framework同Linux kernel隔离开，</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>什么是范式</li>
+<li>关于tar命令<ul>
+<li>-x Extract</li>
+<li>-c Compress</li>
+<li>-j bizp2</li>
+<li>-z gzip</li>
+<li>-v verbose output</li>
+<li>-f file name</li>
+<li>-p preserve file permission</li>
+</ul>
+</li>
+<li>什么是CRC校验</li>
+<li>什么是奇偶校验</li>
+<li>linux启动
+<img src="/Users/zhaohedong/Desktop/projects/mygit/images/linux_boot_x86.png" alt=""></li>
+<li>x86实模式和保护模式<ul>
+<li>实模式只能访问0x00000000～0x000fffff</li>
+</ul>
+</li>
+<li>关于bios中断向量表<ul>
+<li>INT3 暂停</li>
+<li>INT10 向屏幕打印一个字符<ul>
+<li><pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>mov&nbsp;ah,&nbsp;0x0e</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>mov&nbsp;al,&nbsp;&#39;!&#39;</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>int&nbsp;0x10</span></span></span></div></pre></li>
+</ul>
+</li>
+<li>INT15 获取memory map，physical memory ranges<ul>
+<li>INT 15h, AX=E801h - Get Memory Size for Large Configurations</li>
+<li>INT 15h, AH=88h - Get Extended Memory Size</li>
+<li>在linux启动过程中，kernel实模式初始化代码调用BIOS INT15，AX=0xe820取得当前系统的memory map</li>
+</ul>
+</li>
+<li>INT21 返回</li>
+</ul>
+</li>
+<li>low memory<ul>
+<li>0M ～ 896M</li>
+<li>kmalloc() 在这里申请内存</li>
+</ul>
+</li>
+<li>high memory<ul>
+<li>896M～1024M</li>
+<li>只有通过特殊的内存映射才能访问</li>
+</ul>
+</li>
+<li>Endian<ul>
+<li>Big-Endian<ul>
+<li><pre class="editor-colors lang-0x12345678"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000000&nbsp;0x12</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000001&nbsp;0x34</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000002&nbsp;0x56</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000003&nbsp;0x78</span></span></div></pre>
+</li>
+</ul>
+</li>
+<li>Little-Endian<ul>
+<li><pre class="editor-colors lang-0x12345678"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000000&nbsp;0x78</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000001&nbsp;0x56</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000002&nbsp;0x34</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>0x00000003&nbsp;0x12</span></span></div></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul></body>
 </html>
