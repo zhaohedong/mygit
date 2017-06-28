@@ -557,3 +557,40 @@
 - ISA
   - ISA总线
     - (Industry Standard Architecture:工业标准体系结构）是为PC/AT电脑而制定的总线标准，为16位体系结构，只能支持16位的I/O设备，数据传输率大约是16MB/S。也称为AT标准
+
+#### 2017.06.28
+- RGMII
+- SGMII
+- EEPROM
+  - Electrically Erasable Programmable Read-Only Memory，电可擦除只读存储器，掉电后不丢失数据，可以作为BIOS存储芯片。
+- 什么是网卡驱动
+  - 提供接口给内核，进而让内核可以对硬件进行操作。
+- 网卡驱动程序与其他驱动程序的不同点
+  - 网卡驱动程序，不依赖与/sys和/dev与用户空间通信，应用程序是通过网络接口（eth0）与NIC驱动程序进行通信。网络接口对底层协议进行了抽象。
+- 驱动程序的数据结构
+  - 形成网络协议构造块的数据结构 sk_buff
+    -
+  - 协议和驱动程序间接口的数据结构 net_device
+  - 与总线相关的数据结构
+- linux网络子系统
+![](./images/network_subsystem.jpg)  
+
+- 设备无关层到驱动层
+![](./images/device_agnostic.jpg)  
+  - 网络协议接口层，对网络协议层提供统一的数据收发接口。
+    - 数据发送接口 dev_queue_xmit
+    - 数据接收接口 netif_rx
+  - 网络设备接口层，对网络协议接口层，提供网络设备结构net_device，该结构体是网络驱动接口层各函数的容器。
+    - 设备内容
+      -
+    - 主要设备方法
+      - register_netdev
+      - unregister_netdev
+      - open
+      - stop
+      - hard_start_xmit
+      - tx_timeout
+  - 网络驱动接口层，实现net_device结构。是驱使网络硬件完成响应动作的程序。
+    - hard_start_xmit
+    - net_interrupt
+  - 设备媒介层，数据包发送和接收的实体。
