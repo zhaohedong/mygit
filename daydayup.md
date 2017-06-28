@@ -581,8 +581,6 @@
     - 数据发送接口 dev_queue_xmit
     - 数据接收接口 netif_rx
   - 网络设备接口层，对网络协议接口层，提供网络设备结构net_device，该结构体是网络驱动接口层各函数的容器。
-    - 设备内容
-      -
     - 主要设备方法
       - register_netdev
       - unregister_netdev
