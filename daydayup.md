@@ -559,8 +559,20 @@
     - (Industry Standard Architecture:工业标准体系结构）是为PC/AT电脑而制定的总线标准，为16位体系结构，只能支持16位的I/O设备，数据传输率大约是16MB/S。也称为AT标准
 
 #### 2017.06.28
+- 网卡的接口
+  - RJ-45
+- MII
+  -  MII即媒体独立接口,它是IEEE-802.3定义的以太网行业标准."媒体独立"表明在不对MAC硬件重新设计或替换的情况下,任何类型的PHY设备都可以正常工作.它包括一个数据接口,以及一个MAC和PHY之间的管理接口.
+  - 在IEEE802.3中规定的MII总线是一种用于将不同类型的PHY与相同网络控制器(MAC)相连接的通用总线.网络控制器可以用同样的硬件接口与任何PHY .
+- GMII
+  - Gigabyte MII
 - RGMII
+  - Reduce Gigabyte MII
 - SGMII
+  - Serial Gigabyte MII
+- 网卡PHY和MAC的区别
+  - 网卡工作在OSI模型的最后两层，MAC工作在数据链路层，PHY工作在物理层
+  - pci总线->mac->phy-网线
 - EEPROM
   - Electrically Erasable Programmable Read-Only Memory，电可擦除只读存储器，掉电后不丢失数据，可以作为BIOS存储芯片。
 - 什么是网卡驱动
@@ -591,3 +603,85 @@
     - hard_start_xmit
     - net_interrupt
   - 设备媒介层，数据包发送和接收的实体。
+- 开发网卡驱动过程中，对设备树的设定
+- 用什么调试项目
+- 如何测试驱动
+- 网卡中ring的概念
+- e1000_copybreak
+- e1000_clean_rx_irq
+- napi_schedule
+- 网络字节序
+  - 4字节32bit值以0～7bit、8～15bit、16～23bit、24～31bit传输，这种传输次序为big-endian。
+- sk_buff
+  - sk_buff结构
+    ![](./images/sk.jpg)  
+    ![](./images/sk2.jpg)  
+  - sk_buff成员
+    - head：内存中已申请的，用户网络数据缓冲区的起始地址，不可变。
+    - data：指向当前协议有效的数据的起始地址。
+      - data指针随当前协议层变化而进行移动
+      - 传输层：-> TCPHeader+用户数据  L4
+      - 网络层：-> IPHeader+TCPHeader+用户数据 L3
+      - 链路层：-> EthernetHeader+IPHeader+TCPHeader+用户数据 L2
+    - tail：向当前协议有效的数据的终止地址。
+    - end：存中已申请的，用户网络数据缓冲区的终止地址。
+    - len：线性数据区+非线性数据区（fragment片段）
+    - data_len：非线性数据区（fragment）
+  - sk_buff相关操作
+    - skb_put
+      ```tmp = tail
+      tail += n
+      len += n
+      return tmp
+      ```
+      在尾部追加n字节数据。
+    - skb_push
+      ```data -= n
+      len += n
+      return data
+      ```
+      指向更靠近链路层的数据头。
+    - skb_pull
+      ```data += n
+      len -= n
+      return data
+      ```
+      指向更靠近传输层的数据头。
+      通常用于从底层向上传输数据时一层层的分解数据。
+    - skb_reserve
+      ```data += n
+      tail += n
+      return data
+      ```
+- L4(传输层)到L2(链路层)的过程
+  ![](./images/L4_L2.jpg)
+  - 申请sk_buff
+  - 添加TCP payload
+  - 添加TCP Header
+  - 添加IP Header
+  - 添加Ethernet Header
+- L2(链路层)到L2(传输层)的过程（skb_pull）
+  - 解析Ethernet Header
+  - 解析IP Header
+  - 解析TCP Header
+
+- sk_buff既存在双向链表同时存在非线性存储区
+  - 只有在DMA支持物理分散页的Scatter/Gather（SG，分散/聚集）操作时候才可以使用frags[]来保存剩下的数据，否则，只能扩展线性数据区域进行保存！
+- SPI
+  - Serial Peripheral Interface， 串行外设接口，高速的全双工同步的通信总线。
+  - SPI构成
+    ![](./images/spi.png)
+    - SPI控制器
+    - SPI从设备（Flash、网卡等）
+      - SPI从设备驱动
+        - linux设备树中添加spi设备
+        - 注册设备驱动到spi驱动管理器中，让spi驱动管理器统一管理。
+
+#### 2017.07.03
+- NAPI
+  - New API是综合中断和轮询方式的网卡API。网络数据量较小时，采用中断方式，网络数据很大时采取轮询方式。
+  - NAPI和传统API的区别
+    - 支持NAPI的网卡驱动必须提供轮询方法poll()
+    - 传统API内核接口为netif_rx, NAPI接口为napi_schedule()
+    - 传统API使用共享的CPU队列softnet_data->input_pkt_queue，NAPI使用设备内存（或者设备驱动程序的接收环）
+    ![](./images/NAPI.css)

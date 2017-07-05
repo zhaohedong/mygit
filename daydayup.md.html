@@ -1275,8 +1275,32 @@ pre.editor-colors .fold-marker:after {
 </ul>
 <h4 id="2017-06-28">2017.06.28</h4>
 <ul>
-<li>RGMII</li>
-<li>SGMII</li>
+<li>网卡的接口<ul>
+<li>RJ-45</li>
+</ul>
+</li>
+<li>MII<ul>
+<li>MII即媒体独立接口,它是IEEE-802.3定义的以太网行业标准.&quot;媒体独立&quot;表明在不对MAC硬件重新设计或替换的情况下,任何类型的PHY设备都可以正常工作.它包括一个数据接口,以及一个MAC和PHY之间的管理接口.</li>
+<li>在IEEE802.3中规定的MII总线是一种用于将不同类型的PHY与相同网络控制器(MAC)相连接的通用总线.网络控制器可以用同样的硬件接口与任何PHY .</li>
+</ul>
+</li>
+<li>GMII<ul>
+<li>Gigabyte MII</li>
+</ul>
+</li>
+<li>RGMII<ul>
+<li>Reduce Gigabyte MII</li>
+</ul>
+</li>
+<li>SGMII<ul>
+<li>Serial Gigabyte MII</li>
+</ul>
+</li>
+<li>网卡PHY和MAC的区别<ul>
+<li>网卡工作在OSI模型的最后两层，MAC工作在数据链路层，PHY工作在物理层</li>
+<li>pci总线-&gt;mac-&gt;phy-网线</li>
+</ul>
+</li>
 <li>EEPROM<ul>
 <li>Electrically Erasable Programmable Read-Only Memory，电可擦除只读存储器，掉电后不丢失数据，可以作为BIOS存储芯片。</li>
 </ul>
@@ -1290,8 +1314,7 @@ pre.editor-colors .fold-marker:after {
 </ul>
 </li>
 <li>驱动程序的数据结构<ul>
-<li>形成网络协议构造块的数据结构 sk_buff
--</li>
+<li>形成网络协议构造块的数据结构 sk_buff</li>
 <li>协议和驱动程序间接口的数据结构 net_device</li>
 <li>与总线相关的数据结构</li>
 </ul>
@@ -1308,8 +1331,6 @@ pre.editor-colors .fold-marker:after {
 </ul>
 </li>
 <li>网络设备接口层，对网络协议接口层，提供网络设备结构net_device，该结构体是网络驱动接口层各函数的容器。<ul>
-<li>设备内容
--</li>
 <li>主要设备方法<ul>
 <li>register_netdev</li>
 <li>unregister_netdev</li>
@@ -1327,6 +1348,99 @@ pre.editor-colors .fold-marker:after {
 </ul>
 </li>
 <li>设备媒介层，数据包发送和接收的实体。</li>
+</ul>
+</li>
+<li>开发网卡驱动过程中，对设备树的设定</li>
+<li>用什么调试项目</li>
+<li>如何测试驱动</li>
+<li>网卡中ring的概念</li>
+<li>e1000_copybreak</li>
+<li>e1000_clean_rx_irq</li>
+<li>napi_schedule</li>
+<li>网络字节序<ul>
+<li>4字节32bit值以0～7bit、8～15bit、16～23bit、24～31bit传输，这种传输次序为big-endian。</li>
+</ul>
+</li>
+<li>sk_buff<ul>
+<li>sk_buff结构
+<img src="/Users/zhaohedong/Desktop/projects/mygit/images/sk.jpg" alt=""><br><img src="/Users/zhaohedong/Desktop/projects/mygit/images/sk2.jpg" alt="">  </li>
+<li>sk_buff成员<ul>
+<li>head：内存中已申请的，用户网络数据缓冲区的起始地址，不可变。</li>
+<li>data：指向当前协议有效的数据的起始地址。<ul>
+<li>data指针随当前协议层变化而进行移动</li>
+<li>传输层：-&gt; TCPHeader+用户数据  L4</li>
+<li>网络层：-&gt; IPHeader+TCPHeader+用户数据 L3</li>
+<li>链路层：-&gt; EthernetHeader+IPHeader+TCPHeader+用户数据 L2</li>
+</ul>
+</li>
+<li>tail：向当前协议有效的数据的终止地址。</li>
+<li>end：存中已申请的，用户网络数据缓冲区的终止地址。</li>
+<li>len：线性数据区+非线性数据区（fragment片段）</li>
+<li>data_len：非线性数据区（fragment）</li>
+</ul>
+</li>
+<li>sk_buff相关操作<ul>
+<li>skb_put
+<code>tmp = tail
+tail += n
+len += n
+return tmp</code>
+在尾部追加n字节数据。</li>
+<li>skb_push
+<code>data -= n
+len += n
+return data</code>
+指向更靠近链路层的数据头。</li>
+<li>skb_pull
+<code>data += n
+len -= n
+return data</code>
+指向更靠近传输层的数据头。
+通常用于从底层向上传输数据时一层层的分解数据。</li>
+<li>skb_reserve
+<code>data += n
+tail += n
+return data</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>L4(传输层)到L2(链路层)的过程
+<img src="/Users/zhaohedong/Desktop/projects/mygit/images/L4_L2.jpg" alt=""><ul>
+<li>申请sk_buff</li>
+<li>添加TCP payload</li>
+<li>添加TCP Header</li>
+<li>添加IP Header</li>
+<li>添加Ethernet Header</li>
+</ul>
+</li>
+<li><p>L2(链路层)到L2(传输层)的过程（skb_pull）</p>
+<ul>
+<li>解析Ethernet Header</li>
+<li>解析IP Header</li>
+<li>解析TCP Header</li>
+</ul>
+</li>
+<li><p>sk_buff既存在双向链表同时存在非线性存储区</p>
+<ul>
+<li>只有在DMA支持物理分散页的Scatter/Gather（SG，分散/聚集）操作时候才可以使用frags[]来保存剩下的数据，否则，只能扩展线性数据区域进行保存！</li>
+</ul>
+</li>
+<li>SPI<ul>
+<li>Serial Peripheral Interface， 串行外设接口，高速的全双工同步的通信总线。</li>
+<li>SPI构成
+<img src="/Users/zhaohedong/Desktop/projects/mygit/images/spi.png" alt=""><ul>
+<li>SPI控制器</li>
+<li>SPI从设备（Flash、网卡等）<ul>
+<li>SPI从设备驱动<ul>
+<li>linux设备树中添加spi设备</li>
+<li>注册设备驱动到spi驱动管理器中，让spi驱动管理器统一管理。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul></body>
