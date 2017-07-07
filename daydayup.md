@@ -685,3 +685,7 @@
     - 传统API内核接口为netif_rx, NAPI接口为napi_schedule()
     - 传统API使用共享的CPU队列softnet_data->input_pkt_queue，NAPI使用设备内存（或者设备驱动程序的接收环）
     ![](./images/NAPI.css)
+#### 2017.07.06
+- Android架构
+- JNI格式
+- JPEG格式
