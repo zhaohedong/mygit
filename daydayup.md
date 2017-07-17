@@ -689,3 +689,19 @@
 - Android架构
 - JNI格式
 - JPEG格式
+- 各种压缩格式的区别
+  - .tar:tar本质是归档工具，而非压缩工具
+  - .tar.gz:tar工具打包，gzip工具压缩
+  - .tar.bz2:tar工具打包，bzip2工具压缩
+  - .zip:zip工具压缩
+    - 跨平台
+    - 压缩比不高
+  - .xz 压缩率之王？
+    - 压缩比高，压缩时间稍长
+    - tar不支持xz参数 需要
+      - 压缩过程
+        - tar cvf xxx.tar xxx/
+        - xz -z xxx.tar ->xxx.tar.xz
+      - 解压过程
+        - xz -d xxx.tar.xz -> xxx.tar
+        - tar xvf xxx.tar
