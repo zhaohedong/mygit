@@ -766,7 +766,7 @@ r = a - c*b
     - 命名管道：虽然不占用磁盘空间，但是有自己的文件名
   7. 套接字
 - 软链接和硬链接
-  - 硬链接
+  - 软链接
     - 文件名B -> 文件名A -> inode -> 数据
   - 硬链接
     - 文件名A -> inode -> 数据，文件名B -> inode -> 数据
@@ -949,3 +949,87 @@ r = a - c*b
   - 链接
     - gcc test.o -o test
 - 什么是linux coredump
+  - ulimit -c unlimited #设置core文件大小为无限大
+  - gcc core_demo.c -o core_demo -g # -g 生成调试信息带core文件
+  - gdb core_demo core #运行调试core dump
+  - 产生coredump的主要信号
+  - ![](./images/coredump.png) 
+- Big-endian和Little-endian的区别
+  - Big-endian：MSB在存储时放在内存的低地址，在传输时放在流的开始。LSB存储时放在高地址，在传输时放在流的末尾。
+  - Litte-endian：MSB在存储时放在内存的高地址，在传输时放在流的末尾。LSB存储时放在内存的低地址，传输时放在流的前面。
+##### 2017.08.03
+- 共享库的构造函数和析构函数
+  - 构造函数
+    - __attribute__((constructor)) init_function(void)
+  - 析构函数
+    - __attribute__((destructor)) fini_fuction(void)
+- ABI和API
+  - API
+    - Application Programming Interface, 描述源代码层面的接口
+  - ABI
+    - Application Binary Interface，符号修饰标准、变量内存布局、函数调用方式等根执行代码二进制兼容性相关的内容称为ABI,描述二进制执行文件层面的接口。
+    - 一个完整的ABI，像Intel二进制兼容标准 (iBCS)[1] ，允许支持它的操作系统上的程序不经修改在其他支持此ABI的操作体统上运行。
+- NDK开发
+  - ![](./images/NDK&JNI.png) 
+- HTTP通信、Socket通信、TCP／IP的关系
+  - HTTP：属于应用层协议
+  - Socket：是编程接口，是对TCP／IP协议的封装，编程时候更方便的使用TCP／IP协议
+  - TCP：传输层协议
+  - IP：网络层协议
+- RICS和CICS
+  - CISC
+    - Complex instruction set computer
+  - RISC
+    - Reduced instruction set computer
+- python调试方法
+  - GDB调试
+    - GDB启动应用
+      ```
+      $ gdb python
+      ...
+      (gdb) run <programname>.py <arguments>
+      ```
+    - GDB连接到进程
+
+      ``` $ gdb python <pid of running process> ```
+
+  - PDB调试
+    ```
+    import pdb
+    pdb.set_trace()
+    ```
+  - IPDB调试
+  - IPython
+    > crash_on_ipy.py
+
+    ```
+    import sys
+    class ExceptionHook:
+    instance = None
+    def __call__(self, *args, **kwargs):
+        if self.instance is None:
+            from IPython.core import ultratb
+            self.instance = ultratb.FormattedTB(mode='Plain',
+                 color_scheme='Linux', call_pdb=1)
+        return self.instance(*args, **kwargs)
+    sys.excepthook = ExceptionHook()
+    ```
+  - logging
+- GDB调试命令
+  - file: load 
+  - r：run
+  - bt：call stack
+  - p: print
+  - i: info
+  - c：continue
+  - b：break
+    - b line
+    - b func
+    - b *Address
+    - i break
+    - d break No.
+  - n: step over
+  - s: step into
+  - si: step into assembly
+  - ni: step over assembly
+    
