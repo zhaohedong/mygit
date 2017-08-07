@@ -1032,4 +1032,48 @@ r = a - c*b
   - s: step into
   - si: step into assembly
   - ni: step over assembly
- 
+  - disas: dis assembly
+##### 2017.08.07
+- 关于汇编
+   - ![](./images/disas.png) 
+   - esp是栈顶指针
+   - 栈的生长方向向下，向栈内压入数据时，esp减小
+   - ebp保存函数调用前的esp值
+- 关于C++类默认函数
+  - 默认构造函数
+    - Empty();
+  - 默认拷贝构造函数
+    - Empty(const Empty&);
+  - 默认赋值运算符
+    - Empty& operater = (const Empty&);
+  - 默认析构函数
+    - ~Empty();
+  ```
+  //关于C++空类的默认函数
+  // C++03
+  MyClass();                                     // Default constructor
+  MyClass(const MyClass& other);                 // Copy constructor
+  MyClass& operator=(const MyClass& other);      // Copy assignment operator
+  ~MyClass();                                    // Destructor
+
+  // C++11 adds two more
+  MyClass(MyClass&& other) noexcept;             // Move constructor
+  MyClass& operator=(MyClass&& other) noexcept;  // Move assignment operator
+  ```
+ - C++右值引用
+   - move语义，来解决之前C++的想移动资源，采取的先复制再析构的策略。
+    ```
+    class A {};
+    void foo(const A &) {}; // 函数1
+    void foo(A &&) {}; // 函数2
+    A a;
+    const A ac;
+    foo(ac);// 函数1将被调用
+    foo(a);// 函数1将被调用
+    foo(A());// 函数2将被调用
+    foo(std::move(a));// 函数2将被调用
+    ```
+- 关于TCHAR、_tmain
+  - 这两个都是windows平台特有的，需要包含windows.h
+- 关于memcpy
+  - 在string.h文件里面
