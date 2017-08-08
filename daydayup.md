@@ -1077,3 +1077,68 @@ r = a - c*b
   - 这两个都是windows平台特有的，需要包含windows.h
 - 关于memcpy
   - 在string.h文件里面
+##### 2017.08.08
+- 重载
+  - 同一作用域下函数名相同，参数列表不同
+- 重写
+  - 函数名，参数列表，返回值都相同
+  - 位于父类和子类
+- C++的初始化方法
+  - 直接初始化“（）”
+  - 复制初始化“=”
+- 复制构造函数
+  - 只有单个形参，而且该形参是对本类类型对象的引用（常用const修饰），这样的构造函数称为复制构造函数。
+- Makefile
+  - Makefile中打印log
+    - $(warning xxx) 
+    - $(warning $(var))
+  - 变量定义
+    - “=”
+      - 可以使用尚未定义的变量
+      ```
+      OBJS2 = $(OBJS1) programC.o
+      OBJS1 = programA.o programB.o
+      ```
+    - “:=”
+      - 使用尚未定义的变量，值为空
+  - 变量值追加
+    - “+=”
+  - shell命令
+    - ShellCommand
+    - @{ShellCommand}
+    - -{ShellCommand}
+      - 出错是不退出
+  - 引用其他Makefile
+    ```
+    # Makefile 内容
+    all:
+      @echo "主 Makefile begin"
+      @make other-all
+      @echo "主 Makefile end"
+    include ./other/Makefile
+    # ./other/Makefile 内容
+    other-all:
+      @echo "other makefile begin"
+      @echo "other makefile end"
+    ```
+  - make文件搜索顺序
+    - GNUmakefile -> makefile -> Makefile
+  - 嵌套Makefile
+    ```
+    # Makefile 内容
+    export VALUE1 := export.c    <-- 用了 export, 此变量能够传递到 ./other/Makefile 中
+    VALUE2 := no-export.c        <-- 此变量不能传递到 ./other/Makefile 中
+    all:
+      @echo "主 Makefile begin"
+      @cd ./other && make
+      @echo "主 Makefile end"
+    # ./other/Makefile 内容
+    other-all:
+      @echo "other makefile begin"
+      @echo "other makefile end"
+    ```
+  - 规则中的通配符
+    - \* 任意多个字符
+    - \? 任意一个字符
+    - [...] 任意其中一个字符
+    - ～ 当前用户home目录
