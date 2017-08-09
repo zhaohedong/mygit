@@ -247,7 +247,7 @@
   - os.system
     - os.system('cat /proc/cpuinfo')
     - 没有输出结果
-  - os.popen()
+  - os.()
       ```
       output = os.popen('cat /proc/cpuinfo')
       print output.read()
@@ -259,6 +259,11 @@
       print status, output
       ```
       - 可以获得到返回值和输出，非常好用
+  - subprocess模块
+    ```
+    import subprocess
+    subprocess.call("ls -l", shell=True)
+    ```
 - linux创建进程的方法
 - linux创建线程的方法
 - python创建进程的方法
@@ -932,6 +937,8 @@ r = a - c*b
   - 复制：[n]yy
   - 粘贴：P
   - 删除：[n]dd
+  - 前一位置：Ctrl+O
+  - 下一位置：Ctrl+I
 - gcc 编译命令
   - \-c : 编译+汇编源代码
   - \-o : 输出文件
@@ -1107,7 +1114,7 @@ r = a - c*b
     - ShellCommand
     - @{ShellCommand}
     - -{ShellCommand}
-      - 出错是不退出
+      - 出错时不退出
   - 引用其他Makefile
     ```
     # Makefile 内容
@@ -1128,7 +1135,7 @@ r = a - c*b
     # Makefile 内容
     export VALUE1 := export.c    <-- 用了 export, 此变量能够传递到 ./other/Makefile 中
     VALUE2 := no-export.c        <-- 此变量不能传递到 ./other/Makefile 中
-    all:
+    all
       @echo "主 Makefile begin"
       @cd ./other && make
       @echo "主 Makefile end"
@@ -1142,3 +1149,20 @@ r = a - c*b
     - \? 任意一个字符
     - [...] 任意其中一个字符
     - ～ 当前用户home目录
+- 关于内核编译
+  ```
+  export CROSS_COMPILE=/home/mac/projects/armv7-marvell-linux-gnueabihf-hard-5.2.1_i686_20151110/bin/
+  export ARCH=arm
+  make mvebu_v7_defconfig
+  make
+  make zImage
+  make INSTALL_MOD_PATH=/home/mac/projects/rootfs_for_build_kernel modules_install
+  ```
+  - "-y" 编译入内核
+  - "-m" 编译成模块 
+
+- linux系统备份与恢复
+  - 备份
+    >tar -cvpjf rootfs.tar.bz2 --exclude=./mnt --exclude=./proc --exclude=./lost+found --exclude=./sys ／
+  - 恢复
+    >tar -xjvf rootfs.tar.bz2 -C / 
