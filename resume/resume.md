@@ -1,4 +1,7 @@
 ### ceph on arm
+- 作业内容
+    - Arm分布式文件存储服务器，作业内容包括硬件选型、系统选型与定制、内核编译与裁剪、ceph的交叉编译、集群的部署、维护、测试、优化。
+    - ceph是开源的分布式存储系统，支持块存储、文件存储、对象存储。
 - 硬件选型
     - Marvell ARMADA-38x
     - 双核CPU（与或运算加速器）
@@ -13,7 +16,7 @@
     - 系统选型
         - Ubuntu 14.04 armhf
     - 内核
-        - 内核的编译裁剪
+        - 内核的编译裁剪>3.13.0
         - 内核模块的追加
     - Bootloader的使用
         - dtb、zimage加载
@@ -69,6 +72,7 @@
         - 内网、外网隔离
         - pg、pgp调整
         - crushmap调整
+            - 故障域的分离
         - ssd
             - Journal
             - Cache Tier
@@ -78,3 +82,19 @@
     - git使用
     - gdb使用
     - tftp服务器搭建与使用
+### Intalogic
+- 作业内容
+    - Intalogci Run端CPU更换
+    - Run端本身相当于一个解释器+编译器+执行器，Editor端用户编写ladder程序，Editor端生成中间码，通过串口Editor将中间码传送给Run端，Run端解析中间码，生成对应的机器码，将机器码写入内存的执行代码Section，CPU执行指针从执行Section开始执行机器码。
+- 硬件环境
+    - 瑞萨H8SX2600->RX630
+    - H8SX2600
+        - CISC复杂指令集
+        - 没有奇数字节指令
+    - RX630
+        - RISC简单指令集
+        - 有奇数字节指令
+    - CPU对内存的写入都是以Word为单位
+- IDE
+    - CubeSuite++
+

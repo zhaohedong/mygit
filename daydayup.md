@@ -1160,9 +1160,56 @@ r = a - c*b
   ```
   - "-y" 编译入内核
   - "-m" 编译成模块 
-
+##### 2017.08.09
 - linux系统备份与恢复
   - 备份
     >tar -cvpjf rootfs.tar.bz2 --exclude=./mnt --exclude=./proc --exclude=./lost+found --exclude=./sys ／
   - 恢复
     >tar -xjvf rootfs.tar.bz2 -C / 
+- 根文件系统的制作
+#### 2017.08.11
+- QEMU ARM
+  - /home/mac/projects/qemu/rootfs
+  - /home/mac/projects/qemu/kernel/zImage.armserver
+  - qemu-system-arm -M vexpress-a7 -m 512M -kernel /home/mac/projects/qemu/kernel/zImage.armserver -dtb  /home/mac/projects/qemu/kernel/dtb.armserver -nographic -append "console=ttyS0"
+ - qemu-system-arm -M versatilepb -cpu arm1176 -hda /home/mac/projects/qemu/rootfs2/2017-07-05-raspbian-jessie.img  -kernel /home/mac/projects/qemu/kernel/kernel-qemu-4.4.34-jessie -m 1024 -append "root=/dev/sda2 panic=1"
+
+##### 2017.08.14
+- ubuntu 16.04 更换内核的方法
+
+  >sudo apt-get install linux-image-4.8.0-25-generic
+
+  >sudo dpkg --get-selections|grep image
+
+  >sudo vi /etc/default/grub
+
+  >GRUB_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 4.8.0-52-generic"
+
+  > sudo update-grub2
+
+  > sudo reboot
+- parallels虚拟机无法进入桌面
+  - 查看~/.xsession-errors
+  - 查看/var/log/Xorg.0.log
+  - 重新安装xserver-core-xorg和xserver-xorg
+  - 并且安装了gnome
+  - 降级内核
+  - 重新安装parallels-tools
+##### 2017.08.15
+- 关于树莓派虚拟机硬盘容量的调整
+  - https://blog.ymyzk.com/2013/12/raspbian-image-resize/
+- 关于主分区和扩展分区
+  - 主分区
+    - 数量为1～3个
+    - 可以直接使用
+  - 扩展分区
+    - 数量为0～1个
+    - 不能直接使用，作为逻辑分区的容器
+  - 逻辑分区
+    - 可以直接使用，存在于扩展分区中
+- ubuntu设置短密码的方法
+  > sudo passwd {user}
+- pip安装到指定路径
+  - sudo pip install --target=/usr/lib/python2.7/dist-packages jinja2
+- 
+  - sudo apt-get install crossbuild-essential-armhf
