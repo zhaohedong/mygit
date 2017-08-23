@@ -1,0 +1,118 @@
+[ceph.conf]
+erasure_code_dir = /usr/lib/ceph/erasure-code
+compression_dir = /usr/lib/ceph/compressor
+osd_class_dir = /usr/lib/rados-classes
+plugin_dir = /usr/lib/ceph
+mgr_module_path = /usr/lib/ceph/mgr
+osd pool default size = 2
+public_network = 192.168.99.0/24
+
+[Clear ceph]
+sudo rm /etc/ceph/*
+suod rm -r /var/lib/ceph/.cache/*
+sudo rm -r /var/lib/ceph/mon/*
+sudo rm -r /var/lib/ceph/osd/*
+sudo rm -r /var/lib/ceph/mds/*
+sudo rm -r /var/lib/ceph/mgr/*
+sudo rm -r /var/lib/ceph/tmp/*
+sudo rm /var/lib/ceph/bootstrap-mds/*
+sudo rm /var/lib/ceph/bootstrap-mgr/*
+sudo rm /var/lib/ceph/bootstrap-osd/*
+sudo rm /var/lib/ceph/bootstrap-rgw/*
+sudo rm /var/lib/ceph/bootstrap-mon/*
+sudo rm /var/log/ceph/*
+
+[Add ceph directories]
+sudo mkdir /var/lib/ceph/bootstrap-mds /var/lib/ceph/bootstrap-mgr /var/lib/ceph/bootstrap-rgw /var/lib/ceph/mds /var/lib/ceph/mgr /var/lib/ceph/osd /var/lib/ceph/mon /var/lib/ceph/bootstrap-osd /var/lib/ceph/bootstrap-mon /var/lib/ceph/.cache /var/lib/ceph/tmp
+
+[Change ceph directories's permission]
+sudo chmod 775 /var/lib/ceph/bootstrap-mds /var/lib/ceph/bootstrap-mgr /var/lib/ceph/bootstrap-rgw /var/lib/ceph/mds /var/lib/ceph/mgr /var/lib/ceph/osd
+sudo chmod 755 /var/lib/ceph/mon /var/lib/ceph/bootstrap-osd /var/lib/ceph/bootstrap-mon /var/lib/ceph/.cache
+sudo chmod 777 /var/lib/ceph/tmp
+
+[Add ceph files]
+sudo cp /usr/libexec/ceph* /usr/lib/ceph/
+add /etc/default/ceph
+
+[Deploy ceph monitor and osd]
+ceph-deploy --cluster luminous new mnc-t03
+ceph-deploy --cluster luminous --overwrite-conf mon create mnc-t03
+ceph-deploy --cluster luminous gatherkeys mnc-t03
+ceph-deploy --overwrite-conf --cluster luminous admin mnc-t03
+ceph-deploy --cluster luminous disk zap mnc-t03:/dev/sda
+ceph-deploy --cluster luminous osd prepare mnc-t03:/dev/sda
+ceph-deploy --cluster luminous osd activate mnc-t03:/dev/sda1
+
+ceph-deploy --cluster luminous disk zap mnc-t03:/dev/sdb
+ceph-deploy --cluster luminous osd prepare mnc-t03:/dev/sdb
+ceph-deploy --cluster luminous osd activate mnc-t03:/dev/sdb1
+
+[Push config file]
+ceph-deploy --overwrite-conf --cluster luminous config push mnc-t03
+
+[Purge osd]
+ceph --cluster luminous osd purge 0 --yes-i-really-mean-it
+ceph --cluster luminous osd purge 1 --yes-i-really-mean-it
+
+[Show configs]
+sudo ceph --cluster luminous daemon mon.mnc-t03 config show | less
+sudo ceph --cluster luminous daemon osd.0 config show | less
+
+[Create mgr]
+ceph auth get-or-create mgr.foo  mon 'allow profile mgr' osd 'allow *' mds 'allow *'
+sudo mkdir /var/lib/ceph/mgr/ceph-foo
+sudo vi /var/lib/ceph/mgr/ceph-foo/keyring
+sudo chown -R ceph:ceph /var/lib/ceph/mgr/ceph-foo *
+ceph-mgr -i foo
+ceph -s
+
+ceph mgr module enable dashboard
+ceph config-key put mgr/dashboard/server_addr 10.211.55.6
+ceph config-key put mgr/dashboard/server_port 7000
+
+sudo systemctl restart ceph-mgr@ubuntu
+sudo netstat -tunlp|grep 7000
+
+[Add osd manually]
+sudo -s
+ceph --cluster luminous osd purge 0 --yes-i-really-mean-it
+ceph --cluster luminous osd create 0
+sudo mkdir /var/lib/ceph/osd/luminous-0
+sudo mkfs.xfs -f -i size=2048 /dev/sda
+sudo mount -o rw,noatime,inode64 /dev/sda /var/lib/ceph/osd/luminous-0
+ceph-osd --cluster luminous -i 0 --mkfs --mkkey
+sudo rm -r  /var/lib/ceph/osd/luminous-0/*
+ceph --cluster luminous auth add osd.0 osd 'allow *' mon 'allow rwx' -i /var/lib/ceph/osd/luminous-0/keyring 
+ceph --cluster luminous osd crush add 0 10 root=default host=mnc-t03
+sudo chmod ceph:ceph -R /var/lib/ceph/osd/luminous-0
+sudo /usr/bin/ceph-osd -f --cluster luminous --id 0 --setuser ceph --setgroup ceph
+
+[Sgdisk format partions]
+/sbin/sgdisk --largest-new=2 --change-name=2:ceph block --mbrtogpt /dev/sda
+/sbin/sgdisk --new=1:0:+100M --change-name=1:ceph data /dev/sda 
+
+[Others]
+sudo /usr/local/bin/ceph-disk zap /dev/sda
+sudo /usr/local/bin/ceph-disk -v prepare --cluster luminous --fs-type xfs -- /dev/sda
+sudo /usr/local/bin/ceph-disk -v activate --mark-init upstart --mount /dev/sda1
+
+sudo systemctl stop ceph-mon.target
+
+ceph --cluster luminous auth del osd.0
+ceph --cluster luminous osd rm 0
+
+#ImportError: No module named jinja2
+sudo pip install jinja2
+sudo pip install target=/usr/lib/python2.7/dist-packages jinja2
+sudo easy_install jinja2
+
+ceph-deploy new ubuntu
+ceph-deploy --overwrite-conf mon create ubuntu
+ceph-deploy gatherkeys ubuntu
+ceph-deploy admin ubuntu
+ceph-deploy --overwrite-conf osd prepare ubuntu:/osds/osd1 ubuntu:/osds/osd2
+ceph-deploy --overwrite-conf osd activate ubuntu:/osds/osd1 ubuntu:/osds/osd2
+
+[osd]
+osd mkfs options xfs = -f -i size=2048 -l internal,size=2000b
+
