@@ -1213,3 +1213,15 @@ r = a - c*b
   - sudo pip install --target=/usr/lib/python2.7/dist-packages jinja2
 - 
   - sudo apt-get install crossbuild-essential-armhf
+
+##### 2017.08.25
+- docker run 
+  - docker run -i -t ubuntu:16.10 /bin/bash
+- CA添加与测试
+  - 添加
+    - copy .crt to /usr/local/share/ca-certificates
+    - sudo update-ca-certificates
+  - 测试
+    -  openssl s_client -connect {IP}:{PORT} -CApath /etc/ssl/certs
+  - 界面安装
+    - sudo dpkg-reconfigure ca-certificates
