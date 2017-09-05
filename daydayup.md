@@ -3,6 +3,10 @@
   - 基于ssh，不用安装客户端，只需要在操作节点安装ansible即可
   - 需要配置/etc/ansible/hosts
   - 可以通过 -m指定命令类型 -u指定执行命令用户
+  - ansible all -a "ls"
+  - ansible all -m shell -a "ls"
+  - ansible all -a "sudo apt-get update" --sudo -K
+  - 
 - ssh公钥和私钥
   - 公钥和私钥互为加密揭秘的一组钥匙
   - 公钥加密，私钥解密
@@ -1225,3 +1229,26 @@ r = a - c*b
     -  openssl s_client -connect {IP}:{PORT} -CApath /etc/ssl/certs
   - 界面安装
     - sudo dpkg-reconfigure ca-certificates
+
+##### 2017.09.04
+- 线程池
+##### 2017.09.05
+- Grokking Algorithms
+  - 二分法查找针对有序内容
+    - 复杂度为O（logn）
+  - 选择排序
+    - 每次选出一个最大／最小的，执行次数为n*（1/2*n），复杂度为O（n2）
+  - 快速排序
+    - 快速排序的性能依赖于选择的基准值
+    - 复杂度为O（nlogn）也是平均情况
+    - 最糟糕情况为O（n2）
+  - 数组和链表的区别
+    - 数组
+      - 数组内容连续
+      - 数组支持随机访问和顺序访问
+      - 读取数据快
+    - 链表
+      - 链表内容不连续
+      - 链表只支持顺序访问
+      - 链表空间占用小
+      - 插入和删除快
