@@ -1254,3 +1254,5 @@ r = a - c*b
       - 插入和删除快
 - C++11
   - g++ test2.cpp -std=c++11 -g
+- The program 'virtualenv' is currently not installed.
+  - ![](./images/virtualenv.png) 
