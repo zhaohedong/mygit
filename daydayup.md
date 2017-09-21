@@ -1256,3 +1256,9 @@ r = a - c*b
   - g++ test2.cpp -std=c++11 -g
 - The program 'virtualenv' is currently not installed.
   - ![](./images/virtualenv.png) 
+- Python JSON
+  - JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式
+  - json.dumps
+    - 将python对象编码成JSON字符串
+  - json.loads
+    - 将已编码的JSON字符串解码成Python对象
