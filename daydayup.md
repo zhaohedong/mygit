@@ -1262,3 +1262,20 @@ r = a - c*b
     - 将python对象编码成JSON字符串
   - json.loads
     - 将已编码的JSON字符串解码成Python对象
+- 关于无线桥接
+  - 终端要设置同HUAWEI WIFI同一个网段（192.168.8.x）
+  - 网关要设置成192.168.8.1
+  - 副路由需要无线桥接
+   - 关闭dhcp
+   - wan口地址可以不变更
+   - 可以保持静态ip
+
+- 网页测试
+  - wget http://127.0.0.1/ -O -
+- Grafana
+  - 启动
+    - sudo /etc/init.d/grafana-server restart
+- Graphite
+  - 数据提供
+    - sudo /opt/graphite/bin/carbon-cache.py start
+    - python /opt/graphite/examples/example-client.py
