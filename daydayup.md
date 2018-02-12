@@ -1279,3 +1279,17 @@ r = a - c*b
   - 数据提供
     - sudo /opt/graphite/bin/carbon-cache.py start
     - python /opt/graphite/examples/example-client.py
+- 查看进程下的线程
+  - top -H -p 〈pid〉
+- 编译Beast example
+  - 
+  ```
+  g++ http_example.cpp -I/home/mac/projects/master/ceph/src/Beast/include -std=c++11 -L/home/mac/pjrojects/master/ceph/src/boost/stage/lib -Wl,-R,/home/mac/projects/master/ceph/src/boost/stage/lib -lpthread -lboost_system
+  ```
+- 2018.   17:00:00 start, 17:04:00性能下降
+- 如何kill 指定进程名
+  - kill -9 $(ps -ef|grep 进程名关键字|gawk '$0 !~/grep/ {print $2}' |tr -s '\n' ' ')
+  - kill -9 $(pidof 进程名关键字)
+  - pkill
+  - killall
+ 

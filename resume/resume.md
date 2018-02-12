@@ -52,6 +52,7 @@
             - /var/log/dmesg
         - ceph log各级别log的打开与关闭
         - 权限问题
+            - /var/log下文件权限不正确，导致的log无法生成
         - 文件的存在性问题
         - 程序自启动
             - /etc/init/*.conf
@@ -59,8 +60,33 @@
         - 硬盘开机自动挂载
             - /etc/fstab
             - /lib/udev/rules.d/*.rules
+        - rbd 4k 随机写测试时slow request问题
+            - 在测试该问题过程中发现产生slow reqest的节点，dmesg中有ata命令FLUSH_CACHE_EXT有超时日志，通过查阅ata命令规范，发现该命令执行时间可能需要30S以上，因为osd 超时判定默认值也是30S，所以这个问题，我们判读是硬盘相关问题。硬盘本身是由希捷供应商提供，硬盘发生错误的可能性比较小。通过查看相关文档，可能与供电和电源管理策略有关，由于6台服务器结合测试时候，slow request通常发生在ARMS005服务器上，所以判断是ARMS005服务器供电问题。
+        - 进行读写测试时候，一段时间后发生OOM
+            - 背景
+                - 一块板子，2G内存，2 OSD， Bluestore， Luminous 12.2.2， 10T+10T HHD， ubuntu 14.04
+            - 现象
+                - fio读写测试一段时间后osd oom，并有tcmalloc频繁的进行内存回收工作
+            - 关于参数调整的尝试
+                - bluestore_cache_size 把bluestore cache size 从默认值1GB调整到128MB
+                - bluestore_cache_trim_interval 调整bluestore cache内存的释放频率，从每隔0.2S释放调整到0.04S
+                - bluestore_default_buffered_read 取消buffered read，从默认值true调整到false
+                - 修改TCMALLOC_MAX_TOTAL_THREAD_CACHE_BYTES，将链接了tcmalloc进程的程序，线程间共享cache的大小从128MB调整到18MB
+        - ceph-disk格式化硬盘超时
+            - 在针对大容量硬盘ceph-disk激活硬盘时，发生time out（300s），因为ceph-disk有bug，修改ceph-disk源代码，延长timeout时间，完成激活
+            
     - 测试
         - fio测试
+            - 单台服务器测试，多台服务器测试（OSD节点增多）
+            - 单个客户端测试，多个客户端测试
+            - rbd
+                - 4k rand
+                - 4m mix
+                - 4m seq
+            - cephfs
+                - 4k rand
+                - 4m mix
+                - 4m seq
             - IOPS
             - 吞吐量
         - dd测试
@@ -77,6 +103,40 @@
             - Journal
             - Cache Tier
         - 冗余模式纠删码
+    - 监控 
+        - grafana+graphite+carbon
+            - python -> carbon服务 -> graphite -> grafana
+        - 监控数据类别
+            - Cluster
+                - IO Bytes/S
+                    - 每秒钟写入字节数
+                    - 每秒钟读出字节数
+                    - 每秒钟数据字节数
+                - IOPS
+                    - 每秒钟写操作数量
+                    - 每秒钟读操作数量
+                    - 每秒钟恢复对象数量
+                - OSD Perf
+                    - Apply latency
+                    - Commit latency
+                - Missed Objects
+                - Bytes Used
+                - OSD number
+                    - osd in
+                    - osd up
+                    - osd down
+                    - osd out
+                - IOPS与吞吐量的关系
+                    - 每秒I/O吞吐量 ＝ IOPS* 平均I/OSIZE
+            - Host
+                - eth0/eth1.in
+                - eth0/eth1.out
+                - sda/sdb.read
+                - sda/sdb.write
+                - load1&load2/load3
+            - OSD
+                - google-perftools
+            - dmesg
 - 其他
     - vim使用
     - git使用
