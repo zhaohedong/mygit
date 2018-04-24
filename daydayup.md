@@ -1177,6 +1177,17 @@ r = a - c*b
   - /home/mac/projects/qemu/kernel/zImage.armserver
   - qemu-system-arm -M vexpress-a7 -m 512M -kernel /home/mac/projects/qemu/kernel/zImage.armserver -dtb  /home/mac/projects/qemu/kernel/dtb.armserver -nographic -append "console=ttyS0"
  - qemu-system-arm -M versatilepb -cpu arm1176 -hda /home/mac/projects/qemu/rootfs2/2017-07-05-raspbian-jessie.img  -kernel /home/mac/projects/qemu/kernel/kernel-qemu-4.4.34-jessie -m 1024 -append "root=/dev/sda2 panic=1"
+ - 
+  ```
+  cd linux-4.4.120
+  make ARCH=arm versatile_defconfig
+  make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- all -j8 uImage
+  arm-none-linux-gnueabi-gcc -o init init.c -static
+  echo init |cpio -o --format=newc > initramfs
+  qemu-system-arm -M versatilepb -kernel ./arch/arm/boot/uImage  -initrd
+../initramfs -serial stdio -append "console=tty1"
+
+  ```
 
 ##### 2017.08.14
 - ubuntu 16.04 更换内核的方法
@@ -1292,4 +1303,23 @@ r = a - c*b
   - kill -9 $(pidof 进程名关键字)
   - pkill
   - killall
- 
+- rbd 命令
+  - rbd -p rbd_pool info client1
+- iostat使用
+  - iostat -mtx 2
+  - avgrq-sz：每个IO的平均扇区数，即所有请求的平均大小，以扇区（512字节）为单位
+- 逻辑左移
+  - 最高位丢失，最低位补0；
+- 算术左移
+  - 依次左移一位，尾部补0，最高的符号位保持不变
+- 循环左移
+  - 将最高位重新放置最低位
+- chmod 只修改子目录
+```
+如果只修改子目录（不包括文件）权限，举例：
+chmod 755 `find -type d`
+或者：
+find /目录 -type d -exec chmod 755 {} \; 
+find /目录 -type f -exec chmod 644 {} \; （相反，只改文件）
+
+```
