@@ -1323,3 +1323,5 @@ find /目录 -type d -exec chmod 755 {} \;
 find /目录 -type f -exec chmod 644 {} \; （相反，只改文件）
 
 ```
+- rm 排除某个文件
+  - rm -rf !(1.tt)

@@ -268,3 +268,27 @@ fio -filename=/mnt -direct=1 -iodepth 1 -thread -rw=randrw -ioengine=psync -bs=1
 export ARMGCC_DIR=/home/mac/projects/gcc-arm-none-eabi-7-2017-q4-major/
 PATH="/Applications/CMake.app/Contents/bin":"$PATH"
 PATH="/Users/zhaohedong/Desktop/projects/gcc-arm-none-eabi-7-2017-q4-major/bin":"$PATH"
+
+- uboot编译
+    ```
+    export ARCH=arm
+    export CROSS_COMPILE=/home/mac/projects/armv7-marvell-linux-gnueabihf-hard-4.8.5_i686_20150706/bin/arm-marvell-linux-gnueabihf-
+    export CROSS_COMPILE_BH=/home/mac/projects/armv7-marvell-linux-gnueabihf-hard-4.8.5_i686_20150706/bin/arm-marvell-linux-gnueabihf-
+
+    CROSS_COMPILE=/home/mac/projects/armv7-marvell-linux-uclibcgnueabi-softfp_i686_64K_Dev_20131002/bin/arm-marvell-linux-uclibcgnueabi-
+    export CROSS_COMPILE_BH=/home/mac/projects/armv7-marvell-linux-uclibcgnueabi-softfp_i686_64K_Dev_20131002/bin/arm-marvell-linux-uclibcgnueabi-
+    ```
+- kernel编译
+    ```
+    export ARCH=arm
+    export CROSS_COMPILE=/home/mac/projects/armv7-marvell-linux-gnueabihf-hard-4.8.5_i686_20150706/bin_k/
+    make aprocloud_defconfig
+    make
+    ```
+- PCI MSI修改
+    - echo 0 > /sys/bus/pci/devices/0000:00:01.0/msi_bus
+- 磁盘和ata的对应
+    ```
+    echo /sys/class/ata_port/ata*/../../host*/target*/*/block/s* | tr ' ' '\n' \
+    | awk -F/ '{printf("%s => /dev/%s\n", $5, $NF)}'
+    ```
