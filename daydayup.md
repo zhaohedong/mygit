@@ -1325,3 +1325,6 @@ find /目录 -type f -exec chmod 644 {} \; （相反，只改文件）
 ```
 - rm 排除某个文件
   - rm -rf !(1.tt)
+- 查看断页次数
+  - ps -o min_flt,maj_flt -p 4134
+
