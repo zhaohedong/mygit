@@ -358,7 +358,11 @@
             - 通过google-perftools dump出ceph-osd进程的内存使用状况，尝试从函数级别分析问题，通过分析内存曲线+google-perftools的输出+发现每次内存从波峰下降都波谷，都会新建rocksdb的memtable，因此调整rocksdb参数中的write_buffer_size 256MB->64MB, 之后测试发现并没有影响集群的性能，集群的内存使用曲线也变得更平稳
             - 观察测试过程中内存使用曲线，发现bluestore_cache_node和bluestore_cache_other的内存使用量一直在上升，完全的斜线上升，意味着这部分内存从来没有被trim过，继续解析源代码，发现bluestore_cache_trim_max_skip_pinned // trim cache的时候，如果遇见正在使用的Onode，计数+1，计数超过此值后，停止做trim。默认为64，怀疑因为这个原因，cache一直没有被trim过，遂调整64->1000,ceph-osd在进行4m顺序写入的时候能够平稳的保持在700MB的内存使用量
         - 截图
+            - cache_other_inc
             - ![](./images/cache_other_inc.png) 
+            - cache_onode_inc
             - ![](./images/cache_onode_inc.png) 
+            - rocksdb_64_256
             - ![](./images/rocksdb_64_256_comp.png) 
+            - OOM_fix
             - ![](./images/OOM_fix.png)  
