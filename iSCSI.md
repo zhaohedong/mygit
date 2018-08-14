@@ -47,7 +47,7 @@ yum install git cmake gcc python-devel libnl3 librbd1 pyparsing pyOpenSSL python
 pip install pip --upgrade
 pip install kmod pyudev urwid pyparsing rados rbd netaddr netifaces crypto requests flask pycrypto
 ```
-- Main components
+
 - tcmu-runner:
 ```
 git clone https://github.com/open-iscsi/tcmu-runner
@@ -135,8 +135,8 @@ api_secure = false
 trusted_ip_list = 10.0.1.201,10.0.1.203
 ```
 ## Build Target
-> scp ceph.conf,iscsi-gateway.cfg,ceph.client.admin.keyring in /etc/ceph/ from the first gateway to other gateways
 ```
+scp ceph.conf,iscsi-gateway.cfg,ceph.client.admin.keyring in /etc/ceph/ from the first gateway to other gateways
 create iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw
 cd iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/gateways
 create vm-gate1 10.0.1.201 skipchecks=true
