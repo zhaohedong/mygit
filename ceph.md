@@ -91,6 +91,10 @@
         - 快照信息
             - SS（Snap Set）
             - 对象SS属性的磁盘结构
+- Cool Settings
+    - osd max write size
+    - osd max object size
+    - osd client message size cap
 - Bluestore
     - Architechiture
     ![](./images/Bluestore.png) 
@@ -110,17 +114,77 @@
                     - 逻辑段长度
                 - blob
                     - 负责将逻辑段的数据映射至磁盘
-                    - Blob（对应Extent）是我们操作用户数据的一个基本单位，所以我们对于缓存的操作也是基于BufferSpace，而不是buffer本身
                 - 逻辑地址到磁盘地址的映射路径
                     ```
-                    Extent
-                    >blob
-                    >>bluestore_blob_t
-                    >>>vector<bluestore_pextent_t> 
-                    >>>>bluestore_pextent_t  //物理空间段 offset+length
+                    Collection //对应PG在Bluestore当中的内存管理结构
+                        BlueStore *store
+                        Cache *cache
+                        bluestore_cnode_t cnode
+                        RWLock lock
+                        OnodeSpace onode_map //用于建立Onode和其归属的Collection之间的关系，方便Collection级别操作
+                            Cache *cache
+                            mempool::bluestore_cache_other::unordered_map<ghobject_t,OnodeRef> onode_map
+                        SharedBlobSet shared_blob_set
+                            std::mutex lock
+                            mempool::bluestore_cache_other::unordered_map<uint64_t,SharedBlob*> 
+                    Cache
+                        LRUCache
+                            onode_lru_list_t onode_lru
+                            buffer_lru_list_t buffer_lru
+                            add/remove buffer/onode
+                            trim
+                    Onode //一个Collection本身能够容纳的Onode仅受磁盘空间限制，an in-memory object
+                        std::atomic_int nref
+                        Collection *c
+                        ghobject_t oid
+                        bluestore_onode_t onode //onode: per-object metadata
+                            uint64_t nid
+                            uint64_t size
+                            map<mempool::bluestore_cache_other::string, bufferptr> attrs
+                            vector<shard_info> extent_map_shards
+                        mempool::bluestore_cache_other::vector<Shard> shards
+                        ExtentMap extent_map    //同一对象下的所有extents可以进一步组成一个extent map，据此索引本对象下的所有数据
+                            Onode *onode
+                            blob_map_t spanning_blob_map
+                            extent_map_t extent_map
+                                Extent
+                    Extent //对象内的基本数据的管理单元（管理用户数据的基本单元）
+                        uint32_t logical_offset
+                        uint32_t blob_offset
+                        uint32_t length
+                        BlobRef  blob
+                    Blob //执行用户数据到磁盘空间映射
+                        std::atomic_int nref
+                        int16_t id
+                        bluestore_blob_use_tracker_t used_in_blob
+                        bluestore_blob_t blob
+                            PExtentVector extents   //磁盘上物理段的集合
+                                mempool::bluestore_cache_other::vector<bluestore_pextent_t> PExtentVector
+                                    luestore_pextent_t
+                                        offset
+                                        length
+                            FLAG_SHARED = 16
+                        SharedBlobRef
+                            std::atomic_int nref
+                            CollectionRef coll
+                            bluestore_shared_blob_t *persistent //当某个extent的数据被多个extent共享时，用它来表明共享信息（offset、length、refs）
+                                uint64_t sbid
+                                bluestore_extent_ref_map_t ref_map
+                                    mempool::bluestore_cache_other::map<uint64_t,record_t> ref_map;
+                            BufferSpace bc
+                    BufferSpace //建立每个Blob中用户数据到缓存之间的二级映射
+                        state_list_t writing
+                        mempool::bluestore_cache_other::map<uint32_t, std::unique_ptr<Buffer>> buffer_map
+                            Buffer
+                    Buffer //一个Buffer管理Blob当中的一段数据
+                        BufferSpace *space
+                        uint16_t state
+                        uint64_t seq
+                        uint32_t offset, length     //mapping to extent
+                        bufferlist data             //mapping to extent
                     ```
             - Cache
-                - 既可以缓存用户数据也可以缓存元数据
+                - 既可以缓存用户数据也可以缓存元数据(Onode&Buffer)
                 - Bluestore可以包含多个Cache实例
             - Collection
                 - 对应PG在Bluestore中的内存管理结构，单个Bluestore能管理的Collection数量有限（Ceph推荐每个OSD承载大约100PG），而且Collection管理结构本身比较小巧，所以Collection被设计为常驻内存
@@ -131,12 +195,18 @@
                 - 归属于某个特定的Collection
                 - Onode中Extent是管理用户数据的基本单元
                 - 一个Collection本身能够容纳的Onode仅受磁盘空间的限制，所以单个Bluestore实例能够管理的Onode数量和其管理的磁盘空间成正比，这决定了通常情况下Onode几乎不可能常驻内存
-            - Buffer
-                - 归属于某个BufferSpace实例
-                - 一个Buffer管理Blob中的一段数据
+            - Blob
+                - 负责将逻辑段的数据映射至磁盘
+                - Blob（对应Extent）是我们操作用户数据的一个基本单位，所以我们对于缓存的操作也是基于BufferSpace，而不是buffer本身
+            - SharedBlob
+                - 每个blob中包含一个shareBlob用于实现Blob、也就是Extent之间的数据共享。
             - BufferSpace
                 - 建立每个Blob中用户数据到缓存之间的二级映射
                 - 归属于某个Cache实例
+                - 对Blob中的数据进行缓存，并最终纳入Cache管理
+            - Buffer
+                - 归属于某个BufferSpace实例
+                - 一个Buffer管理Blob中的一段数据
     - 关键组件
         - BlockDevice
         - BlueFS
@@ -186,9 +256,25 @@
         - dd if=/dev/zero of=/home/swap bs=1024 count=2048000
         - mkswap /home/swap
         - swapon /home/swap
+    - 修改IO
+        - echo 'noop' > /sys/block/rbd0/queue/scheduler 
+            - defautl echo [none] > /sys/block/rbd0/queue/scheduler 
+        - echo 1024 > /sys/block/rbd0/queue/nr_requests
+            - default echo 128 > /sys/block/rbd0/queue/nr_requests
 - 磁盘
     - 为何随机是关注IOPS，顺序关注吞吐量？
         - 因为随机读写的话，每次IO操作的寻址时间和旋转延时都不能忽略不计，而这两个时间的存在也就限制了IOPS的大小；而顺序读写可以忽略不计寻址时间和旋转延时，主要花费在数据传输的时间上。
+    - 分区
+        parted分区
+        parted /dev/sda
+        mklabel gpt
+        mkpart
+        分区名称？  []?     		//设置分区名
+        文件系统类型？  [ext2]?      	//直接回车
+        起始点？ 0   			//分区开始
+        结束点？ -1   			//分区结束 -1为全部硬盘空间
+        (parted) p   			//查看分区结果
+        mkfs.xfs -f /dev/sda1		//格式化分区
 - ROCKSDB
     - 数据库
         - 数据库往往是一个比较丰富完整的系统, 提供了SQL查询语言，事务和水平扩展等支持
@@ -294,8 +380,120 @@
         - https://www.cnblogs.com/wujing-hubei/p/5440361.html
     - main函数
         - main函数的返回值只能是int，而不能是void
+    - emplace_front、emplace和emplace_back
+        - emplace相关函数可以减少内存拷贝和移动。当插入rvalue，它节约了一次move构造，当插入lvalue，它节约了一次copy构造。
+        - https://blog.csdn.net/fengbingchun/article/details/78670376
+    - Alloctator
+        - 为什么要有alloctor？
+            - 区别于关键字new，alloctator分离了内存分配和对象构造，同理delete
+            - 相当于申请了一大块地，之后建造自己想要的房子，而不是分配地和建造房子同时进行。
+            - https://www.cnblogs.com/joeylee97/p/8656510.html
+    - new
+        - new = operator new分配空间 + placement new调用construct + 返回对象指针
+        - placement new
+            - 在一块已经获得的内存里建立一个对象
+            - 不可以被重写
+        - https://blog.csdn.net/pfgmylove/article/details/8234360
+    - C++标准库与C++11
+        - In the C++ programming language, the C++ Standard Library is a collection of classes and functions, which are written in the core language and part of the C++ ISO Standard itself
+        - C++11 is a version of the standard for the programming language C++. It was approved by International Organization for Standardization (ISO) on 12 August 2011, replacing C++03,[1] superseded by C++14 on 18 August 2014[2] and later, by C++17.
+        - g++ command 
+            - -std=<value>      Language standard to compile for
+            - -stdlib=<value>   C++ standard library to use
+        - gcc、libc、libstdc++
+            - gcc
+                - GCC发布的同时，可能更新libstdc++库，来满足更新的C++标准
+                - 例如GCC7.1开始支持c++17
+            - libc++ 
+                - 是C++标准库
+                - libc++ on Mac OS X（针对clang编译器）
+            - libstdc++ 
+                - 是C++标准库
+                - libstdc++ on GNU/Linux 
+                - libstdc++首先是会与glibc交互，才能和内核通信
+            - libc
+                - C标准库
+                - hello world时包含的头文件#include <stdio.h> 定义的地方
+            - glibc
+                - GNU C Library，逐渐取代了libc
+                - glibc是Linux系统中最底层的API，几乎其它任何的运行库都要依赖glibc。 glibc最主要的功能就是对系统调用的封装
+                - 除了封装系统调用，glibc自身也提供了一些上层应用函数必要的功能,如string,malloc,stdlib,linuxthreads,locale,signal等等
+            - eglibc
+                - 这里的e是Embedded的意思，也就是前面说到的变种glibc
+            - https://blog.csdn.net/haibosdu/article/details/77094833
+    - backtrace
+        - int backtrace(void **buffer,int size) 
+            - 该函数用于获取当前线程的调用堆栈,获取的信息将会被存放在buffer中,它是一个指针列表。
+        - char ** backtrace_symbols (void *const *buffer, int size)
+            - backtrace_symbols将从backtrace函数获取的信息转化为一个字符串数组. 参数buffer应该是从backtrace函数获取的指针数组,size是该数组中的元素个数(backtrace的返回值)   
+        - 可以自己定义类似ceph_abort，内部调用backtrace相关函数，后调用assert函数，这样能在程序退出前打印线程的函数调用堆栈
+        - https://www.cnblogs.com/lidabo/p/5344768.html
+    - C++提取函数名的工具
+        > c++filt _ZNK4Json5ValueixEPKc
+        > Json::Value::operator[](char const*) const
+    - 预处理、编译、汇编、链接
+        - 预处理过程主要处理那些源代码文件中以“#”开始的预编译指令。比如“#inlucde”、“#define”等，经过预处理后的.i文件不包含任何宏定义
+        - 编译过程，通过编译器把编译器预处理完生成的.i文件，进行一系列词法分析、语法分析、语义分析及优化后生成相应的汇编代码文件.S
+        - 汇编过程，通过汇编器把汇编代码转变成机器可以执行的指令，生成目标文件.o
+        - 链接过程，通过链接器把目标文件.o链接成库/可执行文件
+    - STL容器
+        - 顺序容器
+            - 顺序容器的元素排列次序与元素值无关，而是由元素添加到容器里的次序决定
+            - vector(向量)、list（列表）、deque（队列）
+        - 关联容器
+            - 关联式容器是非线性的树结构，更准确的说是二叉树结构。各元素之间没有严格的物理上的顺序关系
+            - map（集合）、set（映射）、multimap（多重集合）、multiset（多重映射）
+        - vector
+            - 数组
+            - 相当于数组，但其大小可以不预先指定，并且自动扩展。它可以像数组一样被操作，由于它的特性我们完全可以将vector 看作动态数组。在创建一个vector后，它会自动在内存中分配一块连续的内存空间进行数据存储，初始的空间大小可以预先指定也可以由vector默认指定，这个大小即capacity()函数的返回值。当存储的数据超过分配的空间时vector 会重新分配一块内存块，但这样的分配是很耗时的，
+        - list
+            - 双向循环链表
+            - 是一个线性链表结构，它的数据由若干个节点构成，每一个节点都包括一个信息块（即实际存储的数据）、一个前驱指针和一个后驱指针。它无需分配指定的内存大小且可以任意伸缩，这是因为它存储在非连续的内存空间中，并且由指针将有序的元素链接起来。
+        - deque
+            - 数组
+            - 它不像vector 把所有的对象保存在一块连续的内存块，而是采用多个连续的存储块，并且在一个映射结构中保存对这些块及其顺序的跟踪。向deque 两端添加或删除元素的开销很小，它不需要重新分配空间。
+        - set
+            - 基于红黑树(RB-tree)
+            - 按照键进行排序存储， 值必须可以进行比较， 可以理解为set就是键和值相等的map
+            - 里面的元素都是排序好的，支持插入，删除，查找等操作，就像一个集合一样。所有的操作的都是严格在logn时间之内完成，效率非常高。
+        - mulset
+            - 基于红黑树(RB-tree)
+            - set和multiset的区别是：set插入的元素不能相同，但是multiset可以相同。
+        - map
+            - 基于红黑树(RB-tree)
+            - 键唯一
+            - 元素按键升序排列
+            - map是关联容器，容器中每一个元素都是一个键和一个值组成的。
+            - end()函数，指向理论上的末尾元素，并不是一个真正的最后元素，最后一个元素是--map.end()
+        - mulmap
+            - 基于红黑树(RB-tree)
+            - map与multimap差别仅仅在于multiple允许一个键对应多个值
+        - 容器类自动申请和释放内存，因此无需new和delete操作
+        - 使用原则
+            - 如果需要高效的随机存取，不在乎插入和删除的效率，使用vector；
+            - 如果需要大量的插入和删除元素，不关心随机存取的效率，使用list；
+            - 如果需要随机存取，并且关心两端数据的插入和删除效率，使用deque；
+            - 如果打算存储数据字典，并且要求方便地根据key找到value，一对一的情况使用map，一对多的情况使用multimap；
+            - 如果打算查找一个元素是否存在于某集合中，唯一存在的情况使用set，不唯一存在的情况使用multiset；
+            - 查找问题，unordered_map会更加高效，map是强调有序场景下使用，unordered_map基于hashtable实现，强调查找速度
+        - https://blog.csdn.net/u014465639/article/details/70241850
+        - http://blog.51cto.com/flandycheng/906596
+        - https://blog.csdn.net/hudfang/article/details/52934130
+        - https://blog.csdn.net/BillCYJ/article/details/78985895
+    - 关于.so函数的外部可见性
+        - https://blog.csdn.net/veryitman/article/details/46756683
+    - 工具
+        - ldd
+            - 查看.so中引用了那些库
+            - ldd -v xxx.so
+        - objdump
+            - 查看导出函数列表
+                - objdump -tT xxx.so
+        - nm
+            - 查看导出函数列表
+                - nm -D xxx.so
 
-    
+
 - 集群修复
     - ceph-objectstore-tool --data-path /var/lib/ceph/osd/ceph-41/ --op list-pgs
     - ceph-objectstore-tool --data-path /var/lib/ceph/osd/ceph-41/ --pgid 4.b --op log
@@ -326,6 +524,30 @@
 - rados
     - rados put object.zhd ./test.txt  -p ec_rbd_pool 
     - rados get object.zhd ./test.txt.out -p ec_rbd_pool
+    - rados -p ec_rbd_pool ls | grep rbd_data.4.484c74b0dc51
+    - rbd showmapped
+- perf
+    - ceph daemon osd.x perf dump
+- rbd
+    - rbd info --pool rbd_pool --image image1
+    - rbd create test-image --size 10240 --pool rbd_pool
+    - rbd rm rbd_pool/image_zhao_A0 --rbd-concurrent-management-ops 60
+    - time rbd --pool rbd_pool remove image8 --rbd-concurrent-management-ops 2000
+    - rbd create --size 10G --object-size 4K --data-pool ec_rbd_pool rbd_pool/image_zhao --image-format 2 --image-feature layering 
+    -  rbd create --size 10G --stripe-unit 65536B --stripe-count 16 --data-pool ec_rbd_pool rbd_pool/image_zhao_A0 --image-feature layering,striping
+    - rbd-nbd map rbd_pool/image_zhao_A0 --id admin -k /etc/ceph/ceph.client.admin.keyring
+    - rbd-nbd unmap /dev/nbd0
+    - rbd rm rbd_pool/image_zhao_A0
+- nbd
+    - nbd-server -C /etc/nbd-server/config
+    - nbd-client 10.0.1.253 -N nbdtest /dev/nbd11
+- dd
+    - dd if=/dev/zero of=./100m.img bs=1M count=100
+    - mke2fs -c ./100m.img
+- kernel
+    - echo 0 > /proc/sys/kernel/hung_task_timeout_secs
+- iSCSI
+    - cp /root/zhao/ceph-iscsi-config/usr/lib/systemd/system/rbd-target-gw.service .start rbd-target-gwgwcli
 
 - Performace
     - ceph osd primary-affinity <osd-id> <weight>
@@ -342,6 +564,8 @@
     - ceph daemon osd.3 config set debug_bluestore 20/5
     - ceph daemon osd.3 config set debug_bluestore 1/5
     - ceph daemon osd.3 config set bluestore_cache_trim_max_skip_pinned 1000
+- cruash down
+    - begin dump of recent events
 - Trouble Shooting
     - OSD OOM
         - 背景
