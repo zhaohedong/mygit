@@ -1,7 +1,7 @@
 ## Preparation
 - Pre-Requirements
     - http://docs.ceph.com/docs/master/rbd/iscsi-target-cli/
-    - add all gateway host information in every gateway nodes
+    - add all gateway host information in every gateway nodes in /etc/hosts
 
 - epel installation
 ```
@@ -149,6 +149,25 @@ auth chap=myiscsiusername/myiscsipassword
 disk add rbd.disk_1 
 ```
 
+## Build Initiator
+```
+yum install iscsi-initiator-utils
+yum install device-mapper-multipath
+mpathconf --enable --with_multipathd y
+
+vi /etc/iscsi/initiatorname.iscsi
+InitiatorName=iqn.1994-05.com.redhat:rh7-client
+
+vi /etc/iscsi/iscsid.conf 
+node.session.auth.authmethod = CHAP
+node.session.auth.username = myiscsiusername
+node.session.auth.password = myiscsipassword
+
+iscsiadm -m discovery -t sendtargets -p 10.0.1.201
+iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw -l
+
+```
+
 ## TroubleShooting 
 - Trouble:
     - when excute gwcli, shell show "IndexError: list index out of range"
@@ -193,6 +212,29 @@ disk add rbd.disk_1
     systemctl stop firewalld.service
     systemctl stop iptables 
     ```
+- Trouble:
+    - iscsiadm -m discovery -t -st 10.0.1.201 can not Discover the target portals, and systemctl status iscsi.service returned "start condition failed at xxx,none of the trigger conditions were met"
+- Solution
+    ```
+    Do not edit /etc/iscsi/iscsid.conf for CHAP, keep it No CHAP as default
+    systemctl enable iscsid iscsi
+    systemctl start iscsid iscsi
+    ```
+- Trouble:
+    - when we execute "iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw -l" to login node it returns "initiator reported error (24 - iSCSI login failed due to authorization failure)"
+- Solution
+    ```
+    refer to https://github.com/ceph/ceph-iscsi-cli/issues/13
+    vi /etc/iscsi/initiatorname.iscsi
+    InitiatorName=iqn.1994-05.com.redhat:rh7-client
+
+    vi /etc/iscsi/iscsid.conf 
+    node.session.auth.authmethod = CHAP
+    node.session.auth.username = myiscsiusername
+    node.session.auth.password = myiscsipassword
+
+    systemctl restart iscsid iscsi
+    ```    
 ## Useful commands
 - service start
 ```
@@ -228,8 +270,22 @@ curl --insecure --user admin:admin -d "ip_address=10.0.1.203" \
 -X PUT https://10.0.1.201/api/gateway/vm-tcmu2
 ```
 
+- systemctl commands
+```
+systemctl list-unit-files
+systemctl list-dependencies iscsi.service
+```
+
 - scp example:
 ```
 scp root@vm-tcmu:/etc/ceph/iscsi-gateway.cfg .
 scp iscsi-gateway.cfg root@vm-tcmu2:/etc/ceph/
+```
+
+- iscsiadm
+```
+show node info:
+iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw
+remove targets:
+rm -rf /var/lib/iscsi/send_targets/10.0.1.201,3260/
 ```
