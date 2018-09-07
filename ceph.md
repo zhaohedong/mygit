@@ -492,6 +492,15 @@
         - nm
             - 查看导出函数列表
                 - nm -D xxx.so
+        - patch
+            - 导入patch文件
+                - 进入代码目录（假设patch文件位于代码目录外层文件夹）
+                -  patch -p1 < ../zwx-lcd.patch
+        - iperf
+            - server
+                - iperf -s -f m -i 1 
+            - client
+                - iperf -c serverip -f m -i 1 -t 60 
 
 
 - 集群修复
@@ -526,6 +535,8 @@
     - rados get object.zhd ./test.txt.out -p ec_rbd_pool
     - rados -p ec_rbd_pool ls | grep rbd_data.4.484c74b0dc51
     - rbd showmapped
+    - rados -p rbd get gateway.conf -
+    - rados -p rbd put gateway.conf gateway.conf
 - perf
     - ceph daemon osd.x perf dump
 - rbd
@@ -538,6 +549,7 @@
     - rbd-nbd map rbd_pool/image_zhao_A0 --id admin -k /etc/ceph/ceph.client.admin.keyring
     - rbd-nbd unmap /dev/nbd0
     - rbd rm rbd_pool/image_zhao_A0
+    - rbd -p rbd_pool feature disable image7 object-map fast-diff deep-flatten
 - nbd
     - nbd-server -C /etc/nbd-server/config
     - nbd-client 10.0.1.253 -N nbdtest /dev/nbd11

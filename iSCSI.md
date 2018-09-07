@@ -1,4 +1,9 @@
 ## Preparation
+- Architecture
+    - iSCSI initiator -> SCSI commands -> iSCSI target
+    - iSCSI target -> LIO -> TCMU -> librbd -> RBD Image -> iSCSI initiator
+    - iSCSI commands -> LIO core -> iscsi_target_mod -> target_core_mod -> target_core_user -> uioX -> tcmu-runner -> libtcmu -> librbd
+    - ![](./images/tcmu_architecture.png)
 - Pre-Requirements
     - http://docs.ceph.com/docs/master/rbd/iscsi-target-cli/
     - add all gateway host information in every gateway nodes in /etc/hosts
@@ -137,16 +142,51 @@ trusted_ip_list = 10.0.1.201,10.0.1.203
 ## Build Target
 ```
 scp ceph.conf,iscsi-gateway.cfg,ceph.client.admin.keyring in /etc/ceph/ from the first gateway to other gateways
+cd iscsi-target
 create iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw
 cd iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/gateways
-create vm-gate1 10.0.1.201 skipchecks=true
-create vm-tcmu2 10.0.1.203 skipchecks=true
+create tcmu-gw1 10.0.1.111 skipchecks=true
+create tcmu-gw2 10.0.1.112 skipchecks=true
 cd /disks
-create pool=rbd image=disk_1 size=90G
+create pool=rbd image=disk_1 size=200G
 cd /iscsi-target/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/hosts
 create iqn.1994-05.com.redhat:rh7-client
 auth chap=myiscsiusername/myiscsipassword
-disk add rbd.disk_1 
+disk add rbd.disk_1
+create pool=rbd_pool image=disk_2 size=1000G
+```
+
+```
+cd /backstores/user:rbd
+create name=my_rbd_test size=50T cfgstring=rbd_pool/image6 hw_max_sectors=8192
+;conf=/etc/ceph/ceph.conf;
+cd /iscsi/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/tpg2/luns
+create /backstores/user:rbd/my_rbd_test
+
+cd /backstores/user:rbd
+create name=my_replicated_test size=1000G cfgstring=rbd_pool/replicated_image1 hw_max_sectors=8192
+cd /iscsi/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/tpg2/luns
+create /backstores/user:rbd/my_replicated_test
+
+rbd map rbd_pool/image2
+targetcli /backstores/block create name=rbd_iblock1 dev=/dev/rbd/rbd_pool/image2
+targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1/luns create /backstores/block/rbd_iblock1
+targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1/luns create
+
+targetcli /iscsi create iqn.2018-09.com.test:target1
+cd /backstores/user:rbd
+create name=my_replicated_test size=1000G cfgstring=rbd_pool/replicated_image1 hw_max_sectors=8192
+cd /iscsi/iqn.2018-09.com.test:target1/tpg1/luns
+create /backstores/user:rbd/my_replicated_test
+targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1/portals create 10.0.1.111
+targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1 set auth userid=mnctarget password=target1
+targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1 set attribute authentication=1 demo_mode_write_protect=0 generate_node_acls=1
+
+iscsiadm --mode node --logout 
+systemctl restart iscsid
+iscsiadm -m discovery -t sendtargets -p 10.0.1.111
+iscsiadm -m node -T iqn.2018-09.com.test:target1 -l
+iscsiadm -m node -T iqn.2018-09.com.test:target1
 ```
 
 ## Build Initiator
@@ -165,6 +205,13 @@ node.session.auth.password = myiscsipassword
 
 iscsiadm -m discovery -t sendtargets -p 10.0.1.201
 iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw -l
+iscsiadm --mode node --logout 
+
+iscsiadm --mode node --logout 
+systemctl restart iscsid
+iscsiadm -m discovery -t sendtargets -p 10.0.1.203
+iscsiadm -m node -T iqn.2016-12.com.test:target1 -l
+iscsiadm -m node -T iqn.2016-12.com.test:target1
 
 ```
 
@@ -191,8 +238,7 @@ iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw -l
     systemctl enable rbd-target-api
     systemctl start rbd-target-api
     systemctl enable rbd-target-gw
-    systemctl start rbd-target-gwsy
-    stemctl start rbd-target-gw
+    systemctl start rbd-target-gw
     ```
 - Trouble:
     - When we try to add second gateway, gwcli show " Gateway creation failed, gateway(s) unavailable:10.0.2.201(UNKNOWN state)"
@@ -235,7 +281,43 @@ iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw -l
 
     systemctl restart iscsid iscsi
     ```    
+- Trouble:
+    - poor performance
+- Solution:
+    - set attribute authentication=0 cache_dynamic_acls=1 demo_mode_write_protect=0 generate_node_acls=1
+- Trouble:
+    - tcmu_reset_netlink:146: Kernel does not support reseting netlink
+    - tcmu_block_device:387 rbd/rbd.disk_4: Kernel does not support the block_dev action.
+    - tcmu_rbd_check_excl_lock_enabled:757 rbd/rbd.disk_4: HA not supported.
+    - tcmu_unblock_netlink:114: Kernel does not support unblocking netlink
+- Solution:
+    - /sys/kernel/config/target/core/user_0/rbd.disk_4/attrib/hw_max_sectors
+    - /home/111/rpmbuild/SOURCES/linux-3.10.0-862.el7/drivers/target/target_core_user.c
+- Trouble:
+    - Could not create NetworkPortal in configFS
+- Solution:
+    - delete 0.0.0.0 3260
+- Trouble:
+    - Failed to start Ceph iscsi target configuration API.
+- Solution:
+    - 
 ## Useful commands
+- clear gateways
+```
+rados -p rbd get gateway.conf -
+rados -p rbd put gateway.conf gateway.conf
+{
+    "clients": {},
+    "created": "2018/08/24 03:06:39",
+    "disks": {},
+    "epoch": 0,
+    "gateways": {},
+    "groups": {},
+    "updated": "",
+    "version": 3
+}
+```
+
 - service start
 ```
 systemctl daemon-reload
@@ -255,6 +337,9 @@ systemctl daemon-reload
 systemctl restart tcmu-runner
 systemctl restart rbd-target-api
 systemctl restart rbd-target-gw
+systemctl status tcmu-runner
+systemctl status rbd-target-api
+systemctl status rbd-target-gw
 ```
 
 - service status
@@ -288,4 +373,8 @@ show node info:
 iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw
 remove targets:
 rm -rf /var/lib/iscsi/send_targets/10.0.1.201,3260/
+cat /sys/kernel/config/target/iscsi/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/tpgt_1/attrib/default_cmdsn_depth
+iscsiadm --mode node --logout 
+iscsiadm -m session -P3 
+
 ```
