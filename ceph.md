@@ -16,6 +16,8 @@
             - Amazon S3
             - OpenStack Swift
 - 存储知识
+    - Linux-storage-stack-diagram_v4.10
+       ![](./images/Linux-storage-stack-diagram_v4.10.png) 
     - NAS
         - Network Attached Storge
         - 本质上相当于File Server，通常支持TCP/IP，提供NFS、SAMBA、FTP等常见通讯协议，让用户获取档案系统。
@@ -498,9 +500,9 @@
                 -  patch -p1 < ../zwx-lcd.patch
         - iperf
             - server
-                - iperf -s -f m -i 1 
+                - iperf -s -f M -i 1 
             - client
-                - iperf -c serverip -f m -i 1 -t 60 
+                - iperf -c serverip -f M -i 1 -t 60 
 
 
 - 集群修复
@@ -537,6 +539,7 @@
     - rbd showmapped
     - rados -p rbd get gateway.conf -
     - rados -p rbd put gateway.conf gateway.conf
+    - rados -p rbd listwatchers rbd_pool.disk_2
 - perf
     - ceph daemon osd.x perf dump
 - rbd
@@ -556,8 +559,18 @@
 - dd
     - dd if=/dev/zero of=./100m.img bs=1M count=100
     - mke2fs -c ./100m.img
+    - 写入测试
+        - dd bs=1M count=1000 if=/dev/zero of=test.bin conv=fdatasync
+    - 读取测试
+        - dd if=test.bin of=/dev/zero bs=4096 count=1M iflag=direct
+- ceph
+    - ceph tell osd.* injectargs '--{tunable value_to_be_set}'
+    - ceph tell osd.* injectargs '--bluestore_cache_size 134217728'
+- ansible
+    - ansible arms003 -a "restart ceph-all" -umnvadmin --sudo
+
 - kernel
-    - echo 0 > /proc/sys/kernel/hung_task_timeout_secs
+    - echo 0 > /c/sys/kernel/hung_task_timeout_secs
 - iSCSI
     - cp /root/zhao/ceph-iscsi-config/usr/lib/systemd/system/rbd-target-gw.service .start rbd-target-gwgwcli
 
@@ -602,3 +615,6 @@
             - ![](./images/rocksdb_64_256_comp.png) 
             - OOM_fix
             - ![](./images/OOM_fix.png)  
+- Disk相关
+    - iostat下的avgqu-sz是由谁决定的
+        - fio测试case的 avgqu-sz = min(numjobs * iodepth,/sys/block/sdb/queue/nr_requests)

@@ -1,4 +1,9 @@
 ## Preparation
+- Architecture
+    - ![](./images/tcmu_architecture.png)
+    - iSCSI initiator -> SCSI commands -> iSCSI target
+    - iSCSI target -> LIO -> TCMU -> librbd -> RBD Image -> iSCSI initiator
+    - iSCSI commands -> LIO core -> iscsi_target_mod -> target_core_mod -> target_core_user -> uioX -> tcmu-runner -> libtcmu -> librbd
 - Pre-Requirements
     - http://docs.ceph.com/docs/master/rbd/iscsi-target-cli/
     - add all gateway host information in every gateway nodes in /etc/hosts
@@ -428,6 +433,25 @@ rm -rf /var/lib/iscsi/send_targets/10.0.1.201,3260/
 cat /sys/kernel/config/target/iscsi/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/tpgt_1/attrib/default_cmdsn_depth
 iscsiadm --mode node --logout 
 iscsiadm -m session -P3 
-```
 
+```
+- others
+```
+systemctl stop firewalld.service
+systemctl stop iptables 
+
+rbd map rbd_pool/image2
+targetcli /backstores/block create name=rbd_iblock1 dev=/dev/rbd/rbd_pool/image2
+targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1/luns create /backstores/block/rbd_iblock1
+targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1/luns create
+
+targetcli /iscsi create iqn.2018-09.com.test:target1
+cd /backstores/user:rbd
+create name=my_replicated_test size=1000G cfgstring=rbd_pool/replicated_image1 hw_max_sectors=8192
+cd /iscsi/iqn.2018-09.com.test:target1/tpg1/luns
+create /backstores/user:rbd/my_replicated_test
+targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1/portals create 10.0.1.111
+targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1 set auth userid=mnctarget password=target1
+targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1 set attribute authentication=1 demo_mode_write_protect=0 generate_node_acls=1
+```
 
