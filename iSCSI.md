@@ -142,13 +142,11 @@ create iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw
 cd iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/gateways
 create tcmu-gw1 10.0.1.111 skipchecks=true
 create tcmu-gw2 10.0.1.112 skipchecks=true
-cd /disks
-create pool=rbd image=disk_1 size=200G
 cd /iscsi-target/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/hosts
 create iqn.1994-05.com.redhat:rh7-client
 auth chap=myiscsiusername/myiscsipassword
-disk add rbd.disk_1
-create pool=rbd_pool image=disk_2 size=1000G
+disk add rbd_pool.disk_1
+create pool=rbd_pool image=disk_1 size=1T
 ```
 
 - targetcli add disk:
@@ -164,22 +162,6 @@ create /backstores/user:rbd/my_ec_test
 targetcli remove disk:
 cd /backstores/user:rbd
 delete my_ec_test
-```
-
-- gwcli add disk:
-```
-cd /disks
-create pool=rbd_pool image=image2 size=50T max_data_area_mb=1024
-cd /iscsi-target/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/hosts/iqn.1994-05.com.redhat:rh7-client/
-disk add rbd_pool.image2
-```
-
-- gwcli remove disk:
-```
-cd /iscsi-target/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/hosts/iqn.1994-05.com.redhat:rh7-client
-disk remove rbd_pool.disk_2
-cd /disks
-delete rbd_pool.disk_2
 ```
 - gwcli reconfigure:
 ```
@@ -246,7 +228,7 @@ iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw -l
     ```
     - stop firewallld, iptables
     ```
-    systemctl stop firewalld.service
+   systemctl stop firewalld.service
     systemctl stop iptables 
     ```
 - Trouble:
@@ -327,7 +309,12 @@ iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw -l
     - Failed : disk create/update failed on tcmu-gw1. LUN allocation failure
     - Only image features RBD_FEATURE_LAYERING,RBD_FEATURE_EXCLUSIVE_LOCK,RBD_FEATURE_OBJECT_MAP,RBD_FEATURE_FAST_DIFF,RBD_FEATURE_DEEP_FLATTEN are supported
 - Solution:
-    - rbd -p rbd_pool feature enable image2 layering exclusive-lock object-map fast-diff {deep-flatten}
+    - ```
+         rbd -p rbd_pool feature enable image2 exclusive-lock
+         rbd -p rbd_pool feature enable image2 object-maprbd -p rbd_pool feature enable image2 object-map
+         rbd -p rbd_pool feature enable image2 fast-diff rbd -p rbd_pool feature enable image2 fast-diff 
+         rbd -p rbd_pool feature enable image2 {deep-flatten} //cannot update immutable features
+      ```
 - Trouble: 
     - gwcli delete rbd_pool.imagex too slow
 - Solution:
@@ -352,6 +339,57 @@ iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw -l
             "updated": "2018/09/12 07:36:08",
             "wwn": "6a36e98c-7818-4681-9fde-be4866a74795"
         }
+    ```
+- Test Enviroment
+    ```
+    // ??ec rbd pool
+    ceph osd pool create rbd 32 32 replicated
+    ceph osd pool create rbd_pool 64 64 replicated
+    rbd pool init
+
+    // ??????host??????ruleset-failure-domain=host
+    ceph osd erasure-code-profile set ec_rbd_pool_profile k=4 m=2 ruleset-failure-domain=host
+    ceph osd erasure-code-profile set ec_rbd_pool_profile k=4 m=2 ruleset-failure-domain=osd
+
+    // create ec pool
+    ceph osd pool create ec_rbd_pool 128 128 erasure ec_rbd_pool_profile
+    ceph osd pool set ec_rbd_pool allow_ec_overwrites true
+
+    // create ec image using ec pool as data pool
+    rbd create --size 10T --data-pool ec_rbd_pool rbd_pool/image2 --image-feature layering
+    rbd create --size 10T --data-pool ec_rbd_pool rbd_pool/image1 --image-feature layering
+
+    // delete EC pool
+    ceph osd pool rm ec_rbd_pool ec_rbd_pool --yes-i-really-really-mean-it 
+    ceph osd pool rm rbd_pool rbd_pool --yes-i-really-really-mean-it 
+
+    // remove/get ec profile
+    ceph osd erasure-code-profile rm ec_rbd_pool_profile 
+    ceph osd erasure-code-profile get ec_rbd_pool_profile 
+
+    // gwcli add disk:
+    cd /disks
+    create pool=rbd_pool image=image2 size=10T {max_data_area_mb=1024}
+    cd /iscsi-target/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/hosts/iqn.1994-05.com.redhat:rh7-client/
+    disk add rbd_pool.image2
+
+    reconfigure image_id=rbd_pool.image4 attribute=max_data_area_mb value=128
+
+
+    // gwcli remove disk:
+    cd /iscsi-target/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/hosts/iqn.1994-05.com.redhat:rh7-client
+    disk remove rbd_pool.image2
+    cd /disks
+    delete rbd_pool.image2
+
+    // iscsi login
+    iscsiadm --mode node --logout 
+    systemctl restart iscsid
+    iscsiadm -m discovery -t sendtargets -p 10.0.1.111
+    iscsiadm -m node -T iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw -l
+
+    //bare rbd
+    rbd map rbd_pool/image1 --name client.admin -m vm-ubuntu1604-2 -k ceph.client.admin.keyring 
     ```
 ## Useful commands
 - clear gateways
@@ -429,5 +467,15 @@ cat /sys/kernel/config/target/iscsi/iqn.2003-01.com.redhat.iscsi-gw:iscsi-igw/tp
 iscsiadm --mode node --logout 
 iscsiadm -m session -P3 
 ```
+
+- build cross
+```
+apt-get build-dep --no-install-recommends binutils
+apt-get source binutils
+pushd binutils-2.*/
+DEB_TARGET_ARCH=armhf TARGET=armhf dpkg-buildpackage -d -T control-stamp
+dpkg-checkbuilddep
+
+dpkg-buildpackage --target-arch armhf
 
 

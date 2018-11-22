@@ -1,0 +1,60 @@
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=128
+Starting 1 process
+  read : io=327432KB, bw=1088.5KB/s, iops=272, runt=300815msec
+  write: io=327544KB, bw=1088.9KB/s, iops=272, runt=300815msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=128
+Starting 2 processes
+  read : io=285076KB, bw=970232B/s, iops=236, runt=300874msec
+  write: io=284728KB, bw=969048B/s, iops=236, runt=300874msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=128
+Starting 4 processes
+  read : io=265104KB, bw=903517B/s, iops=220, runt=300455msec
+  write: io=266564KB, bw=908493B/s, iops=221, runt=300455msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=16
+Starting 4 processes
+  read : io=212596KB, bw=724733B/s, iops=176, runt=300384msec
+  write: io=212460KB, bw=724269B/s, iops=176, runt=300384msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=256
+Starting 1 process
+  read : io=296760KB, bw=987.74KB/s, iops=246, runt=300450msec
+  write: io=296704KB, bw=987.55KB/s, iops=246, runt=300450msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=256
+Starting 2 processes
+  read : io=284340KB, bw=965609B/s, iops=235, runt=301534msec
+  write: io=284236KB, bw=965256B/s, iops=235, runt=301534msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=32
+Starting 1 process
+  read : io=191048KB, bw=651426B/s, iops=159, runt=300315msec
+  write: io=190504KB, bw=649571B/s, iops=158, runt=300315msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=32
+Starting 2 processes
+  read : io=231436KB, bw=789452B/s, iops=192, runt=300196msec
+  write: io=231440KB, bw=789466B/s, iops=192, runt=300196msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=32
+Starting 4 processes
+  read : io=267492KB, bw=910311B/s, iops=222, runt=300899msec
+  write: io=268992KB, bw=915416B/s, iops=223, runt=300899msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=32
+Starting 8 processes
+  read : io=252332KB, bw=857907B/s, iops=209, runt=301184msec
+  write: io=253172KB, bw=860763B/s, iops=210, runt=301184msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=64
+Starting 1 process
+  read : io=279092KB, bw=951536B/s, iops=232, runt=300346msec
+  write: io=278556KB, bw=949709B/s, iops=231, runt=300346msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=64
+Starting 16 processes
+  read : io=257812KB, bw=878563B/s, iops=214, runt=300490msec
+  write: io=257152KB, bw=876314B/s, iops=213, runt=300490msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=64
+Starting 2 processes
+  read : io=300060KB, bw=997.88KB/s, iops=249, runt=300706msec
+  write: io=300108KB, bw=998.11KB/s, iops=249, runt=300706msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=64
+Starting 4 processes
+  read : io=277752KB, bw=946334B/s, iops=231, runt=300547msec
+  write: io=279680KB, bw=952903B/s, iops=232, runt=300547msec
+4k_rand_readwrite: (g=0): rw=randrw, bs=4K-4K/4K-4K/4K-4K, ioengine=libaio, iodepth=64
+Starting 8 processes
+  read : io=264748KB, bw=902307B/s, iops=220, runt=300454msec
+  write: io=265400KB, bw=904529B/s, iops=220, runt=300454msec

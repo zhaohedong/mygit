@@ -41,6 +41,8 @@
     rbd create --size 6000 image1 -p rbd_pool
     rbd create --size 6000 test_image -p test_pool
 
+
+
     ```
 
 - ```

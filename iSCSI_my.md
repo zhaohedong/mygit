@@ -455,3 +455,34 @@ targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1 set auth userid=mnctarget pas
 targetcli /iscsi/iqn.2018-09.com.test:target1/tpg1 set attribute authentication=1 demo_mode_write_protect=0 generate_node_acls=1
 ```
 
+- Install Centos kernel sourcecode
+```
+As root account:
+useradd user
+passwd user
+su user
+
+As normal user account:
+mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+echo '%_topdir %(echo $HOME)/rpmbuild' > ~/.rpmmacros
+
+As root account:
+yum install asciidoc audit-libs-devel bash bc binutils binutils-devel bison diffutils elfutils
+yum install elfutils-devel findutils flex gawk gcc gettext gzip hmaccalc hostname java-devel
+yum install m4 make module-init-tools ncurses-devel net-tools newt-devel numactl-devel openssl
+yum install patch pciutils-devel perl perl-ExtUtils-Embed pesign python-devel redhat-rpm-config
+yum install rpm-build sh-utils tar xmlto xz zlib-devel
+
+As normal user account:
+su user
+rpm -i http://vault.centos.org/7.5.1804/os/Source/SPackages/kernel-3.10.0-862.el7.src.rpm 2>&1 | grep -v exist
+cd ~/rpmbuild/SPECS
+rpmbuild -bp --target=$(uname -m) kernel.spec
+
+Sourcecode location:
+/home/user/rpmbuild/BUILD/kernel-3.10.0-862.el7/linux-3.10.0-862.el7.centos.x86_64
+
+Another methods：
+https://ieevee.com/tech/2018/03/30/centos-kernel.html
+
+```

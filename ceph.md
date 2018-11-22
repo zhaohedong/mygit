@@ -41,12 +41,13 @@
     "filestore_journal_writeahead": "false"
 	```
 - ceph config setting dynamically
-    - ceph daemon osd.46 config set debug_bluestore 1/20
+    - ceph daemon osd.0 config set objecter_inflight_op_bytes 314572800
 - ceph heap dump
     - /usr/bin/python2.7 /usr/bin/ceph daemon osd.47 heap stats
 - ceph mempool dump
     - ceph daemon osd.46 dump_mempools
 - memory profiling
+    - 要确保binutils的版本，heap基于addr2line，不然arm32上可能无法查看heap
     - sudo apt-get install google-perftools
     - ceph tell osd.46 heap start_profiler
     - ceph tell osd.46 heap dump
@@ -540,6 +541,8 @@
     - rados -p rbd get gateway.conf -
     - rados -p rbd put gateway.conf gateway.conf
     - rados -p rbd listwatchers rbd_pool.disk_2
+    - rados bench -p pool_name 60 write
+    - rbd bench --io-type write image1 --io-size 4M --io-total 10G  --pool=rbd_pool_6nodes
 - perf
     - ceph daemon osd.x perf dump
 - rbd
@@ -618,3 +621,14 @@
 - Disk相关
     - iostat下的avgqu-sz是由谁决定的
         - fio测试case的 avgqu-sz = min(numjobs * iodepth,/sys/block/sdb/queue/nr_requests)
+
+- git 
+    ```
+    rm cmake/modules/Findrocksdb.cmake
+	rm src/include/Spinlock.h
+	rm src/os/bluestore/BitMapAllocator.cc
+	rm src/os/bluestore/BitMapAllocator.h
+	rm src/tools/rbd_mirror/types.cc
+	rm src/tools/rbd_mirror/types.h
+
+    ```
