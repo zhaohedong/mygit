@@ -569,6 +569,7 @@
 - ceph
     - ceph tell osd.* injectargs '--{tunable value_to_be_set}'
     - ceph tell osd.* injectargs '--bluestore_cache_size 134217728'
+    - ceph daemon osd.0 config set debug_ms 10
 - ansible
     - ansible arms003 -a "restart ceph-all" -umnvadmin --sudo
 
@@ -630,5 +631,27 @@
 	rm src/os/bluestore/BitMapAllocator.h
 	rm src/tools/rbd_mirror/types.cc
 	rm src/tools/rbd_mirror/types.h
-
     ```
+
+- ceph memory
+    - memory usage autotuned 
+        - bluestore onode cache min:128MB
+        - buffer cache          min:128MB
+        - rocksdb block cache   min:128MB
+        - rocksdb WAL buffers (ie memtables) 
+            - default:256MB, up to 4*256MB
+            - 
+    - memory reduction methods 
+        - osd_min_pg_log_entry (61 pgs,1500 entries) (lower 500? 1000?)
+        - lower minimum cache (64MB?)
+        - lower WAL buffer size/count(64MB/2?)
+    - suggestion
+        - In any event, when I've tested OSDs with that little memory there's been fairly dramatic performance impacts in a variety of ways depending on what you change.  In practice the minimum amount of memory we can reasonable work with right now is probably around 1.5-2GB, and we do a lot better with 3-4GB+.
+
+    - target 4GB,base 768MB,cache min 128,fragmentation 0.15
+    - cache_max = ((1.0 - fragmentation) * target) - base = 4g*0.85 - 768MB
+    - cache_min = 128MB
+    - if generic.heap_size 2g, unmapped 1g, mapped 1g
+    - if autotune_cache_size = 3g, new_size 128
+    - if mapped < target, new_size += ratio * (cache_max - new_size);, new_size=1g+128MB, so autotune_cache_size = 1g+128MB
+

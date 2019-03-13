@@ -1,0 +1,371 @@
+1492220439225	geckodriver	INFO	Listening on 127.0.0.1:33191
+1492220440283	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.ClKnA9aabYfA
+1492220440284	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1492220440289	geckodriver::marionette	INFO	Connecting to Marionette on localhost:37661
+1492220440830	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220440835	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220440848	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492220440849	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492220441105	Marionette	INFO	Listening on port 37661
+1492220441143	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220441144	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492220441148	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220441148	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492220674523	geckodriver	INFO	Listening on 127.0.0.1:50137
+1492220675576	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.2mYn8qhUsmnX
+1492220675576	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1492220675579	geckodriver::marionette	INFO	Connecting to Marionette on localhost:43835
+1492220675997	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220675998	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220676011	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492220676012	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492220676240	Marionette	INFO	Listening on port 43835
+1492220676285	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220676286	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492220676292	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220676293	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+JavaScript error: http://suggestion.baidu.com/su?wd=b&json=1&p=3&sid=22584_1422_21097_18560_17001_20930&csor=1&cb=jQuery1102028807681232861415_1492220687583&_=1492220687586, line 1: TypeError: jQuery1102028807681232861415_1492220687583 is not a function
+JavaScript error: http://suggestion.baidu.com/su?wd=b&json=1&p=3&sid=22584_1422_21097_18560_17001_20930&csor=1&pwd=ba&cb=jQuery1102028807681232861415_1492220687583&_=1492220687588, line 1: TypeError: jQuery1102028807681232861415_1492220687583 is not a function
+JavaScript error: http://suggestion.baidu.com/su?wd=ba&json=1&p=3&sid=22584_1422_21097_18560_17001_20930&csor=2&pwd=b&cb=jQuery1102028807681232861415_1492220687583&_=1492220687587, line 1: TypeError: jQuery1102028807681232861415_1492220687583 is not a function
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 75: TypeError: this._recipeManager is null
+1492220950395	geckodriver	INFO	Listening on 127.0.0.1:40093
+1492220951479	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.Phh0MGGUL8h2
+1492220951480	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1492220951483	geckodriver::marionette	INFO	Connecting to Marionette on localhost:35695
+1492220951960	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220951962	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220951985	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492220951988	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492220952273	Marionette	INFO	Listening on port 35695
+1492220952319	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220952320	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492220952325	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492220952326	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221021980	geckodriver	INFO	Listening on 127.0.0.1:41857
+1492221023032	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.0IDSlxnwF7wu
+1492221023032	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1492221023035	geckodriver::marionette	INFO	Connecting to Marionette on localhost:44867
+1492221023417	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221023420	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221023432	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221023433	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221023673	Marionette	INFO	Listening on port 44867
+1492221023722	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221023723	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221023728	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221023729	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x500001,name=PCrashReporter::Msg_AnnotateCrashReport) Channel error: cannot send/recv
+
+Crash Annotation GraphicsCriticalError: |[C0][GFX1-]: Receive IPC close with reason=AbnormalShutdown (t=38.2172) 
+###!!! [Child][MessageChannel] Error: (msgtype=0x4A00EA,name=PContent::Msg_GraphicsError) Channel error: cannot send/recv
+
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+1492221065530	geckodriver	INFO	Listening on 127.0.0.1:52881
+1492221066601	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.1wt4iV8Fk2N9
+1492221066602	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1492221066606	geckodriver::marionette	INFO	Connecting to Marionette on localhost:43739
+1492221067006	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221067008	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221067022	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221067022	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221067251	Marionette	INFO	Listening on port 43739
+1492221067296	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221067298	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221067311	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221067312	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 75: TypeError: this._recipeManager is null
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492221280552	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221280554	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221396229	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221396231	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492221630444	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221630445	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+JavaScript warning: https://passport.baidu.com/static/passpc-base/js/dv/3.min.js, line 1: unreachable code after return statement
+JavaScript warning: https://passport.baidu.com/static/passpc-base/js/dv/3.min.js, line 1: unreachable code after return statement
+JavaScript warning: https://passport.baidu.com/static/passpc-base/js/dv/3.min.js line 1 > eval, line 1: unreachable code after return statement
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492221670277	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221670278	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 75: TypeError: this._recipeManager is null
+console.warn: nsLoginManager: searchLogins: `formSubmitURL` or `httpRealm` is recommended
+1492221672231	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221672233	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 75: TypeError: this._recipeManager is null
+console.warn: nsLoginManager: searchLogins: `formSubmitURL` or `httpRealm` is recommended
+1492221787224	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221787227	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221893457	geckodriver	INFO	Listening on 127.0.0.1:37177
+1492221894507	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.6E9zGckdPtej
+1492221894508	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1492221894511	geckodriver::marionette	INFO	Connecting to Marionette on localhost:40825
+1492221895393	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221895398	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221895414	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221895415	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221895727	Marionette	INFO	Listening on port 40825
+1492221895767	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221895768	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221895773	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221895773	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221990219	geckodriver	INFO	Listening on 127.0.0.1:39173
+1492221991333	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.v2PRhMheR8xb
+1492221991334	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1492221991343	geckodriver::marionette	INFO	Connecting to Marionette on localhost:41197
+1492221992675	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221992685	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221992707	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221992707	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221993213	Marionette	INFO	Listening on port 41197
+1492221993257	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221993258	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492221993265	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492221993266	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+JavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/builtin-modules.js, line 262: uncaught exception: out of memory
+Handler function LocalDebuggerTransport instance's this.other.hooks.onPacket threw an exception: out of memory
+JavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/builtin-modules.js, line 262: uncaught exception: out of memory
+Handler function threw an exception: out of memory
+JavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/shared/builtin-modules.js, line 262: uncaught exception: out of memory
+JavaScript error: , line 0: uncaught exception: out of memory
+[Child 16216] ###!!! ABORT: Aborting on channel error.: file /build/firefox-z5GTBX/firefox-51.0.1+build2/ipc/glue/MessageChannel.cpp, line 2056
+[Child 16216] ###!!! ABORT: Aborting on channel error.: file /build/firefox-z5GTBX/firefox-51.0.1+build2/ipc/glue/MessageChannel.cpp, line 2056
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x2E007F,name=PBrowser::Msg_Destroy) Channel error: cannot send/recv
+
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 75: TypeError: this._recipeManager is null
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 75: TypeError: this._recipeManager is null
+1492222143558	geckodriver	INFO	Listening on 127.0.0.1:33795
+1492222144620	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.5dQFDBgXPprF
+1492222144620	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1492222144624	geckodriver::marionette	INFO	Connecting to Marionette on localhost:33707
+1492222145221	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222145223	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222145244	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222145245	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222145513	Marionette	INFO	Listening on port 33707
+1492222145559	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222145560	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222145564	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222145565	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222375976	geckodriver	INFO	Listening on 127.0.0.1:46307
+1492222377029	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.STmq2DgQcLxZ
+1492222377030	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1492222377032	geckodriver::marionette	INFO	Connecting to Marionette on localhost:36877
+1492222377428	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222377431	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222377443	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222377444	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222377676	Marionette	INFO	Listening on port 36877
+1492222377719	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222377720	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222377725	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222377726	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+
+(firefox:18473): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+
+(firefox:18473): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+
+(firefox:18473): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+
+(firefox:18473): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+
+(firefox:18473): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+
+(firefox:18473): GLib-GObject-CRITICAL **: g_type_add_interface_static: assertion 'g_type_parent (interface_type) == G_TYPE_INTERFACE' failed
+JavaScript warning: https://passport.baidu.com/static/passpc-base/js/dv/3.min.js, line 1: unreachable code after return statement
+JavaScript warning: https://passport.baidu.com/static/passpc-base/js/dv/3.min.js, line 1: unreachable code after return statement
+JavaScript warning: https://passport.baidu.com/static/passpc-base/js/dv/3.min.js line 1 > eval, line 1: unreachable code after return statement
+1492222494478	geckodriver	INFO	Listening on 127.0.0.1:44915
+1492222495534	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.cbUQLfX1Lng5
+1492222495535	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1492222495538	geckodriver::marionette	INFO	Connecting to Marionette on localhost:42943
+1492222495917	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222495919	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222495933	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222495933	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222496178	Marionette	INFO	Listening on port 42943
+1492222496226	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222496227	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222496233	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222496234	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492222597766	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222597767	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222713077	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222713078	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492222748248	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222748249	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492222865483	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222865484	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492222985597	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492222985599	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492223097648	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492223097650	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492223100480	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492223100481	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492223216141	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492223216143	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+[Child 11631] WARNING: pipe error: Broken pipe: file /build/firefox-z5GTBX/firefox-51.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 687
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492433663870	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492433663871	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492433774616	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492433774618	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492520101258	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492520101258	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492520217689	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492520217690	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492606507859	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492606507861	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492606618263	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492606618265	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492692906302	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492692906303	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492693017880	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492693017882	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492779425017	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492779425018	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+JavaScript error: http://static.duoshuo.com/embed.js, line 2: ReferenceError: loginButtons is not defined
+1492779540171	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492779540174	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492866522953	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492866522954	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492866639884	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492866639885	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1492953162898	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492953162899	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1492953276537	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1492953276538	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1493039564272	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1493039564273	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1493039677241	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1493039677243	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+JavaScript error: http://bdimg.share.baidu.com/static/api/js/trans/logger.js?v=d16ec0e3.js, line 1: TypeError: n.ajax.request is not a function
+JavaScript error: http://tracker.ceph.com/javascripts/application.js, line 634: ReferenceError: jQuery is not defined
+JavaScript error: http://tracker.ceph.com/javascripts/responsive.js, line 83: ReferenceError: $ is not defined
+JavaScript error: http://tracker.ceph.com/issues/14766, line 22: ReferenceError: $ is not defined
+JavaScript error: http://tracker.ceph.com/plugin_assets/redmine_issue_templates/javascripts/issue_templates.js, line 180: ReferenceError: jQuery is not defined
+JavaScript error: http://tracker.ceph.com/javascripts/context_menu.js, line 245: ReferenceError: $ is not defined
+JavaScript error: http://tracker.ceph.com/javascripts/application.js, line 528: ReferenceError: $ is not defined
+JavaScript error: http://tracker.ceph.com/javascripts/application.js, line 392: ReferenceError: $ is not defined
+JavaScript error: http://tracker.ceph.com/javascripts/context_menu.js, line 80: ReferenceError: $ is not defined
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1493127028613	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1493127028614	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1493127143069	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1493127143071	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+*************************
+A coding exception was thrown and uncaught in a Task.
+
+Full message: TypeError: NetworkError when attempting to fetch resource.
+Full stack: 
+*************************
+1493213571632	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1493213571633	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1493217414373	addons.xpi	WARN	Add-on langpack-en-ZA@firefox.mozilla.org is not compatible with application version.
+1493217414374	addons.xpi	WARN	Add-on langpack-en-GB@firefox.mozilla.org is not compatible with application version.
+1497320683334	geckodriver	INFO	Listening on 127.0.0.1:46561
+1497320684390	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.wp4cfmBhkZNG
+1497320684391	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args []
+1497320684396	geckodriver::marionette	INFO	Connecting to Marionette on localhost:33907
+1497320686980	Marionette	INFO	Listening on port 33907
+1497320687164	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x4A0001,name=PCrashReporter::Msg_AnnotateCrashReport) Channel error: cannot send/recv
+
+Crash Annotation GraphicsCriticalError: |[C0][GFX1-]: Receive IPC close with reason=AbnormalShutdown (t=4.16409) 
+###!!! [Child][MessageChannel] Error: (msgtype=0x4400C6,name=PContent::Msg_GraphicsError) Channel error: cannot send/recv
+
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown

@@ -1,0 +1,6 @@
+/etc/bash_completion.d/rados
+/etc/bash_completion.d/rbd
+/etc/ceph/rbdmap
+/etc/default/ceph
+/etc/init.d/rbdmap
+/etc/logrotate.d/ceph-common

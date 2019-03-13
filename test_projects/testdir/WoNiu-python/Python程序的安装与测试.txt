@@ -1,0 +1,60 @@
+1. 安装Python For Windows
+   主页:http://www.python.org/download/releases/2.7.5/
+   直接下载地址: http://www.python.org/ftp/python/2.7.5/python-2.7.5.msi
+
+   点击安装程序，默认安装，点下一步到完成。
+   默认安装路径在：C:\Python27
+
+2. 添加系统环境变量
+   在系统环境变量Path中最后追加 ;C:\Python27
+   打开命令行,输入 python, 如果出现如下字符表示环境变量添加成功:
+
+C:\workspace\ruokuai\ruokuai-python>python
+Python 2.7.5 (default, May 15 2013, 22:43:36) [MSC v.1500 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+
+   按Ctrl+D 退出。
+
+3. 安装PIL-1.1.7.win32-py2.7.exe
+   可以直接安装压缩包内的exe
+   或自行下载https://ocr-uvg.googlecode.com/files/PIL-1.1.7.win32-py2.7.exe
+   这是一个图片转换的包.
+   默认安装到完成。 
+   ps:如下载速度过慢,请自行百度一个PIL-1.1.7.win32-py2.7.exe下载并安装
+
+4. 安装Python-Requests
+   用于HttpRequest.
+   可直接使用压缩包内自带的模块或者自行下载
+   主页:http://docs.python-requests.org/en/latest/
+   直接下载地址: https://github.com/kennethreitz/requests/zipball/master
+   
+   下载完成后解压zip包，得到kennethreitz-requests-552ab7a这个文件夹。
+   打开命令行，cd kennethreitz-requests-552ab7a目录下。
+   然后执行 python setup.py install
+   
+    如果此步骤执行后提示 no module names setuptools,请下载运行demo压缩包内的ez_setup.py文件,
+    即执行 python ez_setup.py  
+    当这一步完成后再重新执行 python setup.py install
+
+
+5. 测试：
+   打开命令行，cd到Python脚本目录，比如：
+   cd C:\WoNiu-python
+   python WoNiu.py
+
+注意:执行命令时大小写必须完全匹配
+
+执行上传图片答题:
+Action:upload
+username:你的用户名
+password:你的密码
+softid:1
+Image Path:C:\WoNiu-python\1.jpg
+
+
+Action:GetAccount -- 获取用户信息
+Action:ReportError -- 报错
+Action:upload -- 上传答题 
+Action:Exit -- 退出
+   
