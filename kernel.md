@@ -393,6 +393,7 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 	- b file:line 断点
 	- list file:line
 	- list function
+	- set remote debug 1 //设置调试模式，输出gdb信息
 - sysrq
 	```
 	//开启所有的sysrq
@@ -433,6 +434,7 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 		- 修改/etc/grub.2/40_cumstom文件，追加 kgdboc=kbd,ttyS0,9600 kgdbwait
 		- echo g > /proc/sysrq-trigger  //打开kgdb
 		- reboot 后，再debuger端执行gdb vmlinux
+
 
 	
 	
