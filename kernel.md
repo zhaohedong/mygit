@@ -84,7 +84,7 @@
 	
 	qemu-system-x86_64 -kernel /home/mac/projects/kvm/linux-4.6.2/arch/x86/boot/bzImage -initrd /home/mac/projects/kvm/busybox/busybox-1.29.3/initramfs.img -smp 2 -nographic -append "console=ttyS0" -m 1024 -net nic,model=e1000
 
-	./qemu-system-x86_64 -kernel /home/mac/projects/montage/Montage.git/cicada-kernel-src/arch/x86/boot/bzImage -initrd /home/mac/projects/kvm/busybox/busybox-1.29.3/initramfs.img -smp 2 -nographic -append "console=ttyS0" -m 1024 -net nic,model=e1000
+	qemu-system-x86_64 -kernel /home/mac/projects/montage/Montage.git/cicada-kernel-src/arch/x86/boot/bzImage -initrd /home/mac/projects/kvm/busybox/busybox-1.29.3/initramfs.img -smp 2 -nographic -append "console=ttyS0" -m 1024 -net nic,model=e1000 -S -s
 
 	gdb /home/mac/projects/kvm/linux-4.6.2/vmlinux
 	target remote:1234 
@@ -434,6 +434,14 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 		- 修改/etc/grub.2/40_cumstom文件，追加 kgdboc=kbd,ttyS0,9600 kgdbwait
 		- echo g > /proc/sysrq-trigger  //打开kgdb
 		- reboot 后，再debuger端执行gdb vmlinux
+
+- 查看首层文件夹大小
+	- du -h --max-depth=0 your_dest_dir/*
+- svn 提交
+	- svn ci -m “update Bug.98 status” Bugs-2019-03-05_PCMs_neu.xlsx --username zhao-hd@neusoft.com --password zhao-hd@neusfot.com
+- img mount
+	- mount -t loop,offset=2097152 ./debian.img /mnt/tmp
+
 
 
 	
