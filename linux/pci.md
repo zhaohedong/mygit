@@ -1,5 +1,113 @@
 - pci initialization
 ```
+=====================================================================================
+[    0.000000] e820: [mem 0xc0000000-0xfeffbfff] available for PCI devices
+
+setup_arch
+    => e820_setup_gap
+
+
+
+=====================================================================================
+pci resource first request
+
+[    0.140020] zhd-debug: __request_resource() start
+[    0.140984] zhd-debug: __request_resource() new->start = 0x0, new->end = 0xcf7, root->start = 0x0, root->end = 0xffff
+[    0.142005] zhd-debug: __request_resource() end unknown tmp->start = 0x0, tmp->end = 0x1f
+[    0.143003] zhd-debug: __request_resource() start
+[    0.143954] zhd-debug: __request_resource() new->start = 0xd00, new->end = 0xffff, root->start = 0x0, root->end = 0xffff
+[    0.145003] zhd-debug: __request_resource() end found
+[    0.146002] zhd-debug: __request_resource() start
+[    0.147002] zhd-debug: __request_resource() new->start = 0xa0000, new->end = 0xbffff, root->start = 0x0, root->end = 0xffffffff
+[    0.149003] zhd-debug: __request_resource() end found
+[    0.150002] zhd-debug: __request_resource() start
+[    0.151002] zhd-debug: __request_resource() new->start = 0xc0000000, new->end = 0xfebfffff, root->start = 0x0, root->end = 0xffffffff
+
+#0  __request_resource (root=root@entry=0xffffffff81acc3c0 <iomem_resource>, new=new@entry=0xffff8802b1c54080)
+    at kernel/resource.c:217
+#1  0xffffffff810ef876 in __insert_resource (parent=parent@entry=0xffffffff81acc3c0 <iomem_resource>, 
+    new=new@entry=0xffff8802b1c54080) at kernel/resource.c:806
+#2  0xffffffff810f0ec9 in insert_resource_conflict (parent=parent@entry=0xffffffff81acc3c0 <iomem_resource>, 
+    new=new@entry=0xffff8802b1c54080) at kernel/resource.c:871
+#3  0xffffffff815c82e5 in add_resources (info=<optimized out>, crs_res=0xffff8802b215bbb0, resources=0xffff8802b215bbc0)
+    at arch/x86/pci/acpi.c:312
+#4  pci_acpi_scan_root (root=root@entry=0xffff8802b23d4d80) at arch/x86/pci/acpi.c:454
+#5  0xffffffff8140df38 in acpi_pci_root_add (device=0xffff8802b23f4000, not_used=<optimized out>) at drivers/acpi/pci_root.c:589
+#6  0xffffffff814099aa in acpi_scan_attach_handler (device=0xffff8802b23f4000) at drivers/acpi/scan.c:1820
+#7  acpi_bus_attach (device=device@entry=0xffff8802b23f4000) at drivers/acpi/scan.c:1858
+#8  0xffffffff81409a22 in acpi_bus_attach (device=device@entry=0xffff8802b23f3800) at drivers/acpi/scan.c:1872
+#9  0xffffffff81409a22 in acpi_bus_attach (device=0xffff8802b23f3000) at drivers/acpi/scan.c:1872
+#10 0xffffffff81409b18 in acpi_bus_scan (handle=handle@entry=0xffffffffffffffff) at drivers/acpi/scan.c:1901
+#11 0xffffffff81c39991 in acpi_scan_init () at drivers/acpi/scan.c:2006
+#12 0xffffffff81c397b8 in acpi_init () at drivers/acpi/bus.c:740
+#13 0xffffffff810020e8 in do_one_initcall (fn=0xffffffff81c3953f <acpi_init>) at init/main.c:772
+#14 0xffffffff81bee226 in do_initcall_level (level=<optimized out>) at init/main.c:838
+#15 do_initcalls () at init/main.c:846
+#16 do_basic_setup () at init/main.c:864
+#17 kernel_init_freeable () at init/main.c:968
+#18 0xffffffff816fa19e in kernel_init (unused=<optimized out>) at init/main.c:899
+--Type <RET> for more, q to quit, c to continue without paging--
+#19 <signal handler called>
+#20 0x0000000000000000 in irq_stack_union ()
+#21 0x0000000000000000 in ?? ()
+==================================================================================
+
+
+=================================================================================
+root bus create call stack:
+
+[    0.288019] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    0.322018] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+[    0.355021] pci_bus 0000:00: root bus resource [io  0x0d00-0xffff window]
+[    0.390014] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+[    0.412025] pci_bus 0000:00: root bus resource [mem 0xc0000000-0xfebfffff window]
+
+#0  pci_create_root_bus (parent=parent@entry=0x0 <irq_stack_union>, bus=bus@entry=0, ops=0xffffffff81b7c6a0 <pci_root_ops>, 
+    sysdata=sysdata@entry=0xffff8802b23d4df8, resources=resources@entry=0xffff8802b215bbc0) at drivers/pci/probe.c:2223
+#1  0xffffffff815c812e in pci_acpi_scan_root (root=root@entry=0xffff8802b23d4d80) at arch/x86/pci/acpi.c:466
+#2  0xffffffff8140df38 in acpi_pci_root_add (device=0xffff8802b23f4000, not_used=<optimized out>) at drivers/acpi/pci_root.c:589
+#3  0xffffffff814099aa in acpi_scan_attach_handler (device=0xffff8802b23f4000) at drivers/acpi/scan.c:1820
+#4  acpi_bus_attach (device=device@entry=0xffff8802b23f4000) at drivers/acpi/scan.c:1858
+#5  0xffffffff81409a22 in acpi_bus_attach (device=device@entry=0xffff8802b23f3800) at drivers/acpi/scan.c:1872
+#6  0xffffffff81409a22 in acpi_bus_attach (device=0xffff8802b23f3000) at drivers/acpi/scan.c:1872
+#7  0xffffffff81409b18 in acpi_bus_scan (handle=handle@entry=0xffffffffffffffff) at drivers/acpi/scan.c:1901
+#8  0xffffffff81c39991 in acpi_scan_init () at drivers/acpi/scan.c:2006
+#9  0xffffffff81c397b8 in acpi_init () at drivers/acpi/bus.c:740
+#10 0xffffffff810020e8 in do_one_initcall (fn=0xffffffff81c3953f <acpi_init>) at init/main.c:772
+#11 0xffffffff81bee226 in do_initcall_level (level=<optimized out>) at init/main.c:838
+#12 do_initcalls () at init/main.c:846
+#13 do_basic_setup () at init/main.c:864
+#14 kernel_init_freeable () at init/main.c:968
+#15 0xffffffff816fa19e in kernel_init (unused=<optimized out>) at init/main.c:899
+#16 <signal handler called>
+#17 0x0000000000000000 in irq_stack_union ()
+#18 0x0000000000000000 in ?? ()
+=====================================================================================
+
+
+
+pci host bridge call stack:
+acpi_init
+    => acpi_scan_init 
+        => acpi_bus_scan
+            => acpi_bus_attach
+                => acpi_scan_attach_handler
+                    => acpi_pci_root_add
+                        => pci_acpi_scan_root
+                            => insert_resource_conflict
+                                => __insert_resource
+                                    => __request_resource
+
+setup_arch
+    => probe_rom
+        => request_resource
+            => request_resource_conflict
+                => __request_resource
+                    => add_resources
+                        => insert_resource_conflict
+                            => __insert_resource
+
+
 pci_scan_bus
     => pci_add_resource(&resources, &ioport_resource)
     => pci_add_resource(&resources, &iomem_resource)
