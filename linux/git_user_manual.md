@@ -27,6 +27,21 @@
   - git branch --set-upstream-to=[远程名]/[远程分支名] [本地分支名]
 - git show track
   - git branch -vv
+- git generate patch
+  - git format-patch -{num}
+  - git format-patch {commit}
+- git apply patch
+  - git apply --stat filename.patch
+  - git apply --check filename.patch
+  - git apply filename.patch
+- git switch remote repo
+  - git remote set-url origin ​new_remote_repository_address
+  - git remote set-url origin http://10.4.47.98/montage-tech.com/qemu.git
+- git move remote repo
+  - git clone --mirror old.git 
+  - cd old.git
+  - git remote set-url --push origin  new.git 
+  - git push --mirror 
 
 
 - make

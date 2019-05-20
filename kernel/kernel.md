@@ -20,7 +20,7 @@
 		- EBP Stack base pointer for holding the address of the current stack frame.
 			- 扩展基址指针寄存器(extended base pointer) 其内存放一个指针，该指针指向系统栈最上面一个栈帧的底部。
 			- C语言中，每个栈帧对应着一个未运行完的函数。栈帧中保存了该函数的返回地址和局部变量。
-		![](./images/1920px-Call_stack_layout.svg.png)
+		![](../images/1920px-Call_stack_layout.svg.png)
 	- 段相关寄存器组
 	- 标志寄存器
 	- 程序指针寄存器 
@@ -358,7 +358,7 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 	- mmap
 		- 用来把设备/文件映射到内存中去
 - 内核中的内存分配
-	- ![](./images/VMalloc.png)
+	- ![](../images/VMalloc.png)
 	- 区域划分
 		- PAGE_OFFSET(0xc0000000 3G)~HigmMemory(VMALLOC_START - 8MB)
 			- 
@@ -374,7 +374,7 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 		- ZONE_HIGHMEM
 			- 896MB ~ 结束
 			- 当内核想访问高于896MB物理地址内存时，从0xF8000000 ~ 0xFFFFFFFF地址空间范围内找一段相应大小空闲的逻辑地址空间，借用一会。借用这段逻辑地址空间，建立映射到想访问的那段物理内存（即填充内核PTE页面表），临时用一会，用完后归还。这样别人也可以借用这段地址空间访问其他物理内存，实现了使用有限的地址空间，访问所有所有物理内存
-		- ![](./images/kernel_high_mem.png)
+		- ![](../images/kernel_high_mem.png)
 	- kmalloc
 	- get_free_pages
 	- vmalloc
@@ -383,7 +383,7 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 	- 参考 https://www.cnblogs.com/wuchanming/p/4360277.html
 	- 逻辑地址其实是按段寻址中的概念
 	- 线性地址是按页表寻址中的概念
-	- ![](./images/x86_mem_mechanism.png)
+	- ![](../images/x86_mem_mechanism.png)
 - grub相关
 	- centos更新grub
 		- grub2-mkconfig -o /boot/grub2/grub.cfg
@@ -441,6 +441,9 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 	- svn ci -m “update Bug.98 status” Bugs-2019-03-05_PCMs_neu.xlsx --username zhao-hd@neusoft.com --password zhao-hd@neusfot.com
 - img mount
 	- mount -t loop,offset=2097152 ./debian.img /mnt/tmp
+- Summary of early kernel boot process
+  - refer to https://opensource.com/article/18/1/analyzing-linux-boot-process
+  - ![](../images/Summary_of_early_kernel_boot_process.png)
 
 
 
