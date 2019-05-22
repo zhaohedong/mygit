@@ -1,15 +1,159 @@
 - pci initialization
 ```
+__pci_read_bases() normal process l64 = 0xfeb00000
+==================================================================================
+0. e820 map print
+[    0.000000] e820: BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+[    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000000f0000-0x00000000000fffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000003ffdefff] usable
+[    0.000000] BIOS-e820: [mem 0x000000003ffdf000-0x000000003fffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000b0000000-0x00000000bfffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000feffc000-0x00000000feffffff] reserved
+[    0.000000] BIOS-e820: [mem 0x00000000fffc0000-0x00000000ffffffff] reserved
+
+
+#0  e820_print_map (who=who@entry=0xffffffff81979654 "BIOS-e820") at arch/x86/kernel/e820.c:176
+#1  0xffffffff81bfe178 in setup_memory_map () at arch/x86/kernel/e820.c:1644
+#2  0xffffffff81bfab5f in setup_arch (cmdline_p=cmdline_p@entry=0xffffffff81a87f50 <init_thread_union+16208>)
+    at arch/x86/kernel/setup.c:1061
+#3  0xffffffff81bedd29 in start_kernel () at init/main.c:516
+#4  0xffffffff81bed5ef in x86_64_start_reservations (
+    real_mode_data=real_mode_data@entry=0x14520 <init_tss+1056> <error: Cannot access memory at address 0x14520>)
+    at arch/x86/kernel/head64.c:193
+#5  0xffffffff81bed740 in x86_64_start_kernel (
+    real_mode_data=0x14520 <init_tss+1056> <error: Cannot access memory at address 0x14520>) at arch/x86/kernel/head64.c:182
+#6  0x0000000000000000 in ?? ()
+==================================================================================
+
+
+================================================================================
+1.first request_resource
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0xc0000, new->end = 0xc95ff, root->start = 0x0, root->end = 0xffffffff
+[    0.000000] zhd-debug: __request_resource() end found
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0xf0000, new->end = 0xfffff, root->start = 0x0, root->end = 0xffffffff
+[    0.000000] zhd-debug: __request_resource() end found
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0xc9800, new->end = 0xca5ff, root->start = 0x0, root->end = 0xffffffff
+[    0.000000] zhd-debug: __request_resource() end found
+
+#0  __request_resource (root=root@entry=0xffffffff81acc3c0 <iomem_resource>, new=new@entry=0xffffffff81ab2380 <video_rom_resource>)
+    at kernel/resource.c:209
+#1  0xffffffff810f0389 in request_resource_conflict (root=0xffffffff81acc3c0 <iomem_resource>, 
+    new=new@entry=0xffffffff81ab2380 <video_rom_resource>) at kernel/resource.c:312
+#2  0xffffffff810f03ae in request_resource (root=<optimized out>, new=new@entry=0xffffffff81ab2380 <video_rom_resource>)
+    at kernel/resource.c:328
+#3  0xffffffff81bfbf3d in probe_roms () at arch/x86/kernel/probe_roms.c:223
+#4  0xffffffff81bfae2e in setup_arch (cmdline_p=cmdline_p@entry=0xffffffff81a87f50 <init_thread_union+16208>)
+    at arch/x86/kernel/setup.c:1143
+#5  0xffffffff81bedd29 in start_kernel () at init/main.c:516
+#6  0xffffffff81bed5ef in x86_64_start_reservations (
+    real_mode_data=real_mode_data@entry=0x14520 <init_tss+1056> <error: Cannot access memory at address 0x14520>)
+    at arch/x86/kernel/head64.c:193
+#7  0xffffffff81bed740 in x86_64_start_kernel (
+    real_mode_data=0x14520 <init_tss+1056> <error: Cannot access memory at address 0x14520>) at arch/x86/kernel/head64.c:182
+#8  0x0000000000000000 in ?? ()
+===================================================================================
+
 =====================================================================================
+2.second request_resource
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0x0, new->end = 0xfff, root->start = 0x0, root->end = 0xffffffff
+[    0.000000] zhd-debug: __request_resource() end found
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0x1000, new->end = 0x9fbff, root->start = 0x0, root->end = 0xffffffff
+[    0.000000] zhd-debug: __request_resource() end found
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0x9fc00, new->end = 0x9ffff, root->start = 0x0, root->end = 0xffffffff
+[    0.000000] zhd-debug: __request_resource() end found
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0xf0000, new->end = 0xfffff, root->start = 0x0, root->end = 0xffffffff
+[    0.000000] zhd-debug: __request_resource() end unknown tmp->start = 0xf0000, tmp->end = 0xfffff
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0x100000, new->end = 0x3ffdefff, root->start = 0x0, root->end = 0xffffffff
+[    0.000000] zhd-debug: __request_resource() end unknown tmp->start = 0x1000000, tmp->end = 0x172171e
+__request_resource() new->start = 0xc0000, new->end = 0xc95ff, root->start = 0x0, root->end = 0xffffffff
+
+
+#0  __request_resource (root=root@entry=0xffffffff81acc3c0 <iomem_resource>, new=new@entry=0xffff8802bff8d4f8)
+    at kernel/resource.c:209
+#1  0xffffffff810ef876 in __insert_resource (parent=parent@entry=0xffffffff81acc3c0 <iomem_resource>, 
+    new=new@entry=0xffff8802bff8d4f8) at kernel/resource.c:806
+#2  0xffffffff810f0ec9 in insert_resource_conflict (parent=0xffffffff81acc3c0 <iomem_resource>, new=new@entry=0xffff8802bff8d4f8)
+    at kernel/resource.c:871
+#3  0xffffffff810f0eee in insert_resource (parent=<optimized out>, new=new@entry=0xffff8802bff8d4f8) at kernel/resource.c:890
+#4  0xffffffff81bfdf76 in e820_reserve_resources () at arch/x86/kernel/e820.c:1531
+#5  0xffffffff81bfb711 in setup_arch (cmdline_p=cmdline_p@entry=0xffffffff81a87f50 <init_thread_union+16208>)
+    at arch/x86/kernel/setup.c:1366
+#6  0xffffffff81bedd29 in start_kernel () at init/main.c:516
+#7  0xffffffff81bed5ef in x86_64_start_reservations (
+    real_mode_data=real_mode_data@entry=0x14520 <init_tss+1056> <error: Cannot access memory at address 0x14520>)
+    at arch/x86/kernel/head64.c:193
+#8  0xffffffff81bed740 in x86_64_start_kernel (
+    real_mode_data=0x14520 <init_tss+1056> <error: Cannot access memory at address 0x14520>) at arch/x86/kernel/head64.c:182
+#9  0x0000000000000000 in ?? ()
+===================================================================================
+
+
+===================================================================================
+3.third request_resource
+
+hb kernel/resource.c:209 if new->start == 0x1000
+
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0x0, new->end = 0x1f, root->start = 0x0, root->end = 0xffff
+[    0.000000] zhd-debug: __request_resource() end found
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0x20, new->end = 0x21, root->start = 0x0, root->end = 0xffff
+[    0.000000] zhd-debug: __request_resource() end found
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0x40, new->end = 0x43, root->start = 0x0, root->end = 0xffff
+[    0.000000] zhd-debug: __request_resource() end found
+[    0.000000] zhd-debug: __request_resource() start
+[    0.000000] zhd-debug: __request_resource() new->start = 0x50, new->end = 0x53, root->start = 0x0, root->end = 0xffff
+[    0.000000] zhd-debug: __request_resource() end found
+
+
+#0  __request_resource (root=root@entry=0xffffffff81acc400 <ioport_resource>, 
+    new=new@entry=0xffffffff81ab1d18 <standard_io_resources+56>) at kernel/resource.c:209
+#1  0xffffffff810f0389 in request_resource_conflict (root=0xffffffff81acc400 <ioport_resource>, 
+    new=new@entry=0xffffffff81ab1d18 <standard_io_resources+56>) at kernel/resource.c:312
+#2  0xffffffff810f03ae in request_resource (root=<optimized out>, new=new@entry=0xffffffff81ab1d18 <standard_io_resources+56>)
+    at kernel/resource.c:328
+#3  0xffffffff81bfa998 in reserve_standard_io_resources () at arch/x86/kernel/setup.c:706
+#4  0xffffffff81bfb723 in setup_arch (cmdline_p=cmdline_p@entry=0xffffffff81a87f50 <init_thread_union+16208>)
+    at arch/x86/kernel/setup.c:1369
+#5  0xffffffff81bedd29 in start_kernel () at init/main.c:516
+#6  0xffffffff81bed5ef in x86_64_start_reservations (
+    real_mode_data=real_mode_data@entry=0x14520 <init_tss+1056> <error: Cannot access memory at address 0x14520>)
+    at arch/x86/kernel/head64.c:193
+#7  0xffffffff81bed740 in x86_64_start_kernel (
+    real_mode_data=0x14520 <init_tss+1056> <error: Cannot access memory at address 0x14520>) at arch/x86/kernel/head64.c:182
+#8  0x0000000000000000 in ?? ()
+=====================================================================================
+
+=====================================================================================
+5. e820 mem gap for pcie devices
 [    0.000000] e820: [mem 0xc0000000-0xfeffbfff] available for PCI devices
 
-setup_arch
-    => e820_setup_gap
-
+#0  e820_setup_gap () at arch/x86/kernel/e820.c:645
+#1  0xffffffff81bfb728 in setup_arch (cmdline_p=cmdline_p@entry=0xffffffff81a87f50 <init_thread_union+16208>)
+    at arch/x86/kernel/setup.c:1371
+#2  0xffffffff81bedd29 in start_kernel () at init/main.c:516
+#3  0xffffffff81bed5ef in x86_64_start_reservations (
+    real_mode_data=real_mode_data@entry=0x14520 <init_tss+1056> <error: Cannot access memory at address 0x14520>)
+    at arch/x86/kernel/head64.c:193
+#4  0xffffffff81bed740 in x86_64_start_kernel (
+    real_mode_data=0x14520 <init_tss+1056> <error: Cannot access memory at address 0x14520>) at arch/x86/kernel/head64.c:182
+#5  0x0000000000000000 in ?? ()
+=====================================================================================
 
 
 =====================================================================================
-pci resource first request
+6. fourth request_resource for pci root bus
 
 [    0.140020] zhd-debug: __request_resource() start
 [    0.140984] zhd-debug: __request_resource() new->start = 0x0, new->end = 0xcf7, root->start = 0x0, root->end = 0xffff
@@ -22,7 +166,7 @@ pci resource first request
 [    0.149003] zhd-debug: __request_resource() end found
 [    0.150002] zhd-debug: __request_resource() start
 [    0.151002] zhd-debug: __request_resource() new->start = 0xc0000000, new->end = 0xfebfffff, root->start = 0x0, root->end = 0xffffffff
-
+                   
 #0  __request_resource (root=root@entry=0xffffffff81acc3c0 <iomem_resource>, new=new@entry=0xffff8802b1c54080)
     at kernel/resource.c:217
 #1  0xffffffff810ef876 in __insert_resource (parent=parent@entry=0xffffffff81acc3c0 <iomem_resource>, 
@@ -52,9 +196,8 @@ pci resource first request
 #21 0x0000000000000000 in ?? ()
 ==================================================================================
 
-
 =================================================================================
-root bus create call stack:
+7. root bus create call stack:
 
 [    0.288019] pci_bus 0000:00: root bus resource [bus 00-ff]
 [    0.322018] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
@@ -83,6 +226,66 @@ root bus create call stack:
 #17 0x0000000000000000 in irq_stack_union ()
 #18 0x0000000000000000 in ?? ()
 =====================================================================================
+
+=====================================================================================
+8.pcie device read rom address
+
+[    0.295030] zhd-debug: pci_read_bases() calling __pci_read_base pci_bar_mem32 = 0x2, rom = 0x30
+[    0.296003] zhd-debug: __pci_read_base() dev->vendor = 0x8086, dev->device = 0x1521
+[    0.297031] zhd-debug: __pci_read_bases() pos = 0x30 , type = 0x2, res->flags = 0x4e200, occured start print log
+[    0.299096] zhd-debug: __pci_read_bases() l = 0xfeb00000, sz = 0xfff80000, pos = 0x30
+[    0.300003] zhd-debug: __pci_read_bases() type != pci_bar_unkonwn l64 = 0xfeb00000, sz64 = 0xfff80000, res->flags = 0x4e200
+[    0.306008] zhd-debug: __pci_read_bases() normal process l64 = 0xfeb00000, sz64 = 0x7ffff, res->flags = 0x4e200
+
+#0  __pci_read_base (dev=dev@entry=0xffff8802b1c0c000, 
+    type=type@entry=pci_bar_mem32, res=res@entry=0xffff8802b1c0c490, 
+    pos=pos@entry=48) at drivers/pci/probe.c:403
+#1  0xffffffff813c13cf in pci_read_bases (dev=0xffff8802b1c0c000, howmany=6, 
+    rom=48) at drivers/pci/probe.c:480
+#2  0xffffffff813c2023 in pci_setup_device (dev=dev@entry=0xffff8802b1c0c000)
+    at drivers/pci/probe.c:1381
+#3  0xffffffff813c26a2 in pci_scan_device (devfn=16, bus=0xffff8802b1c20800)
+    at drivers/pci/probe.c:1780
+#4  pci_scan_single_device (bus=0xffff8802b1c20800, devfn=16)
+    at drivers/pci/probe.c:1881
+#5  0xffffffff813c272a in pci_scan_slot (bus=0xffff8802b1c20800, devfn=16)
+    at drivers/pci/probe.c:1959
+#6  0xffffffff813c3b6d in pci_scan_child_bus (bus=bus@entry=0xffff8802b1c20800)
+    at drivers/pci/probe.c:2144
+#7  0xffffffff815c8142 in pci_acpi_scan_root (
+    root=root@entry=0xffff8802b23d4d80) at arch/x86/pci/acpi.c:470
+#8  0xffffffff8140df38 in acpi_pci_root_add (device=0xffff8802b23f4000, 
+    not_used=<optimized out>) at drivers/acpi/pci_root.c:589
+#9  0xffffffff814099aa in acpi_scan_attach_handler (device=0xffff8802b23f4000)
+    at drivers/acpi/scan.c:1820
+#10 acpi_bus_attach (device=device@entry=0xffff8802b23f4000)
+    at drivers/acpi/scan.c:1858
+--Type <RET> for more, q to quit, c to continue without paging--
+#11 0xffffffff81409a22 in acpi_bus_attach (
+    device=device@entry=0xffff8802b23f3800) at drivers/acpi/scan.c:1872
+#12 0xffffffff81409a22 in acpi_bus_attach (device=0xffff8802b23f3000)
+    at drivers/acpi/scan.c:1872
+#13 0xffffffff81409b18 in acpi_bus_scan (
+    handle=handle@entry=0xffffffffffffffff) at drivers/acpi/scan.c:1901
+#14 0xffffffff81c39991 in acpi_scan_init () at drivers/acpi/scan.c:2006
+#15 0xffffffff81c397b8 in acpi_init () at drivers/acpi/bus.c:740
+#16 0xffffffff810020e8 in do_one_initcall (fn=0xffffffff81c3953f <acpi_init>)
+    at init/main.c:772
+#17 0xffffffff81bee226 in do_initcall_level (level=<optimized out>)
+    at init/main.c:838
+#18 do_initcalls () at init/main.c:846
+#19 do_basic_setup () at init/main.c:864
+#20 kernel_init_freeable () at init/main.c:968
+#21 0xffffffff816fa19e in kernel_init (unused=<optimized out>)
+    at init/main.c:899
+#22 <signal handler called>
+#23 0x0000000000000000 in irq_stack_union ()
+#24 0x0000000000000000 in ?? ()
+====================================================================================
+
+
+
+
 
 
 
