@@ -36,7 +36,7 @@
   - git apply filename.patch
 - git switch remote repo
   - git remote set-url origin ​new_remote_repository_address
-  - git remote set-url origin http://10.4.47.98/montage-tech.com/qemu.git
+  - git remote set-url origin http://10.4.47.98/montage-tech.com/dsc.git
 - git move remote repo
   - git clone --mirror old.git 
   - cd old.git

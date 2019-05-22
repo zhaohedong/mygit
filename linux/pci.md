@@ -1,5 +1,28 @@
 - pci initialization
 ```
+在一般pc，Dell PowerEdge T30下，RAID卡和Mellonex网卡都是有rom的，EFI/Legacy都有rom
+
+__pci_bus_assign_resources
+    => pbus_assign_resources_sorted
+    => pdev_assign_fixed_resources
+    => __pci_bus_assign_resources
+
+__pci_bridge_assign_resources
+    => pdev_assign_resources_sorted
+    => __pci_bus_assign_resources
+
+????    
+    =>pci_bus_assign_resources
+        => __pci_bus_assign_resources
+
+acpi_pci_root_add / pci_assign_unassigned_resources
+pci_assign_unassigned_root_bus_resources
+    => __pci_bus_assign_resources
+
+pci_rescan_bus
+pci_assign_unassigned_bus_resources
+    => __pci_bus_assign_resources
+
 __pci_read_bases() normal process l64 = 0xfeb00000
 ==================================================================================
 0. e820 map print
