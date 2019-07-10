@@ -1,0 +1,8 @@
+- gdb调试技巧
+	- info b 查看所有断点
+	- set print pretty 设置结构体显示
+	- b file:line 断点
+	- list file:line
+	- list function
+	- set remote debug 1 //设置调试模式，输出gdb信息
+	- b file:line if xxx == xxx

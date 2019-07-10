@@ -4,6 +4,11 @@
   git commit -m "log contents"
   git push
   ```
+- three steps to create a remote branch and track it
+  - git checkout -b [本地分支名] [远程名]/[远程分支名]
+  - git push origin [本地分支名] 
+  - git branch --set-upstream-to=[远程名]/[远程分支名] [本地分支名]
+  - git branch -vv 
 - create local branch
   - git checkout -b localbranchname origin/serverfix
 - push local branch to remote
@@ -42,6 +47,16 @@
   - cd old.git
   - git remote set-url --push origin  new.git 
   - git push --mirror 
+- 查看最近一次变更内容
+  - git show
+- 查看最近n次变更
+  - git log -p -n
+- git tag
+  - git tag -a release_for_v2.08 -m 'V2.06-montage-source-20190628'
+  - git tag -a release_for_v2.08_new -m 'new V2.08-montage-source-20190628'
+  - git push origin --tags
+- git 回滚某次提交
+  - git revert commitid
 
 
 - make
