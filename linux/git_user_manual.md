@@ -57,7 +57,27 @@
   - git push origin --tags
 - git 回滚某次提交
   - git revert commitid
-
+- git patch相关
+  - git 为某次commit生成patch
+    - git format-patch -1 指定commit号
+  - git 为最近几次commit生成patch
+    - git format-patch -n
+  - 合并多个commit成为一个patch
+    - git diff commitID1 commitID2 > ./patch
+  - 某两次提交间的所有patch
+    - git format-patch commitID1 commitID2
+  - 检查patch
+    - git apply --stat xxx.patch
+  - 检查patch是否能应用
+    - git apply --check xxx.patch
+  - 打patch
+    - git apply xxx.patch
+    - git am --signoff < xxx.patch 
+  - 冲突解决
+    - git apply --reject xxx.patch merge没有冲突的部分
+    - 冲突部分保存在.rej文件中，手动解决
+    - 删除.rej，并执行git add .添加修改
+    - git am --resolved最后push上去
 
 - make
 - make warning

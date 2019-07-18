@@ -47,6 +47,7 @@ main
 						=> xcc = X86_CPU_CLASS(oc)
 						=> cpu = X86_CPU(object_new(object_class_get_name(oc)));
 							=> x86_cpu_initfn //先调用parent的init函数
+								=> x86_cpu_load_def
 							=> skymdw_x86_cpu_initfn  //这里面只获得cpuid limit
 								=> ret = kvm_arch_get_supported_cpuid  //kernel实际的返回值保存在ret里面
 									=> cpuid = get_supported_cpuid(s)
@@ -68,7 +69,7 @@ main
 													=> copy_to_user(cpuid_arg, &cpuid, sizeof cpuid)  //fill headers
 									=> g_free(cpuid)
 						=> x86_cpu_parse_featurestr  //这里获得features
-							=> x86_cpu_get_supported_feature_word
+							=> x86_cpu_get_supported_feature_word  //第一次调用场合
 								=> kvm_arch_get_supported_cpuid
 									=> get_supported_cpuid
 										=> try_get_cpuid
@@ -76,7 +77,7 @@ main
 					=> ...
 						=> x86_cpu_realizefn
 							=> x86_cpu_filter_features
-								=> x86_cpu_get_supported_feature_word
+								=> x86_cpu_get_supported_feature_word //第二次调用场合，这个函数会调用很多kvm_arch_get_supported_cpuid函数
 									=> kvm_arch_get_supported_cpuid
 									=> if (migratable_only) r &= x86_cpu_get_migratable_flags(w);  //这个会过滤掉很多属性，feature name 为空的feature(如cpuid_6_feature_name 中的NULL)，以及unmigratable feature（invtsc）
 								=> report_unavailable_features

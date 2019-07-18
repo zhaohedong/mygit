@@ -1,0 +1,14 @@
+- 1.modprobe neu_read_oprom to load driver
+- 2.echo "vendor_id device_id" > /sys/bus/pci/drivers/neu_read_oprom/new_id
+- 3.pci device drived start by neu_read_oprom
+- 4.release pci bar0～bar5 mmio空间
+- 5.rom bar申请空间
+- 6.pci_enable_device (一定要在assign resource后再enable device)
+- 7.pci_set_master
+- 8.map rom from pci space to memory space
+- 9.生成rom文件，保存到host
+- 10.释放rom bar空间，为bar0～bar5 申请空间
+- 11.pci_clear_master (driver unbind会触发driver的remove函数)
+- 12.pci_disable_device
+- 13.modprobe -r neu_read_oprom
+
