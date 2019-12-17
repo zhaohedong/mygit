@@ -1,0 +1,19 @@
+- 内核log
+  -  unsinged long long 输出方法为 %llx，%llu
+  -  参考 printk-formats.txt
+  - 打印backtrace
+    - BUG_ON(bad_thing);
+      - 产生oops
+      - 生成backtrace
+    - WARN_ON(condition)
+      - 生成backtrace
+- crash dump
+  - linux内核发送崩溃时，kdump会生成一个内核转储文件vmcore。 可以通过分析vmcore分析出内核崩溃的原因
+  - 服务
+    - kdump.service
+  - 配置文件
+    - /etc/kdump.conf
+  - 内核启动参数
+    - crashkernel=auto
+- kdump默认路径
+  - /var/crash

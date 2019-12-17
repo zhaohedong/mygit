@@ -71,6 +71,22 @@ Raid 730-8i 在linux host下有Oprom，在linux guest下有rom，在windows gues
 在qemu使用seabios场景下，guest下有rom
 所有设备在windows host下均有rom
 
+vfio_realize
+vfio_initfn
+	=> vfio_add_capabilities
+		=> vfio_add_std_cap
+		=> vfio_add_ext_cap
+			=> case PCI_EXT_CAP_ID_SRIOV
+			=> pcie_add_capability
+				=> pcie_setup_sriov_cap
+			=> case PCI_EXT_CAP_ID_ERR
+				=> vfio_setup_aer
+					=> pcie_cap_deverr_init
+					=> pcie_aer_init
+	=> vfio_populate_sriov_bars
+	=> vfio_map_sriov_bars
+	=> vfio_device_add
+
 
 
 

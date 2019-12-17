@@ -4,6 +4,14 @@
   git commit -m "log contents"
   git push
   ```
+- create remote branch
+```
+git clone
+git checkout -b my-test  //在当前分支下创建my-test的本地分支分支
+git push origin my-test  //将my-test分支推送到远程
+git branch --set-upstream-to=origin/my-test //将本地分支my-test关联到远程分支my-test上   
+git branch -vv //查看远程分支 
+```
 - three steps to create a remote branch and track it
   - git checkout -b [本地分支名] [远程名]/[远程分支名]
   - git push origin [本地分支名] 
@@ -18,9 +26,10 @@
   - git push origin localbranch:remotebranch
 - track remote branch
   - git checkout --track origin/serverfix
-- merge remote branch to current branch
-  - switch to target branch
-  - git merge origin/serverfix
+- merge remote bugfix branch to master branch
+  - git checkout master
+  - git merge bugfix
+  - git push
 - git checkout 
   - git checkout -b [分支名] [远程名]/[分支名]
   - git checkout -b localbranchname origin/serverfix
@@ -57,6 +66,8 @@
   - git push origin --tags
 - git 回滚某次提交
   - git revert commitid
+- log 修改
+  - git commit --amend
 - git patch相关
   - git 为某次commit生成patch
     - git format-patch -1 指定commit号
@@ -78,6 +89,48 @@
     - 冲突部分保存在.rej文件中，手动解决
     - 删除.rej，并执行git add .添加修改
     - git am --resolved最后push上去
+  - 解决本地版本领先于master
+    - git reset --hard origin/master
+- svn 
+  - svn checkout
+    - svn checkout svn://192.168.0.1/runoob01 --username=user01
+  - svn 提交
+    - svn add file
+    - svn commit -m "log"
+- 复制仓库
+  - 创建仓库的裸克隆
+    - git clone --bare https://github.com/exampleuser/old-repository.git
+  - 镜像推送至新仓库
+    - cd old-repository.git
+    - git push --mirror https://github.com/exampleuser/new-repository.git
+  - 删除步骤 1 中创建的临时本地仓库
+    - cd ..
+    - rm -rf old-repository.git
+  - ref
+    - https://help.github.com/cn/github/creating-cloning-and-archiving-repositories/duplicating-a-repository
+- ssh 反向穿透内网
+  - ref
+    - https://cherrot.com/tech/2017/01/08/ssh-tunneling-practice.html
+  - 公网机器
+    - 端口开放
+      - 22
+      - 2222
+    - 公网IP
+      - 13.231.121.201 
+    - 公网user
+      - ec2-user
+    - 确保公网2222端口没有被占用
+      - lsof -t -i:2222
+      - kill $(lsof -t -i:2222)
+  - 内网
+    - 内网操作
+      - ssh -qTfNn -R '[::]:2222:localhost:22' ec2-user@13.231.121.201 -vvv
+    - 内网user
+      - u
+  - 其他网络
+    - ssh -p 2222 u@13.231.121.201
+
+  
 
 - make
 - make warning
@@ -86,3 +139,4 @@
   - 通常来说，makefile的target是一个真实的文件，但是有些target也不是文件，比如clean，这样的不是真实文件的target可以用PHONY来管理
 - sign 
   - kernel/scripts/sign-file sha512 signing_key.priv sg
+  

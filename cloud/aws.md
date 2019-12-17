@@ -1,0 +1,100 @@
+### aws
+- IaaS
+  - Infrastructure as a service – 基础设施即服务
+  - 用户可以在云服务提供商提供的基础设施上部署和运行任何软件，包括操作系统和应用软件。用户没有权限管理和访问底层的基础设施，如服务器、交换机、硬盘等，但是有权管理操作系统、存储内容，可以安装管理应用程序，甚至是有权管理网络组件。简单的说用户使用IaaS，有权管理操作系统之上的一切功能。我们常见的IaaS服务有虚拟机、虚拟网络、以及存储。
+  - 如EC2、阿里云
+
+- Paas
+  - PaaS给用户提供的能力是使用由云服务提供商支持的编程语言、库、服务以及开发工具来创建、开发应用程序并部署在相关的基础设施上。用户无需管理底层的基础设施，包括网络、服务器，操作系统或者存储。
+  - 是面向软件开发者的服务
+- SaaS
+  - SaaS给用户提供的能力是使用在云基础架构上运行的云服务提供商的应用程序。可以通过轻量的客户端接口（诸如web浏览器（例如，基于web的电子邮件））或程序接口从各种客户端设备访问应用程序。
+  - 如百度云盘
+- 暴露服务给外部client的方法
+  - Setting the service type to NodePort
+    - By creating a NodePort service, you make Kubernetes reserve a port on all its nodes (the same port number is used across all of them) and forward incoming connections to the pods that are part of the service.
+  - Setting the service type to LoadBalancer, an extension of the NodePort type
+    - 通过负载均衡器将pod与外部client联通
+  - Creating an Ingress resource, a radically different mechanism for exposing multiple services through a single IP address
+    - 通过一个域名，将服务暴露给客户端
+- kubernets architecture
+  - Control Plane（master node）
+    - The etcd distributed persistent storage
+      - etcd is the only place Kubernetes stores cluster state and metadata.
+    - The API server
+      - The Kubernetes API server is the central component used by all other components and by clients, such as kubectl. It provides a CRUD (Create, Read, Update, Delete) interface for querying and modifying the cluster state over a RESTful API. It stores that state in etcd.
+      - Clients watch for changes by opening an HTTP connection to the API server. Through this connection, the client will then receive a stream of modifications to the watched objects. 
+      - API server doesn’t do anything except store resources in etcd and notify clients about the change. 
+    - The Scheduler
+      - All the Scheduler does is update the pod definition through the API server. The API server then notifies the Kubelet (again, through the watch mechanism described previously) that the pod has been scheduled. As soon as the Kubelet on the target node sees the pod has been scheduled to its node, it creates and runs the pod’s containers.
+      - The Scheduler only assigns a node to the pod
+    - The Controller Manager
+      - Controller
+        - Controllers do many different things, but they all watch the API server for changes to resources (Deployments, Services, and so on) and perform operations for each change, whether it’s a creation of a new object or an update or deletion of an existing object.
+        - Controllers are part of the Kubernetes Control Plane and run on the master node(s)
+  - Work Nodes
+    - The Kubelet
+      - In a nutshell, the Kubelet is the component responsible for everything running on a worker node. 
+      - Its initial job is to register the node it’s running on by creating a Node resource in the API server.
+      - Then it needs to continuously monitor the API server for Pods that have been scheduled to the node, and start the pod’s containers.
+      - The Kubelet then con- stantly monitors running containers and reports their status, events, and resource consumption to the API server.
+      - The Kubelet is also the component that runs the container liveness probes, restart- ing containers when the probes fail.
+      - Lastly, it terminates containers when their Pod is deleted from the API server and notifies the server that the pod has terminated.
+    - The Kubernetes Service Proxy (kube-proxy)
+      - Beside the Kubelet, every worker node also runs the kube-proxy, whose purpose is to make sure clients can connect to the services you define through the Kubernetes API.
+      - uses iptables rules to redirect packets to a randomly selected backend pod without passing them through an actual proxy server.
+    - The Container Runtime (Docker, rkt, or others)
+  - ADD-ON COMPONENTS
+    - These components are available as add-ons and are deployed as pods by submitting YAML manifests to the API server
+    - The Kubernetes DNS server
+    - The Dashboard
+    - An Ingress controller
+    - Heapster
+    - The Container Network Interface network plugin 
+  - The chain of events
+    - THE DEPLOYMENT CONTROLLER CREATES THE REPLICASET
+    - THE REPLICASET CONTROLLER CREATES THE POD RESOURCES
+    - THE SCHEDULER ASSIGNS A NODE TO THE NEWLY CREATED PODS
+    - THE KUBELET RUNS THE POD’S 
+
+- K8S
+  - Master
+    - API Server
+      - 是k8s里所有资源增删改查操作的唯一入口，也是控制集群的入口进程
+    - Kube-controller-manager
+      - 所有资源对象的自动化控制中心
+    - kube-scheduler
+      - 负责资源调度（Pod调度）的进程
+  - Node
+    - kubelet
+      - 负责Pod对应的容器的创建、启停等任务
+    - kube-proxy
+      - 实现kubernetes Service的通信与负载均衡机制
+    - Docker Engine
+      - 负责本机的容器创建与管理工作
+  - Pod
+    - Pod中有根容器（Pause），还包含一个或多个紧密关联的业务容器
+    - Pod的设计原因
+      - 方便管理容器，知道容器死亡
+      - Pod里多个业务容器共享Pause容器的IP，共享Pause容器挂接的Volume
+      - 每个Pod都分配了唯一的IP地址，Pod里面多个容器共享IP地址
+      - k8s底层网络支持任意2个Pod之间TCP/IP直接通信，通过虚拟二层网络技术实现，如Flannel、Openvswitch
+      - Endpoint
+        - Pod yaml文件中的Pod IP加上containerPort，就组成Endpoint，它代表此Pod里的一个服务进程对外的通信地址
+        - 一个Pod也存在具有多个Endpoint的情况
+      - 每个Pod都可以对其能使用的服务器上的计算资源设置限额
+  - Label
+    - Label是一个键值对，可以附件到各种资源上，如Node、Pod、Service、RC等
+    - 我们可以通过指定的资源对象捆绑一个或多个不同的Label来实现多维度的资源分组管理
+    - Label Selector查询和刷选某些Label的资源对象
+  - RC
+    - Pod期待的副本数
+    - 用于筛选目标Pod的Label Selector
+    - 当副本树木小于预期数目时，用于创建新Pod的Pod模版
+    - 当我们定义了一个RC并提交到k8s集群后，Master节点的Controller Manager组件就能得到通知，定期查看当前存活目标的Pod
+    - 在运行时，我们可以通过修改RC副本的数目，来实现Pod的动态缩放 kubectl scale rc redis-slave --replicas=3
+  - Service
+    - k8s的service定义了一个服务的访问入口地址，前端的应用Pod，通过这个入口地址访问其背后的一组由Pod副本组成的实例
+    - Service与其后端Pod副本集群之间通过Label Selector来实现无缝对接
+    - 每个Pod都提供了一个独立的Endpoint（Pod IP+ContainerPort）以被客户端访问，现在多个Pod副本组成了一个集群来提供服务，通过部署负载均衡器，为这组Pod开启一个对外的服务端口如8000端口，并且将这些Pod的Endpoint列表加入到8000端口转发列表中，客户端就可以通过负载均衡器的对外IP地址+服务端口来访问此服务，而客户端的请求最后被转发到哪个Pod，则由负载均衡器的算法来决定
+  

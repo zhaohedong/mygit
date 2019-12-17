@@ -1,0 +1,16 @@
+0   a.out                               0x0000000105191ddd func5 + 109
+1   a.out                               0x0000000105191e99 func4 + 9
+2   a.out                               0x0000000105191ea9 func3 + 9
+3   a.out                               0x0000000105191eb9 func2 + 9
+4   a.out                               0x0000000105191ec9 func1 + 9
+5   a.out                               0x0000000105191ee4 main + 20
+6   libdyld.dylib                       0x00007fff5d931085 start + 1
+7   ???                                 0x0000000000000001 0x0 + 1
+0   a.out                               0x000000010d23eddd func5 + 109
+1   a.out                               0x000000010d23ee99 func4 + 9
+2   a.out                               0x000000010d23eea9 func3 + 9
+3   a.out                               0x000000010d23eeb9 func2 + 9
+4   a.out                               0x000000010d23eec9 func1 + 9
+5   a.out                               0x000000010d23eee4 main + 20
+6   libdyld.dylib                       0x00007fff5d931085 start + 1
+7   ???                                 0x0000000000000001 0x0 + 1

@@ -1,0 +1,11 @@
+- tftp
+	- 客户端
+		- 关闭firewall
+			- service firewalld stop
+		- 查看firewall状态
+			- firewall-cmd --state
+	- 服务器端
+		- 关闭selinux
+			- setenfore 0
+			- /etc/selinux/config
+				- SELINUX=disabled

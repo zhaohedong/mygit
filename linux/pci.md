@@ -1,20 +1,44 @@
+- pci知识总结
+    - option rom driver实现
+      - 背景
+        - BIOS没有为某些设备的option rom 预留地址空间
+      - 实现方案
+        - 功能
+          - 为pci设备dump option rom
+        - 前提
+          - 目标服务器上的PCI设备，都是透传给Guest OS使用，Host上的相关驱动已经加入内核的BlackList
+        - 实施
+          - UI管理侧判断Host的/sys/devices下是否由设备对应的rom文件存在，如果不存在则交给option rom driver去处理
+          - unbind设备驱动和设备的绑定关系
+          - bind设备到option rom driver上，利用pci的new_id机制，echo “vender id:device id” > ../../new_id
+          - 实现
+            - 释放pci设备的BAR0～BAR5空间
+            - 从上面释放的空间上为option rom申请地址空间
+            - 利用pci_map_rom将设备空间中的rom，映射到内核地址空间，并生成rom文件及结果文件
+            - 释放option rom的地址空间
+            - 重新为步骤1释放的BAR空间重新申请内存空间
+            - 实现的关键
+              - 为option rom分配地址空间后，在执行pci_enable_device操作，否则无法生成option rom
+          - unbind option rom drvier from pci device
+        - 制限
+          - 某些设备，如板载intel x722网卡，BAR0～BAR5全部都是64bit空间，而option rom要求所在的地址空间必须是32bit，将导致生成opiton rom失败
 - pci initialization
 ```
 1.pci 如何确定给bridge的资源
 2.pci 设备树的创建流程
 3.何时reassign
 4.request_resources的作用
-5. shell 下修改PCI配置空间
+1. shell 下修改PCI配置空间
     - http://samfreetime.blogspot.com/2011/10/efi-shell-commands-mmmemmmioiopcipcie.html
     - mm 0x0001000030 -PCI -w 4 // 修改为FFF00000，ss=00, bb=01, dd=00, ff=00, rr=30
-6. shell 下修改RAID卡所连接的Bridge 设备mmio空间
+2. shell 下修改RAID卡所连接的Bridge 设备mmio空间
     - mm 0x0000010020 -PCI -w 4 //修改为df20df10
-7. option rom本身是prefetch的，而最后可以使用普通的bridge window
+3. option rom本身是prefetch的，而最后可以使用普通的bridge window
     - 2433 [    0.688661] pci 0000:01:00.0: reg 0x30: [mem 0xfff00000-0xffffffff pref]
-8. 父bridge 申请的时mmio，32位
+4. 父bridge 申请的时mmio，32位
     - 2457 [    0.690975] zhd-debug: pci_read_bridge_mmio() region.start = 0x92200000, region.end = 0x923fffff, res->flags = 0x200
     -  2477 [    0.691080] pci 0000:00:1c.0:   bridge window [mem 0x92200000-0x923fffff]
-9. i350
+5. i350
  4240 [    0.716006] pci 0000:16:02.0:   bridge window [mem 0xa6000000-0xa64fffff]
  4348 [    0.718162] pci 0000:1f:00.0: reg 0x1c: [mem 0xa640c000-0xa640ffff
  4369 [    0.718868] pci 0000:1f:00.0: reg 0x30: [mem 0xfff80000-0xffffffff pref]
@@ -758,6 +782,7 @@ acpi_init
                                             => pci_setup_device
                                                 => pci_read_bases(dev, 6, PCI_ROM_ADDRESS)  //读出所有RESOURCE的设定
                                                     => __pci_read_base (All BAR)
+                                                        => decode_bar //解析出资源的flags
                                         => pci_device_add(dev, bus) 
                                 => pcibios_fixup_bus
                                     => pci_read_bridge_bases    //读取Bridge的RESOURCE设定
@@ -1066,4 +1091,3 @@ pcibios_assign_resources
     [    0.702599] pci 0000:1f:00.0: BAR 6: failed to assign [mem size 0x00100000 pref]
     ```
 
-    pcibios_allocate_rom_resources() dev->vendor = 0x1000, dev->device = 0x005d
