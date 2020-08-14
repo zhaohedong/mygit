@@ -128,26 +128,25 @@
   make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- install
   ```
 - linux kernel build 
-  ```A
-  make ARCH=arm versatile_defconfig
-  make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- menuconfig
-  make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- all -j4 
-
-  make x86_64_defconfig //适用于x86默认的虚拟机
+  ```
+   make ARCH=arm versatile_defconfig
+   make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- menuconfig
+   make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- all -j4 
+   make x86_64_defconfig //适用于x86默认的虚拟机
   ```
 - qemu build
 	```
 	./configure --target-list=arm-softmmu
 	```
 - qemu show
-	- qemu-system-arm -M versatilepb -kernel /home/mac/projects/kvm/linux-4.6.2/arch/arm/boot/zImage -dtb /home/mac/projects/kvm/linux-4.6.2/arch/arm/boot/dts/versatile-pb.dtb -initrd /home/mac/projects/kvm/busybox/busybox-1.29.3/initramfs.img -append "console=ttyAMA0 root=/dev/ram rdinit=/sbin/init" -monitor stdio
-
+  ```
+	qemu-system-arm -M versatilepb -kernel /home/mac/projects/kvm/linux-4.6.2/arch/arm/boot/zImage -dtb /home/mac/projects/kvm/linux-4.6.2/arch/arm/boot/dts/versatile-pb.dtb -initrd /home/mac/projects/kvm/busybox/busybox-1.29.3/initramfs.img -append "console=ttyAMA0 root=/dev/ram rdinit=/sbin/init" -monitor stdio
+	```
 - normal start
  ```
-qemu-system-arm -M versatilepb -nographic -kernel /home/mac/projects/kvm/linux-4.6.2/arch/arm/boot/zImage -dtb /home/mac/projects/kvm/linux-4.6.2/arch/arm/boot/dts/versatile-pb.dtb -initrd /home/mac/projects/kvm/busybox/busybox-1.29.3/initramfs.img -append "console=ttyAMA0 root=/dev/ram rdinit=/sbin/init"
-
-qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.dtb -initrd ./initramfs.img -append "console=ttyAMA0 root=/dev/ram rdinit=/sbin/init"
-  ```
+ qemu-system-arm -M versatilepb -nographic -kernel /home/mac/projects/kvm/linux-4.6.2/arch/arm/boot/zImage -dtb /home/mac/projects/kvm/linux-4.6.2/arch/arm/boot/dts/versatile-pb.dtb -initrd /home/mac/projects/kvm/busybox/busybox-1.29.3/initramfs.img -append "console=ttyAMA0 root=/dev/ram rdinit=/sbin/init"
+ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.dtb -initrd ./initramfs.img -append "console=ttyAMA0 root=/dev/ram rdinit=/sbin/init"
+ ```
 - Error: unrecognized/unsupported machine ID (r1 = 0x00000183).
 	- -dtb /home/mac/projects/kvm/linux-4.6.2/arch/arm/boot/dts/versatile-pb.dtb
 - edu.c
@@ -155,8 +154,8 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 	- https://stackoverflow.com/questions/28315265/how-to-add-a-new-device-in-qemu-source-code
 - yum undo
 	```
-	yum history list softname
-	yum history undo Id
+	 yum history list softname
+	 yum history undo Id
 	```
 - vmcs，vmcb
 
@@ -172,35 +171,34 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 	- The default event loop is called the main loop (see main-loop.c).  It is possible to create additional event loop threads using -object iothread,id=my-iothread.
 	- io thread boot
 	```
-	main in vl.c
-	->module_call_init(MODULE_INIT_QOM) in vl.c
-	-->iothread_register_types
-	--->iothread_class_init
-
-	->monitor_init_globals in vl.c
-	-->monitor_iothread_init
-	--->iothread_create
-	---->object_new_with_props
-	----->object_new_with_propv
-	------>user_creatable_complete
-	------->iothread_complete
-	-------->aio_context_new
-	-------->qemu_thread_create
-	--------->pthread_create
-
-	qemu_thread_start
-	->start_routine
-	-->iothread_run
-	--->aio_poll
-
-	main
-	select_machine
-	find_default_machine
-	object_class_get_list
-	object_class_foreach
-	g_hash_table_foreach
-	char_serial_class_init
-	
+    	main in vl.c
+    	->module_call_init(MODULE_INIT_QOM) in vl.c
+    	-->iothread_register_types
+    	--->iothread_class_init
+    
+    	->monitor_init_globals in vl.c
+    	-->monitor_iothread_init
+    	--->iothread_create
+    	---->object_new_with_props
+    	----->object_new_with_propv
+    	------>user_creatable_complete
+    	------->iothread_complete
+    	-------->aio_context_new
+    	-------->qemu_thread_create
+    	--------->pthread_create
+    
+    	qemu_thread_start
+    	->start_routine
+    	-->iothread_run
+    	--->aio_poll
+    
+    	main
+    	select_machine
+    	find_default_machine
+    	object_class_get_list
+    	object_class_foreach
+    	g_hash_table_foreach
+    	char_serial_class_init
 	```
 	- glib
 		- https://developer.gnome.org/glib/2.26/glib-The-Main-Event-Loop.html
@@ -239,48 +237,48 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 				- register_netdev注册设备
 				- virtio_device_ready
 				```
-				virtio_net_driver_init
-				-->register_virtio_driver
-				--->driver_register
-				---->bus_add_driver
-				----->driver_attach
-				------>bus_for_each_dev
-				------->__driver_attach
-				-------->really_probe
-				--------->virtio_dev_probe
-				---------->virtnet_probe
-
-				virtnet_probe
-				->alloc_etherdev_mq
-				->dev->netdev_ops = &virtnet_netdev;
-				->init_vqs
-				-->virtnet_alloc_queues
-				-->virtnet_find_vqs
-				->register_netdev
+    				virtio_net_driver_init
+    				-->register_virtio_driver
+    				--->driver_register
+    				---->bus_add_driver
+    				----->driver_attach
+    				------>bus_for_each_dev
+    				------->__driver_attach
+    				-------->really_probe
+    				--------->virtio_dev_probe
+    				---------->virtnet_probe
+    
+    				virtnet_probe
+    				->alloc_etherdev_mq
+    				->dev->netdev_ops = &virtnet_netdev;
+    				->init_vqs
+    				-->virtnet_alloc_queues
+    				-->virtnet_find_vqs
+    				->register_netdev
 				```
 		- 使用
 			- For virtio net, the driver adds outgoing (read-only) packets to the transmit virtqueue, and then frees them after they are used. Similarly, incoming (write-only) bu􏰃ers are added to the receive virtqueue, and processed after they are used
 			- virtio blk的queue_rq 函数是virtio_queue_rq，该函数最终调用virtqueue_kick来通知qemu
 			```
 			//网卡数据发送，通知后端的qemu
-			start_xmit 
-			->xmit_skb
-			-->virtqueue_add_outbuf 
-			--->virtqueue_add
-			---->vq->avail_idx_shadow++;
-			---->vq->vring.avail->idx = cpu_to_virtio16(_vq->vdev, vq->avail_idx_shadow); //相当于提供buf给device
-			->virtqueue_kick_prepare
-			->virtqueue_notify
-			-->vq->notify(_vq) //这个notify 从哪里赋值的没有理清
-
-			//notify赋值
-			virtio_pci_probe  
-			->virtio_pci_modern_probe
-			-->setup_vq (或者是mmio的vm_setup_v)
-			--->vring_create_virtqueue
-			---->__vring_new_virtqueue
-			----->q->notify = notify;
-
+    			start_xmit 
+    			->xmit_skb
+    			-->virtqueue_add_outbuf 
+    			--->virtqueue_add
+    			---->vq->avail_idx_shadow++;
+    			---->vq->vring.avail->idx = cpu_to_virtio16(_vq->vdev, vq->avail_idx_shadow); //相当于提供buf给device
+    			->virtqueue_kick_prepare
+    			->virtqueue_notify
+    			-->vq->notify(_vq) //这个notify 从哪里赋值的没有理清
+    
+    			//notify赋值
+    			virtio_pci_probe  
+    			->virtio_pci_modern_probe
+    			-->setup_vq (或者是mmio的vm_setup_v)
+    			--->vring_create_virtqueue
+    			---->__vring_new_virtqueue
+    			----->q->notify = notify;
+			```
 
 		- qemu 后端
 			- qemu 后端模拟设备处理逻辑，当qemu处理完后又调用virtio_mq_ops的virtblk_request_done函数
@@ -358,7 +356,7 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 	- mmap
 		- 用来把设备/文件映射到内存中去
 - 内核中的内存分配
-	- ![](../images/VMalloc.png)
+	![](../images/VMalloc.png)
 	- 区域划分
 		- PAGE_OFFSET(0xc0000000 3G)~HigmMemory(VMALLOC_START - 8MB)
 			- 
@@ -444,6 +442,7 @@ qemu-system-arm -M versatilepb -nographic -kernel ./zImage -dtb ./versatile-pb.d
 - Summary of early kernel boot process
   - refer to https://opensource.com/article/18/1/analyzing-linux-boot-process
   - ![](../images/Summary_of_early_kernel_boot_process.png)
+  
 
 
 

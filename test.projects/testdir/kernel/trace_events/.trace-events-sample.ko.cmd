@@ -1,1 +1,0 @@
-cmd_/home/mac/projects/testdir/kernel/trace_events/trace-events-sample.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/mac/projects/testdir/kernel/trace_events/trace-events-sample.ko /home/mac/projects/testdir/kernel/trace_events/trace-events-sample.o /home/mac/projects/testdir/kernel/trace_events/trace-events-sample.mod.o

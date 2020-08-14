@@ -1,1 +1,0 @@
-cmd_/home/mac/projects/testdir/android/hellodriver/startstop.o := ld -m elf_x86_64   -r -o /home/mac/projects/testdir/android/hellodriver/startstop.o /home/mac/projects/testdir/android/hellodriver/start.o /home/mac/projects/testdir/android/hellodriver/stop.o 

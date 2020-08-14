@@ -1,9 +1,48 @@
+- zsh后卡顿
+    - git config --global oh-my-zsh.hide-status 1
+- links
+	- git
+		- https://docs.google.com/presentation/d/1IQCRPHEIX-qKo7QFxsD3V62yhyGA9_5YsYXFOiBpgkk/edit#slide=id.g4e79868052_229_0
+	- gerrit
+		- https://docs.google.com/presentation/d/1C73UgQdzZDw0gzpaEqIC6SPujZJhqamyqO1XOHjH-uk/edit#slide=id.g4d6c16487b_1_767
 - git use flow 
   ```
-  git add file.name
-  git commit -m "log contents"
-  git push
+    git add file.name
+    git commit -m "log contents"
+    git push
   ```
+- git reset 
+	 - --soft branch(y) index(n) working tree(n)
+	 - --mix(defalut) branch(y) index(y) working tree(n)
+	 - --hard branch(y) index(y) working tree(y)
+- git rebase
+	- 合并 commit 记录，保持分支整洁
+	- 相比 merge 来说会减少分支合并的记录
+	- 只要你的分支上需要 rebase 的所有 commits 历史还没有被 push 过，就可以安全地使用 git-rebase来操作(最好个人使用)
+- 初始化仓库
+	- git init
+	- git add .
+	- git commit -m "first commit"	
+- 创建本地分支
+	- git checkout -b branchname
+- git 取消某次提交
+	- git reset --hard HEAD^
+- git 冲突解决A
+	- git apply –reject patch
+	- git status查看有哪些.rej文件，和新规文件
+	- 在.rej文件里找见冲突的diff段，手动修改对应的代码
+	- git add related_files
+	- git am –resolved
+- git speed up
+	```
+	git config --global http.https://github.com.proxy socks5://127.0.0.1:1086
+	git config --global https.https://github.com.proxy socks5://127.0.0.1:1086
+
+	git config --global --unset http.proxy
+	git config --global --unset https.proxy
+	git config -l
+	```
+
 - create remote branch
 ```
 git clone
@@ -44,6 +83,11 @@ git branch -vv //查看远程分支
 - git generate patch
   - git format-patch -{num}
   - git format-patch {commit}
+  - git format-patch <r1>..<r2>   #生成两个commit间的修改的patch（包含两个commit. <r1>和<r2>都是具体的commit号)
+  - git format-patch -1 <r1>      #生成单个commit的patch
+  - git format-patch <r1>      #生成某commit以来的修改patch（不包含该commit）
+  - git format-patch -n 使用 [PATCH n/m]，即使只有一个补丁
+  - git format-patch -s 使用签名
 - git apply patch
   - git apply --stat filename.patch
   - git apply --check filename.patch
@@ -111,6 +155,7 @@ git branch -vv //查看远程分支
 - ssh 反向穿透内网
   - ref
     - https://cherrot.com/tech/2017/01/08/ssh-tunneling-practice.html
+    - https://www.jianshu.com/p/b1cc3b5aa00d
   - 公网机器
     - 端口开放
       - 22
@@ -129,6 +174,33 @@ git branch -vv //查看远程分支
       - u
   - 其他网络
     - ssh -p 2222 u@13.231.121.201
+- ssh 穿越跳板机
+	```
+	Host tMac 
+	    Hostname 192.168.50.17
+	    IdentityFile ~/.ssh/id_rsa
+	    User u
+	    Port 22
+	    ForwardAgent yes
+	    ProxyCommand ssh -p 7777 admin@zhaohedong.asuscomm.com -W %h:%p 2> /dev/null
+	```
+- diff打patch
+	- 以linux-kernel的tools/build/Build.include文件为例
+	- 准备两个文件夹a & b
+	- diff 
+- settings
+	```
+	credential.helper=osxkeychain
+	user.email=zhaohedong@gmail.com
+	user.name=zhaohedong
+	filter.lfs.clean=git-lfs clean -- %f
+	filter.lfs.smudge=git-lfs smudge -- %f
+	filter.lfs.process=git-lfs filter-process
+	filter.lfs.required=true
+	http.https://github.com.proxy=socks5://127.0.0.1:1086
+	https.https://github.com.proxy=socks5://127.0.0.1:1086
+	oh-my-zsh.hide-status=1
+	```
 
   
 

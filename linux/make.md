@@ -240,13 +240,12 @@
   - LIBS = -lpthread -liconv
 - gcc 选项
   - ‘-S’
-    - 只是编译不汇编，生成汇编代码
+        只是编译不汇编，生成汇编代码
   - ‘-E'
-    - 只进行预处理
+        只进行预处理
 - hello example
-  - 
   ```
-  # Define required macros here
+    # Define required macros here
     SHELL = /bin/sh
     OBJS =  main.o factorial.o hello.o
     CFLAG = -Wall -g
@@ -258,5 +257,5 @@
     clean:
         -rm -f *.o core *.core
     .cpp.o:
-        ${CC} ${CFLAGS} ${INCLUDES} -c $<                  
+        ${CC} ${CFLAGS} ${INCLUDES} -c $<               
   ```

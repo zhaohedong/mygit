@@ -1,1 +1,0 @@
-cmd_/home/mac/projects/android/hellodriver/hello.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/mac/projects/android/hellodriver/hello.ko /home/mac/projects/android/hellodriver/hello.o /home/mac/projects/android/hellodriver/hello.mod.o
