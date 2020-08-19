@@ -1,0 +1,1 @@
+cmd_/home/mac/projects/testdir/kernel/trace_printk/trace-printk.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/mac/projects/testdir/kernel/trace_printk/trace-printk.ko /home/mac/projects/testdir/kernel/trace_printk/trace-printk.o /home/mac/projects/testdir/kernel/trace_printk/trace-printk.mod.o

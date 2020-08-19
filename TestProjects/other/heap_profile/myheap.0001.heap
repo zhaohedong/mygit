@@ -1,0 +1,59 @@
+heap profile:      1: 67108864 [     1: 67108864] @ heapprofile
+     1: 67108864 [     1: 67108864] @ 0x004007c5 0x7f12ca144830 0x004006d9 0x00000000
+
+MAPPED_LIBRARIES:
+00400000-00401000 r-xp 00000000 00:00 2354583     /home/mac/projects/testdir/heap_profile/perf_no_leak
+00600000-00601000 r--p 00000000 00:00 2354583     /home/mac/projects/testdir/heap_profile/perf_no_leak
+00601000-00602000 rw-p 00001000 00:00 2354583     /home/mac/projects/testdir/heap_profile/perf_no_leak
+0069e000-04f9e000 rw-p 00000000 00:00 0           [heap]
+7f12c8ec5000-7f12c9025000 rw-p 00000000 00:00 0           
+7f12c9025000-7f12c9028000 r-xp 00000000 00:00 3670254     /lib/x86_64-linux-gnu/libdl-2.23.so
+7f12c9028000-7f12c9227000 ---p 00003000 00:00 3670254     /lib/x86_64-linux-gnu/libdl-2.23.so
+7f12c9227000-7f12c9228000 r--p 00002000 00:00 3670254     /lib/x86_64-linux-gnu/libdl-2.23.so
+7f12c9228000-7f12c9229000 rw-p 00003000 00:00 3670254     /lib/x86_64-linux-gnu/libdl-2.23.so
+7f12c9229000-7f12c923f000 r-xp 00000000 00:00 3674731     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f12c923f000-7f12c943e000 ---p 00016000 00:00 3674731     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f12c943e000-7f12c943f000 rw-p 00015000 00:00 3674731     /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f12c943f000-7f12c9460000 r-xp 00000000 00:00 3674760     /lib/x86_64-linux-gnu/liblzma.so.5.0.0
+7f12c9460000-7f12c965f000 ---p 00021000 00:00 3674760     /lib/x86_64-linux-gnu/liblzma.so.5.0.0
+7f12c965f000-7f12c9660000 r--p 00020000 00:00 3674760     /lib/x86_64-linux-gnu/liblzma.so.5.0.0
+7f12c9660000-7f12c9661000 rw-p 00021000 00:00 3674760     /lib/x86_64-linux-gnu/liblzma.so.5.0.0
+7f12c9661000-7f12c9769000 r-xp 00000000 00:00 3670248     /lib/x86_64-linux-gnu/libm-2.23.so
+7f12c9769000-7f12c9968000 ---p 00108000 00:00 3670248     /lib/x86_64-linux-gnu/libm-2.23.so
+7f12c9968000-7f12c9969000 r--p 00107000 00:00 3670248     /lib/x86_64-linux-gnu/libm-2.23.so
+7f12c9969000-7f12c996a000 rw-p 00108000 00:00 3670248     /lib/x86_64-linux-gnu/libm-2.23.so
+7f12c996a000-7f12c9adc000 r-xp 00000000 00:00 3017057     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f12c9adc000-7f12c9cdc000 ---p 00172000 00:00 3017057     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f12c9cdc000-7f12c9ce6000 r--p 00172000 00:00 3017057     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f12c9ce6000-7f12c9ce8000 rw-p 0017c000 00:00 3017057     /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f12c9ce8000-7f12c9cec000 rw-p 00000000 00:00 0           
+7f12c9cec000-7f12c9d04000 r-xp 00000000 00:00 3670251     /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f12c9d04000-7f12c9f03000 ---p 00018000 00:00 3670251     /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f12c9f03000-7f12c9f04000 r--p 00017000 00:00 3670251     /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f12c9f04000-7f12c9f05000 rw-p 00018000 00:00 3670251     /lib/x86_64-linux-gnu/libpthread-2.23.so
+7f12c9f05000-7f12c9f09000 rw-p 00000000 00:00 0           
+7f12c9f09000-7f12c9f15000 r-xp 00000000 00:00 3025059     /usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1
+7f12c9f15000-7f12ca114000 ---p 0000c000 00:00 3025059     /usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1
+7f12ca114000-7f12ca115000 r--p 0000b000 00:00 3025059     /usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1
+7f12ca115000-7f12ca116000 rw-p 0000c000 00:00 3025059     /usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1
+7f12ca116000-7f12ca124000 rw-p 00000000 00:00 0           
+7f12ca124000-7f12ca2e4000 r-xp 00000000 00:00 3670252     /lib/x86_64-linux-gnu/libc-2.23.so
+7f12ca2e4000-7f12ca4e4000 ---p 001c0000 00:00 3670252     /lib/x86_64-linux-gnu/libc-2.23.so
+7f12ca4e4000-7f12ca4e8000 r--p 001c0000 00:00 3670252     /lib/x86_64-linux-gnu/libc-2.23.so
+7f12ca4e8000-7f12ca4ea000 rw-p 001c4000 00:00 3670252     /lib/x86_64-linux-gnu/libc-2.23.so
+7f12ca4ea000-7f12ca4ee000 rw-p 00000000 00:00 0           
+7f12ca4ee000-7f12ca534000 r-xp 00000000 00:00 3016082     /usr/lib/libtcmalloc.so.4.2.6
+7f12ca534000-7f12ca734000 ---p 00046000 00:00 3016082     /usr/lib/libtcmalloc.so.4.2.6
+7f12ca734000-7f12ca735000 r--p 00046000 00:00 3016082     /usr/lib/libtcmalloc.so.4.2.6
+7f12ca735000-7f12ca736000 rw-p 00047000 00:00 3016082     /usr/lib/libtcmalloc.so.4.2.6
+7f12ca736000-7f12ca75f000 rw-p 00000000 00:00 0           
+7f12ca75f000-7f12ca785000 r-xp 00000000 00:00 3670250     /lib/x86_64-linux-gnu/ld-2.23.so
+7f12ca827000-7f12ca95e000 rw-p 00000000 00:00 0           
+7f12ca971000-7f12ca984000 rw-p 00000000 00:00 0           
+7f12ca984000-7f12ca985000 r--p 00025000 00:00 3670250     /lib/x86_64-linux-gnu/ld-2.23.so
+7f12ca985000-7f12ca986000 rw-p 00026000 00:00 3670250     /lib/x86_64-linux-gnu/ld-2.23.so
+7f12ca986000-7f12ca987000 rw-p 00000000 00:00 0           
+7ffe4969a000-7ffe496bb000 rw-p 00000000 00:00 0           [stack]
+7ffe49738000-7ffe4973a000 r--p 00000000 00:00 0           [vvar]
+7ffe4973a000-7ffe4973c000 r-xp 00000000 00:00 0           [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0           [vsyscall]

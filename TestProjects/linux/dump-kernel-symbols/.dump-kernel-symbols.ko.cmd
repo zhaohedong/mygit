@@ -1,0 +1,1 @@
+cmd_/home/zs/zhao/dump-kernel-symbols/dump-kernel-symbols.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/zs/zhao/dump-kernel-symbols/dump-kernel-symbols.ko /home/zs/zhao/dump-kernel-symbols/dump-kernel-symbols.o /home/zs/zhao/dump-kernel-symbols/dump-kernel-symbols.mod.o
