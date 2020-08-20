@@ -4,6 +4,7 @@
         "ostream": "c",
         "sstream": "c",
         "strstream": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "cstdio": "c"
     }
 }
