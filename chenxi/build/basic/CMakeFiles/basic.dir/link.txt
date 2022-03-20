@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libbasic.a CMakeFiles/basic.dir/message_queue/message_queue.c.o CMakeFiles/basic.dir/statemachine/statemachine.c.o CMakeFiles/basic.dir/thread/thread.c.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libbasic.a

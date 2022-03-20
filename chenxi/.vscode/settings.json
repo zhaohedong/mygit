@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "message_queue.h": "c",
+        "msg.h": "c",
+        "pthread.h": "c",
+        "_pthread_types.h": "c",
+        "unistd.h": "c",
+        "errno.h": "c"
+    }
+}
