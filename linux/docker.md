@@ -1,0 +1,19 @@
+- docker cmd
+	- 配置文件
+		- /etc/docker/daemon.json
+	- docker pull local registories
+		- docker pull 192.168.3.103:5000/
+	- docker commit
+		- docker commit -a "runoob.com" -m "my apache" a404c6c174a2  mymysql:v1
+		- docker commit a404c6c174a2  centos8:v1
+		- 参数a作者，参数m日志，
+	- docker get catalog
+		- curl 192.168.3.103:5000/v2/_catalog
+	- image save
+		- docker save image:tag > image_tag.tar
+	- image load
+		- docker load < image_tag.tar
+	- 映射22端口，并支持systemctl
+		- docker run -it --privileged  -p 2222:22 -p 3333:8080 centos8:v1  /usr/sbin/init
+		- docker exec -it {docker id} /bin/bash
+		

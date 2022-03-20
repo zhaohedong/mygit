@@ -1,0 +1,14 @@
+- vpn server
+	- 参考
+		- https://lipan.me/2016/10/25/setup-own-vpn-with-amazon-aws.html 
+- client 
+	- yum install Networkmanager-pptp-gnome
+	- Use Point-to-Point encryption(MPPE) [on]
+- share vpn
+	- https://www.vpngate.net/cn
+- AWS Site-to-Site VPN
+	- 将本地网络或分支机构站点安全地连接到 Amazon Virtual Private Cloud (Amazon VPC)
+- AWS Client VPN
+	- 让您将用户安全地连接到 AWS 或本地网络
+	- AWS Client VPN 旨在帮助您的员工从任何位置访问 AWS 和本地的任何公司资源
+- 

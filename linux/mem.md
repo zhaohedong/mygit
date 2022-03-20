@@ -1,0 +1,13 @@
+- ![](../images/file_to_address_space.png)
+- linux读写物理内存的方法
+    - 前提
+        - CONFIG_STRICT_DEVMEM = n
+        - CONFIG_DEVMEM = y
+        - CONFIG_KMEM = y
+    - 文件说明
+        - /dev/mem 对应全部内存
+        - /dev/kmem 对应内核内存
+        - /proc/kallsyms 对应内核符号表
+    - 使用方法
+        - 将 cat /proc/kallsyms ｜ grep xxx 取得想要查看的符号内存虚拟地址
+        - open /dev/kmem之后，mmap访问第一步获得的虚拟内存地址

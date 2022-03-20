@@ -1,0 +1,8 @@
+- 显示rpmlib版本
+	- rpm -qp rpm-libs-4.11.3-21.el7.x86_64 --showrc | grep rpmlib
+- 查看未安装rpm包
+	- -p参数
+- 查看已安装rpm包
+	- 不加参
+- 查看谁能提供文件
+	- yum whatprovides */libcrypto.so.10
