@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.20.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi
+CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build
+CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build
 
 # Include any dependencies generated for this target.
 include application/mq_server/CMakeFiles/mq_server.dir/depend.make
@@ -72,30 +72,30 @@ include application/mq_server/CMakeFiles/mq_server.dir/flags.make
 application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.o: application/mq_server/CMakeFiles/mq_server.dir/flags.make
 application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.o: ../application/mq_server/mq_client.c
 application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.o: application/mq_server/CMakeFiles/mq_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.o"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.o -MF CMakeFiles/mq_server.dir/mq_client.c.o.d -o CMakeFiles/mq_server.dir/mq_client.c.o -c /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/application/mq_server/mq_client.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.o"
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.o -MF CMakeFiles/mq_server.dir/mq_client.c.o.d -o CMakeFiles/mq_server.dir/mq_client.c.o -c /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/application/mq_server/mq_client.c
 
 application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mq_server.dir/mq_client.c.i"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/application/mq_server/mq_client.c > CMakeFiles/mq_server.dir/mq_client.c.i
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/application/mq_server/mq_client.c > CMakeFiles/mq_server.dir/mq_client.c.i
 
 application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mq_server.dir/mq_client.c.s"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/application/mq_server/mq_client.c -o CMakeFiles/mq_server.dir/mq_client.c.s
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/application/mq_server/mq_client.c -o CMakeFiles/mq_server.dir/mq_client.c.s
 
 application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.o: application/mq_server/CMakeFiles/mq_server.dir/flags.make
 application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.o: ../application/mq_server/mq_server.c
 application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.o: application/mq_server/CMakeFiles/mq_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.o"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.o -MF CMakeFiles/mq_server.dir/mq_server.c.o.d -o CMakeFiles/mq_server.dir/mq_server.c.o -c /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/application/mq_server/mq_server.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.o"
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.o -MF CMakeFiles/mq_server.dir/mq_server.c.o.d -o CMakeFiles/mq_server.dir/mq_server.c.o -c /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/application/mq_server/mq_server.c
 
 application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mq_server.dir/mq_server.c.i"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/application/mq_server/mq_server.c > CMakeFiles/mq_server.dir/mq_server.c.i
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/application/mq_server/mq_server.c > CMakeFiles/mq_server.dir/mq_server.c.i
 
 application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mq_server.dir/mq_server.c.s"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/application/mq_server/mq_server.c -o CMakeFiles/mq_server.dir/mq_server.c.s
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/application/mq_server/mq_server.c -o CMakeFiles/mq_server.dir/mq_server.c.s
 
 # Object files for target mq_server
 mq_server_OBJECTS = \
@@ -110,18 +110,18 @@ application/mq_server/mq_server: application/mq_server/CMakeFiles/mq_server.dir/
 application/mq_server/mq_server: application/mq_server/CMakeFiles/mq_server.dir/build.make
 application/mq_server/mq_server: basic/libbasic.a
 application/mq_server/mq_server: application/mq_server/CMakeFiles/mq_server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable mq_server"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mq_server.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable mq_server"
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mq_server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 application/mq_server/CMakeFiles/mq_server.dir/build: application/mq_server/mq_server
 .PHONY : application/mq_server/CMakeFiles/mq_server.dir/build
 
 application/mq_server/CMakeFiles/mq_server.dir/clean:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server && $(CMAKE_COMMAND) -P CMakeFiles/mq_server.dir/cmake_clean.cmake
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server && $(CMAKE_COMMAND) -P CMakeFiles/mq_server.dir/cmake_clean.cmake
 .PHONY : application/mq_server/CMakeFiles/mq_server.dir/clean
 
 application/mq_server/CMakeFiles/mq_server.dir/depend:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/application/mq_server /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server/CMakeFiles/mq_server.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/application/mq_server /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server/CMakeFiles/mq_server.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : application/mq_server/CMakeFiles/mq_server.dir/depend
 

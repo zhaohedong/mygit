@@ -57,10 +57,10 @@ RM = /usr/local/Cellar/cmake/3.20.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi
+CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build
+CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic//CMakeFiles/progress.marks
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles 0
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic//CMakeFiles/progress.marks
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/clean
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/preinstall
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/preinstall
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 basic/CMakeFiles/basic.dir/rule:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/CMakeFiles/basic.dir/rule
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/CMakeFiles/basic.dir/rule
 .PHONY : basic/CMakeFiles/basic.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ basic: basic/CMakeFiles/basic.dir/rule
 
 # fast build rule for target.
 basic/fast:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/build
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/build
 .PHONY : basic/fast
 
 message_queue/message_queue.o: message_queue/message_queue.c.o
@@ -135,7 +135,7 @@ message_queue/message_queue.o: message_queue/message_queue.c.o
 
 # target to build an object file
 message_queue/message_queue.c.o:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/message_queue/message_queue.c.o
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/message_queue/message_queue.c.o
 .PHONY : message_queue/message_queue.c.o
 
 message_queue/message_queue.i: message_queue/message_queue.c.i
@@ -143,7 +143,7 @@ message_queue/message_queue.i: message_queue/message_queue.c.i
 
 # target to preprocess a source file
 message_queue/message_queue.c.i:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/message_queue/message_queue.c.i
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/message_queue/message_queue.c.i
 .PHONY : message_queue/message_queue.c.i
 
 message_queue/message_queue.s: message_queue/message_queue.c.s
@@ -151,7 +151,7 @@ message_queue/message_queue.s: message_queue/message_queue.c.s
 
 # target to generate assembly for a file
 message_queue/message_queue.c.s:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/message_queue/message_queue.c.s
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/message_queue/message_queue.c.s
 .PHONY : message_queue/message_queue.c.s
 
 statemachine/statemachine.o: statemachine/statemachine.c.o
@@ -159,7 +159,7 @@ statemachine/statemachine.o: statemachine/statemachine.c.o
 
 # target to build an object file
 statemachine/statemachine.c.o:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/statemachine/statemachine.c.o
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/statemachine/statemachine.c.o
 .PHONY : statemachine/statemachine.c.o
 
 statemachine/statemachine.i: statemachine/statemachine.c.i
@@ -167,7 +167,7 @@ statemachine/statemachine.i: statemachine/statemachine.c.i
 
 # target to preprocess a source file
 statemachine/statemachine.c.i:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/statemachine/statemachine.c.i
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/statemachine/statemachine.c.i
 .PHONY : statemachine/statemachine.c.i
 
 statemachine/statemachine.s: statemachine/statemachine.c.s
@@ -175,7 +175,7 @@ statemachine/statemachine.s: statemachine/statemachine.c.s
 
 # target to generate assembly for a file
 statemachine/statemachine.c.s:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/statemachine/statemachine.c.s
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/statemachine/statemachine.c.s
 .PHONY : statemachine/statemachine.c.s
 
 thread/thread.o: thread/thread.c.o
@@ -183,7 +183,7 @@ thread/thread.o: thread/thread.c.o
 
 # target to build an object file
 thread/thread.c.o:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/thread/thread.c.o
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/thread/thread.c.o
 .PHONY : thread/thread.c.o
 
 thread/thread.i: thread/thread.c.i
@@ -191,7 +191,7 @@ thread/thread.i: thread/thread.c.i
 
 # target to preprocess a source file
 thread/thread.c.i:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/thread/thread.c.i
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/thread/thread.c.i
 .PHONY : thread/thread.c.i
 
 thread/thread.s: thread/thread.c.s
@@ -199,7 +199,7 @@ thread/thread.s: thread/thread.c.s
 
 # target to generate assembly for a file
 thread/thread.c.s:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/thread/thread.c.s
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/thread/thread.c.s
 .PHONY : thread/thread.c.s
 
 # Help Target
@@ -231,6 +231,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

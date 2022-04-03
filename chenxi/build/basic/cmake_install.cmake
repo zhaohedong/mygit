@@ -1,4 +1,4 @@
-# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic
+# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic/message_queue/cmake_install.cmake")
-  include("/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic/thread/cmake_install.cmake")
-  include("/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic/statemachine/cmake_install.cmake")
+  include("/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic/message_queue/cmake_install.cmake")
+  include("/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic/thread/cmake_install.cmake")
+  include("/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic/statemachine/cmake_install.cmake")
 
 endif()
 

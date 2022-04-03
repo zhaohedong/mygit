@@ -1,4 +1,4 @@
-# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi
+# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,10 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/main/cmake_install.cmake")
-  include("/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic/cmake_install.cmake")
-  include("/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/cmake_install.cmake")
+  include("/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/main/cmake_install.cmake")
+  include("/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic/cmake_install.cmake")
+  include("/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic_cpp/cmake_install.cmake")
+  include("/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/cmake_install.cmake")
 
 endif()
 
@@ -53,5 +54,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

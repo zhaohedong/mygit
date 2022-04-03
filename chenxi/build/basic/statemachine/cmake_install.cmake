@@ -1,4 +1,4 @@
-# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/statemachine
+# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/statemachine
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

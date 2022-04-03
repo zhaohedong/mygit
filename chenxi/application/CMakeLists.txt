@@ -1,1 +1,2 @@
+add_subdirectory(service_test)
 add_subdirectory(mq_server)

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/thread
+# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/thread
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

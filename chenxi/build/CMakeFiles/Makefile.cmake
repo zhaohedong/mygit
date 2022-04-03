@@ -10,10 +10,13 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../CMakeLists.txt"
   "../application/CMakeLists.txt"
   "../application/mq_server/CMakeLists.txt"
+  "../application/service_test/CMakeLists.txt"
   "../basic/CMakeLists.txt"
   "../basic/message_queue/CMakeLists.txt"
   "../basic/statemachine/CMakeLists.txt"
   "../basic/thread/CMakeLists.txt"
+  "../basic_cpp/CMakeLists.txt"
+  "../basic_cpp/service/CMakeLists.txt"
   "CMakeFiles/3.20.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.20.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.20.2/CMakeSystem.cmake"
@@ -55,7 +58,10 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "basic/message_queue/CMakeFiles/CMakeDirectoryInformation.cmake"
   "basic/thread/CMakeFiles/CMakeDirectoryInformation.cmake"
   "basic/statemachine/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "basic_cpp/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "basic_cpp/service/CMakeFiles/CMakeDirectoryInformation.cmake"
   "application/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "application/service_test/CMakeFiles/CMakeDirectoryInformation.cmake"
   "application/mq_server/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
@@ -63,5 +69,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chenxi.dir/DependInfo.cmake"
   "basic/CMakeFiles/basic.dir/DependInfo.cmake"
+  "basic_cpp/CMakeFiles/basic_cpp.dir/DependInfo.cmake"
+  "application/service_test/CMakeFiles/service_test.dir/DependInfo.cmake"
   "application/mq_server/CMakeFiles/mq_server.dir/DependInfo.cmake"
   )

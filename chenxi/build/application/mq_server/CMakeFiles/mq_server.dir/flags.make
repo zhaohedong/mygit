@@ -4,7 +4,7 @@
 # compile C with /Library/Developer/CommandLineTools/usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/message_queue -I/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/thread
+C_INCLUDES = -I/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/message_queue -I/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/thread
 
 C_FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk
 

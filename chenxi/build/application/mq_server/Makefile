@@ -57,10 +57,10 @@ RM = /usr/local/Cellar/cmake/3.20.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi
+CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build
+CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/application/mq_server//CMakeFiles/progress.marks
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles 0
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server//CMakeFiles/progress.marks
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/clean
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/preinstall
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/preinstall
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 application/mq_server/CMakeFiles/mq_server.dir/rule:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/CMakeFiles/mq_server.dir/rule
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/CMakeFiles/mq_server.dir/rule
 .PHONY : application/mq_server/CMakeFiles/mq_server.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ mq_server: application/mq_server/CMakeFiles/mq_server.dir/rule
 
 # fast build rule for target.
 mq_server/fast:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/build
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/build
 .PHONY : mq_server/fast
 
 mq_client.o: mq_client.c.o
@@ -135,7 +135,7 @@ mq_client.o: mq_client.c.o
 
 # target to build an object file
 mq_client.c.o:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.o
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.o
 .PHONY : mq_client.c.o
 
 mq_client.i: mq_client.c.i
@@ -143,7 +143,7 @@ mq_client.i: mq_client.c.i
 
 # target to preprocess a source file
 mq_client.c.i:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.i
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.i
 .PHONY : mq_client.c.i
 
 mq_client.s: mq_client.c.s
@@ -151,7 +151,7 @@ mq_client.s: mq_client.c.s
 
 # target to generate assembly for a file
 mq_client.c.s:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.s
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_client.c.s
 .PHONY : mq_client.c.s
 
 mq_server.o: mq_server.c.o
@@ -159,7 +159,7 @@ mq_server.o: mq_server.c.o
 
 # target to build an object file
 mq_server.c.o:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.o
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.o
 .PHONY : mq_server.c.o
 
 mq_server.i: mq_server.c.i
@@ -167,7 +167,7 @@ mq_server.i: mq_server.c.i
 
 # target to preprocess a source file
 mq_server.c.i:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.i
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.i
 .PHONY : mq_server.c.i
 
 mq_server.s: mq_server.c.s
@@ -175,7 +175,7 @@ mq_server.s: mq_server.c.s
 
 # target to generate assembly for a file
 mq_server.c.s:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.s
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/mq_server.c.s
 .PHONY : mq_server.c.s
 
 # Help Target
@@ -204,6 +204,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -53,10 +53,10 @@ RM = /usr/local/Cellar/cmake/3.20.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi
+CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build
+CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build
 
 # Include any dependencies generated for this target.
 include basic/CMakeFiles/basic.dir/depend.make
@@ -72,44 +72,44 @@ include basic/CMakeFiles/basic.dir/flags.make
 basic/CMakeFiles/basic.dir/message_queue/message_queue.c.o: basic/CMakeFiles/basic.dir/flags.make
 basic/CMakeFiles/basic.dir/message_queue/message_queue.c.o: ../basic/message_queue/message_queue.c
 basic/CMakeFiles/basic.dir/message_queue/message_queue.c.o: basic/CMakeFiles/basic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object basic/CMakeFiles/basic.dir/message_queue/message_queue.c.o"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT basic/CMakeFiles/basic.dir/message_queue/message_queue.c.o -MF CMakeFiles/basic.dir/message_queue/message_queue.c.o.d -o CMakeFiles/basic.dir/message_queue/message_queue.c.o -c /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/message_queue/message_queue.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object basic/CMakeFiles/basic.dir/message_queue/message_queue.c.o"
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT basic/CMakeFiles/basic.dir/message_queue/message_queue.c.o -MF CMakeFiles/basic.dir/message_queue/message_queue.c.o.d -o CMakeFiles/basic.dir/message_queue/message_queue.c.o -c /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/message_queue/message_queue.c
 
 basic/CMakeFiles/basic.dir/message_queue/message_queue.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/basic.dir/message_queue/message_queue.c.i"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/message_queue/message_queue.c > CMakeFiles/basic.dir/message_queue/message_queue.c.i
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/message_queue/message_queue.c > CMakeFiles/basic.dir/message_queue/message_queue.c.i
 
 basic/CMakeFiles/basic.dir/message_queue/message_queue.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/basic.dir/message_queue/message_queue.c.s"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/message_queue/message_queue.c -o CMakeFiles/basic.dir/message_queue/message_queue.c.s
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/message_queue/message_queue.c -o CMakeFiles/basic.dir/message_queue/message_queue.c.s
 
 basic/CMakeFiles/basic.dir/statemachine/statemachine.c.o: basic/CMakeFiles/basic.dir/flags.make
 basic/CMakeFiles/basic.dir/statemachine/statemachine.c.o: ../basic/statemachine/statemachine.c
 basic/CMakeFiles/basic.dir/statemachine/statemachine.c.o: basic/CMakeFiles/basic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object basic/CMakeFiles/basic.dir/statemachine/statemachine.c.o"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT basic/CMakeFiles/basic.dir/statemachine/statemachine.c.o -MF CMakeFiles/basic.dir/statemachine/statemachine.c.o.d -o CMakeFiles/basic.dir/statemachine/statemachine.c.o -c /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/statemachine/statemachine.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object basic/CMakeFiles/basic.dir/statemachine/statemachine.c.o"
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT basic/CMakeFiles/basic.dir/statemachine/statemachine.c.o -MF CMakeFiles/basic.dir/statemachine/statemachine.c.o.d -o CMakeFiles/basic.dir/statemachine/statemachine.c.o -c /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/statemachine/statemachine.c
 
 basic/CMakeFiles/basic.dir/statemachine/statemachine.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/basic.dir/statemachine/statemachine.c.i"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/statemachine/statemachine.c > CMakeFiles/basic.dir/statemachine/statemachine.c.i
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/statemachine/statemachine.c > CMakeFiles/basic.dir/statemachine/statemachine.c.i
 
 basic/CMakeFiles/basic.dir/statemachine/statemachine.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/basic.dir/statemachine/statemachine.c.s"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/statemachine/statemachine.c -o CMakeFiles/basic.dir/statemachine/statemachine.c.s
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/statemachine/statemachine.c -o CMakeFiles/basic.dir/statemachine/statemachine.c.s
 
 basic/CMakeFiles/basic.dir/thread/thread.c.o: basic/CMakeFiles/basic.dir/flags.make
 basic/CMakeFiles/basic.dir/thread/thread.c.o: ../basic/thread/thread.c
 basic/CMakeFiles/basic.dir/thread/thread.c.o: basic/CMakeFiles/basic.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object basic/CMakeFiles/basic.dir/thread/thread.c.o"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT basic/CMakeFiles/basic.dir/thread/thread.c.o -MF CMakeFiles/basic.dir/thread/thread.c.o.d -o CMakeFiles/basic.dir/thread/thread.c.o -c /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/thread/thread.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object basic/CMakeFiles/basic.dir/thread/thread.c.o"
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT basic/CMakeFiles/basic.dir/thread/thread.c.o -MF CMakeFiles/basic.dir/thread/thread.c.o.d -o CMakeFiles/basic.dir/thread/thread.c.o -c /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/thread/thread.c
 
 basic/CMakeFiles/basic.dir/thread/thread.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/basic.dir/thread/thread.c.i"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/thread/thread.c > CMakeFiles/basic.dir/thread/thread.c.i
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/thread/thread.c > CMakeFiles/basic.dir/thread/thread.c.i
 
 basic/CMakeFiles/basic.dir/thread/thread.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/basic.dir/thread/thread.c.s"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/thread/thread.c -o CMakeFiles/basic.dir/thread/thread.c.s
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && /Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/thread/thread.c -o CMakeFiles/basic.dir/thread/thread.c.s
 
 # Object files for target basic
 basic_OBJECTS = \
@@ -125,19 +125,19 @@ basic/libbasic.a: basic/CMakeFiles/basic.dir/statemachine/statemachine.c.o
 basic/libbasic.a: basic/CMakeFiles/basic.dir/thread/thread.c.o
 basic/libbasic.a: basic/CMakeFiles/basic.dir/build.make
 basic/libbasic.a: basic/CMakeFiles/basic.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C static library libbasic.a"
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && $(CMAKE_COMMAND) -P CMakeFiles/basic.dir/cmake_clean_target.cmake
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/basic.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C static library libbasic.a"
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && $(CMAKE_COMMAND) -P CMakeFiles/basic.dir/cmake_clean_target.cmake
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/basic.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 basic/CMakeFiles/basic.dir/build: basic/libbasic.a
 .PHONY : basic/CMakeFiles/basic.dir/build
 
 basic/CMakeFiles/basic.dir/clean:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic && $(CMAKE_COMMAND) -P CMakeFiles/basic.dir/cmake_clean.cmake
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic && $(CMAKE_COMMAND) -P CMakeFiles/basic.dir/cmake_clean.cmake
 .PHONY : basic/CMakeFiles/basic.dir/clean
 
 basic/CMakeFiles/basic.dir/depend:
-	cd /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/basic/CMakeFiles/basic.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/basic/CMakeFiles/basic.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : basic/CMakeFiles/basic.dir/depend
 

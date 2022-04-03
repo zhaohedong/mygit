@@ -1,10 +1,15 @@
 # add the executable
 cmake_minimum_required (VERSION 3.0)
+# SET(CMAKE_C_COMPILER /usr/bin/gcc)
+# SET(CMAKE_CXX_COMPILER /usr/bin/g++)
+
 project(chenxi)
+set(CMAKE_CXX_STANDARD 17)
 
 set(ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 add_subdirectory(${ROOT_PATH}/main)
 add_subdirectory(${ROOT_PATH}/basic)
+add_subdirectory(${ROOT_PATH}/basic_cpp)
 add_subdirectory(${ROOT_PATH}/application)
 
 aux_source_directory(${ROOT_PATH}/main MAIN_SRC)
@@ -20,6 +25,7 @@ include_directories("${ROOT_PATH}/basic/message_queue")
 include_directories("${ROOT_PATH}/basic/statemachine")
 target_link_directories(chenxi PUBLIC ./basic)
 target_link_libraries(chenxi PUBLIC basic)
+
 
 
 

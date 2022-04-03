@@ -1,4 +1,4 @@
-# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/basic/message_queue
+# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/basic/message_queue
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

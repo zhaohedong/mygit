@@ -1,4 +1,4 @@
-# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/application/mq_server
+# Install script for directory: /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/application/mq_server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

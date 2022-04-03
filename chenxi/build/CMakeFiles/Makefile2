@@ -54,10 +54,10 @@ RM = /usr/local/Cellar/cmake/3.20.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi
+CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build
+CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -66,12 +66,14 @@ CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/pri
 all: CMakeFiles/chenxi.dir/all
 all: main/all
 all: basic/all
+all: basic_cpp/all
 all: application/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: main/preinstall
 preinstall: basic/preinstall
+preinstall: basic_cpp/preinstall
 preinstall: application/preinstall
 .PHONY : preinstall
 
@@ -79,6 +81,7 @@ preinstall: application/preinstall
 clean: CMakeFiles/chenxi.dir/clean
 clean: main/clean
 clean: basic/clean
+clean: basic_cpp/clean
 clean: application/clean
 .PHONY : clean
 
@@ -86,14 +89,17 @@ clean: application/clean
 # Directory level rules for directory application
 
 # Recursive "all" directory target.
+application/all: application/service_test/all
 application/all: application/mq_server/all
 .PHONY : application/all
 
 # Recursive "preinstall" directory target.
+application/preinstall: application/service_test/preinstall
 application/preinstall: application/mq_server/preinstall
 .PHONY : application/preinstall
 
 # Recursive "clean" directory target.
+application/clean: application/service_test/clean
 application/clean: application/mq_server/clean
 .PHONY : application/clean
 
@@ -111,6 +117,21 @@ application/mq_server/preinstall:
 # Recursive "clean" directory target.
 application/mq_server/clean: application/mq_server/CMakeFiles/mq_server.dir/clean
 .PHONY : application/mq_server/clean
+
+#=============================================================================
+# Directory level rules for directory application/service_test
+
+# Recursive "all" directory target.
+application/service_test/all: application/service_test/CMakeFiles/service_test.dir/all
+.PHONY : application/service_test/all
+
+# Recursive "preinstall" directory target.
+application/service_test/preinstall:
+.PHONY : application/service_test/preinstall
+
+# Recursive "clean" directory target.
+application/service_test/clean: application/service_test/CMakeFiles/service_test.dir/clean
+.PHONY : application/service_test/clean
 
 #=============================================================================
 # Directory level rules for directory basic
@@ -181,6 +202,38 @@ basic/thread/clean:
 .PHONY : basic/thread/clean
 
 #=============================================================================
+# Directory level rules for directory basic_cpp
+
+# Recursive "all" directory target.
+basic_cpp/all: basic_cpp/CMakeFiles/basic_cpp.dir/all
+basic_cpp/all: basic_cpp/service/all
+.PHONY : basic_cpp/all
+
+# Recursive "preinstall" directory target.
+basic_cpp/preinstall: basic_cpp/service/preinstall
+.PHONY : basic_cpp/preinstall
+
+# Recursive "clean" directory target.
+basic_cpp/clean: basic_cpp/CMakeFiles/basic_cpp.dir/clean
+basic_cpp/clean: basic_cpp/service/clean
+.PHONY : basic_cpp/clean
+
+#=============================================================================
+# Directory level rules for directory basic_cpp/service
+
+# Recursive "all" directory target.
+basic_cpp/service/all:
+.PHONY : basic_cpp/service/all
+
+# Recursive "preinstall" directory target.
+basic_cpp/service/preinstall:
+.PHONY : basic_cpp/service/preinstall
+
+# Recursive "clean" directory target.
+basic_cpp/service/clean:
+.PHONY : basic_cpp/service/clean
+
+#=============================================================================
 # Directory level rules for directory main
 
 # Recursive "all" directory target.
@@ -202,14 +255,14 @@ main/clean:
 CMakeFiles/chenxi.dir/all: basic/CMakeFiles/basic.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chenxi.dir/build.make CMakeFiles/chenxi.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chenxi.dir/build.make CMakeFiles/chenxi.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles --progress-num=5,6 "Built target chenxi"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=7,8 "Built target chenxi"
 .PHONY : CMakeFiles/chenxi.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/chenxi.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/chenxi.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 0
 .PHONY : CMakeFiles/chenxi.dir/rule
 
 # Convenience name for target.
@@ -228,14 +281,14 @@ CMakeFiles/chenxi.dir/clean:
 basic/CMakeFiles/basic.dir/all:
 	$(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/depend
 	$(MAKE) $(MAKESILENT) -f basic/CMakeFiles/basic.dir/build.make basic/CMakeFiles/basic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles --progress-num=1,2,3,4 "Built target basic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=1,2,3,4 "Built target basic"
 .PHONY : basic/CMakeFiles/basic.dir/all
 
 # Build rule for subdir invocation for target.
 basic/CMakeFiles/basic.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic/CMakeFiles/basic.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 0
 .PHONY : basic/CMakeFiles/basic.dir/rule
 
 # Convenience name for target.
@@ -248,20 +301,72 @@ basic/CMakeFiles/basic.dir/clean:
 .PHONY : basic/CMakeFiles/basic.dir/clean
 
 #=============================================================================
+# Target rules for target basic_cpp/CMakeFiles/basic_cpp.dir
+
+# All Build rule for target.
+basic_cpp/CMakeFiles/basic_cpp.dir/all:
+	$(MAKE) $(MAKESILENT) -f basic_cpp/CMakeFiles/basic_cpp.dir/build.make basic_cpp/CMakeFiles/basic_cpp.dir/depend
+	$(MAKE) $(MAKESILENT) -f basic_cpp/CMakeFiles/basic_cpp.dir/build.make basic_cpp/CMakeFiles/basic_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=5,6 "Built target basic_cpp"
+.PHONY : basic_cpp/CMakeFiles/basic_cpp.dir/all
+
+# Build rule for subdir invocation for target.
+basic_cpp/CMakeFiles/basic_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic_cpp/CMakeFiles/basic_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 0
+.PHONY : basic_cpp/CMakeFiles/basic_cpp.dir/rule
+
+# Convenience name for target.
+basic_cpp: basic_cpp/CMakeFiles/basic_cpp.dir/rule
+.PHONY : basic_cpp
+
+# clean rule for target.
+basic_cpp/CMakeFiles/basic_cpp.dir/clean:
+	$(MAKE) $(MAKESILENT) -f basic_cpp/CMakeFiles/basic_cpp.dir/build.make basic_cpp/CMakeFiles/basic_cpp.dir/clean
+.PHONY : basic_cpp/CMakeFiles/basic_cpp.dir/clean
+
+#=============================================================================
+# Target rules for target application/service_test/CMakeFiles/service_test.dir
+
+# All Build rule for target.
+application/service_test/CMakeFiles/service_test.dir/all: basic_cpp/CMakeFiles/basic_cpp.dir/all
+	$(MAKE) $(MAKESILENT) -f application/service_test/CMakeFiles/service_test.dir/build.make application/service_test/CMakeFiles/service_test.dir/depend
+	$(MAKE) $(MAKESILENT) -f application/service_test/CMakeFiles/service_test.dir/build.make application/service_test/CMakeFiles/service_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=12,13 "Built target service_test"
+.PHONY : application/service_test/CMakeFiles/service_test.dir/all
+
+# Build rule for subdir invocation for target.
+application/service_test/CMakeFiles/service_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/service_test/CMakeFiles/service_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 0
+.PHONY : application/service_test/CMakeFiles/service_test.dir/rule
+
+# Convenience name for target.
+service_test: application/service_test/CMakeFiles/service_test.dir/rule
+.PHONY : service_test
+
+# clean rule for target.
+application/service_test/CMakeFiles/service_test.dir/clean:
+	$(MAKE) $(MAKESILENT) -f application/service_test/CMakeFiles/service_test.dir/build.make application/service_test/CMakeFiles/service_test.dir/clean
+.PHONY : application/service_test/CMakeFiles/service_test.dir/clean
+
+#=============================================================================
 # Target rules for target application/mq_server/CMakeFiles/mq_server.dir
 
 # All Build rule for target.
 application/mq_server/CMakeFiles/mq_server.dir/all: basic/CMakeFiles/basic.dir/all
 	$(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/depend
 	$(MAKE) $(MAKESILENT) -f application/mq_server/CMakeFiles/mq_server.dir/build.make application/mq_server/CMakeFiles/mq_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles --progress-num=7,8,9 "Built target mq_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles --progress-num=9,10,11 "Built target mq_server"
 .PHONY : application/mq_server/CMakeFiles/mq_server.dir/all
 
 # Build rule for subdir invocation for target.
 application/mq_server/CMakeFiles/mq_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 application/mq_server/CMakeFiles/mq_server.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 0
 .PHONY : application/mq_server/CMakeFiles/mq_server.dir/rule
 
 # Convenience name for target.

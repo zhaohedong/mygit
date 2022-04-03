@@ -57,10 +57,10 @@ RM = /usr/local/Cellar/cmake/3.20.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi
+CMAKE_SOURCE_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build
+CMAKE_BINARY_DIR = /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit_private/private/chenxi/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -143,6 +143,32 @@ basic/fast:
 .PHONY : basic/fast
 
 #=============================================================================
+# Target rules for targets named basic_cpp
+
+# Build rule for target.
+basic_cpp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 basic_cpp
+.PHONY : basic_cpp
+
+# fast build rule for target.
+basic_cpp/fast:
+	$(MAKE) $(MAKESILENT) -f basic_cpp/CMakeFiles/basic_cpp.dir/build.make basic_cpp/CMakeFiles/basic_cpp.dir/build
+.PHONY : basic_cpp/fast
+
+#=============================================================================
+# Target rules for targets named service_test
+
+# Build rule for target.
+service_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 service_test
+.PHONY : service_test
+
+# fast build rule for target.
+service_test/fast:
+	$(MAKE) $(MAKESILENT) -f application/service_test/CMakeFiles/service_test.dir/build.make application/service_test/CMakeFiles/service_test.dir/build
+.PHONY : service_test/fast
+
+#=============================================================================
 # Target rules for targets named mq_server
 
 # Build rule for target.
@@ -188,8 +214,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... basic"
+	@echo "... basic_cpp"
 	@echo "... chenxi"
 	@echo "... mq_server"
+	@echo "... service_test"
 	@echo "... main/main.o"
 	@echo "... main/main.i"
 	@echo "... main/main.s"
