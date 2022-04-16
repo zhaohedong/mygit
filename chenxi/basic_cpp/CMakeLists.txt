@@ -1,7 +1,8 @@
 aux_source_directory(./service TASK_QUEUE_DIR)
+aux_source_directory(./cx_semaphore CX_SEMAPHORE_DIR)
 
 add_subdirectory(service)
-add_library(basic_cpp ${TASK_QUEUE_DIR})
+add_library(basic_cpp ${TASK_QUEUE_DIR} ${CX_SEMAPHORE_DIR})
 # target_link_libraries(basic_cpp PUBLIC pthread)
 
 set(CMAKE_BUILD_TYPE "Debug")

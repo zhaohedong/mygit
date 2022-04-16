@@ -72,6 +72,7 @@
         "stdint.h": "c",
         "queue": "cpp",
         "deque": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "condition_variable": "cpp"
     }
 }

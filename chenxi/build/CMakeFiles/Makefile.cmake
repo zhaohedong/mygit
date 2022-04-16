@@ -10,6 +10,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../CMakeLists.txt"
   "../application/CMakeLists.txt"
   "../application/mq_server/CMakeLists.txt"
+  "../application/semaphore_test/CMakeLists.txt"
   "../application/service_test/CMakeLists.txt"
   "../basic/CMakeLists.txt"
   "../basic/message_queue/CMakeLists.txt"
@@ -62,6 +63,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "basic_cpp/service/CMakeFiles/CMakeDirectoryInformation.cmake"
   "application/CMakeFiles/CMakeDirectoryInformation.cmake"
   "application/service_test/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "application/semaphore_test/CMakeFiles/CMakeDirectoryInformation.cmake"
   "application/mq_server/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
@@ -71,5 +73,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "basic/CMakeFiles/basic.dir/DependInfo.cmake"
   "basic_cpp/CMakeFiles/basic_cpp.dir/DependInfo.cmake"
   "application/service_test/CMakeFiles/service_test.dir/DependInfo.cmake"
+  "application/semaphore_test/CMakeFiles/semaphore_test.dir/DependInfo.cmake"
   "application/mq_server/CMakeFiles/mq_server.dir/DependInfo.cmake"
   )

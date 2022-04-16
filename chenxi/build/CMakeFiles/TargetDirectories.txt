@@ -22,6 +22,9 @@
 /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/service_test/CMakeFiles/rebuild_cache.dir
 /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/service_test/CMakeFiles/edit_cache.dir
 /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/service_test/CMakeFiles/service_test.dir
+/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/semaphore_test/CMakeFiles/rebuild_cache.dir
+/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/semaphore_test/CMakeFiles/edit_cache.dir
+/Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/semaphore_test/CMakeFiles/semaphore_test.dir
 /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server/CMakeFiles/rebuild_cache.dir
 /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server/CMakeFiles/edit_cache.dir
 /Users/zhaohedong/Desktop/projects/personal/mygit/chenxi/build/application/mq_server/CMakeFiles/mq_server.dir

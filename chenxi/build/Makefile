@@ -169,6 +169,19 @@ service_test/fast:
 .PHONY : service_test/fast
 
 #=============================================================================
+# Target rules for targets named semaphore_test
+
+# Build rule for target.
+semaphore_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 semaphore_test
+.PHONY : semaphore_test
+
+# fast build rule for target.
+semaphore_test/fast:
+	$(MAKE) $(MAKESILENT) -f application/semaphore_test/CMakeFiles/semaphore_test.dir/build.make application/semaphore_test/CMakeFiles/semaphore_test.dir/build
+.PHONY : semaphore_test/fast
+
+#=============================================================================
 # Target rules for targets named mq_server
 
 # Build rule for target.
@@ -217,6 +230,7 @@ help:
 	@echo "... basic_cpp"
 	@echo "... chenxi"
 	@echo "... mq_server"
+	@echo "... semaphore_test"
 	@echo "... service_test"
 	@echo "... main/main.o"
 	@echo "... main/main.i"
